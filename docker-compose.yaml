@@ -1,13 +1,29 @@
-# volumes:
+volumes:
+  mongo-data:
+    external: true
+
 services:
+  mongo:
+    image: mongo:5
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: username
+      MONGO_INITDB_ROOT_PASSWORD: password
+
   fastapi:
     build:
-      context: sample_service
+      context: ./api
       dockerfile: Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
-      - ./sample_service:/app
+      - ./api:/app
+    environment:
+      MONGO_USER: username
+      MONGO_PASSWORD: password
+      MONGO_HOST: mongo
+      MONGO_DB: book-bounty-db
 
   ghi:
     image: node:lts-bullseye
