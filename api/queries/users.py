@@ -1,6 +1,6 @@
 from models.users import UserIn, UserOut, UserOutPassword
 from pymongo.errors import DuplicateKeyError
-from .queries import MongoQueries
+from .client import MongoQueries
 
 class DuplicateUserError(ValueError):
     pass
@@ -22,18 +22,18 @@ class UserQueries(MongoQueries):
         return UserOutPassword(**user)
 
     def get(self, username: str):
-        props = self.collection.find_one({"username": username}) or self.collection.find_one({"email": username})
-        if not props:
+        user = self.collection.find_one({"username": username}) or self.collection.find_one({"email": username})
+        if not user:
             return None
-        props["id"] = str(props["_id"])
-        return UserOutPassword(**props)
+        user["id"] = str(user["_id"])
+        return UserOutPassword(**user)
 
     def get_user(self, username: str):
-        props = self.collection.find_one({"username": username}) or self.collection.find_one({"email": username})
-        if not props:
+        user = self.collection.find_one({"username": username}) or self.collection.find_one({"email": username})
+        if not user:
             return None
-        props["id"] = str(props["_id"])
-        return UserOut(**props).dict()
+        user["id"] = str(user["_id"])
+        return UserOut(**user).dict()
 
     def get_all(self):
         users = []
