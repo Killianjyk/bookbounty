@@ -1,6 +1,7 @@
 from models.users import UserIn, UserOut, UserOutPassword
 from pymongo.errors import DuplicateKeyError
 from .client import MongoQueries
+from .books import BooksQueries
 
 class DuplicateUserError(ValueError):
     pass
@@ -14,7 +15,9 @@ class UserQueries(MongoQueries):
         if self.get_user(user["username"]) or self.get_user(user["email"]):
             raise DuplicateUserError
 
-        response = self.collection.insert_one(user)
+        user_data = user
+        user_data["book_list"] = BooksQueries.new_book_lists()
+        response = self.collection.insert_one(user_data)
 
         if response.inserted_id:
             user["id"] = str(response.inserted_id)
