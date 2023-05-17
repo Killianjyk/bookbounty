@@ -1,4 +1,4 @@
-from models.users import UserIn, UserOut, UserOutPassword
+from models.users import UserIn, UserOut, UserOutPassword, UsersBooks
 from pymongo.errors import DuplicateKeyError
 from .client import MongoQueries
 from .books import BooksQueries
@@ -14,14 +14,11 @@ class UserQueries(MongoQueries):
         user["password"] = hashed_password
         if self.get_user(user["username"]):
             raise DuplicateUserError
-
         user_data = user
-        user_data["book_list"] = BooksQueries.new_book_lists()
+        user_data["book_list"] = self.new_book_lists()
         response = self.collection.insert_one(user_data)
-
         if response.inserted_id:
             user["id"] = str(response.inserted_id)
-
         return UserOutPassword(**user)
 
     def get(self, username: str):
@@ -44,3 +41,13 @@ class UserQueries(MongoQueries):
             user["id"] = str(user["_id"])
             users.append(user)
         return users
+
+
+    def new_book_lists(self):
+        lists = {}
+        lists["favorites"] = []
+        lists["previously"] = []
+        lists["next"] = []
+        return lists
+
+    

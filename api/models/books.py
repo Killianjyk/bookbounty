@@ -13,9 +13,12 @@ class BookOut(BaseModel):
     work_id: str
     title: str
     author: str
+
+
+class BookOutData(BookOut):
     favorited_by: int
 
 
 # for view
 class BookList(BaseModel):
-    books: List[BookOut]
+    books: List[BookOut] = []

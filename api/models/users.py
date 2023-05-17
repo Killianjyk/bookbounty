@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List
-from .books import BookList
+from .books import BookOut
 
 
 class UserIn(BaseModel):
@@ -11,9 +11,9 @@ class UserIn(BaseModel):
 
 
 class UsersBooks(BaseModel):
-    favorites: BookList
-    previous: BookList
-    next: BookList
+    favorites: List[BookOut] = []
+    previous: List[BookOut] = []
+    next: List[BookOut] = []
 
 
 class UserOut(BaseModel):
