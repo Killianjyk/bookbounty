@@ -58,6 +58,7 @@ def get_all_users(
 ):
     return { "users": users.get_all() }
 
+
 @router.get("/api/users/{username}/", response_model=UserOut)
 def get_user(
     username: str,
