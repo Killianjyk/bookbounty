@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from models.authenticator import authenticator
-from models.books import BookIn, BookOut
+from models.books import BookIn, BookOut, BookList
 from queries.books import BooksQueries
 from typing import Optional
 
@@ -8,8 +8,8 @@ router = APIRouter()
 
 @router.post("/api/books/", response_model=BookOut)
 def track_book(
-    books: BooksQueries,
-    info: BookIn
+    info: BookIn,
+    books: BooksQueries = Depends()
 ):
     try:
         book = books.new_book(info)
@@ -21,63 +21,48 @@ def track_book(
     return book
 
 
-@router.get("/api/books/", response_model=BookOut)
-def get_all_tracked_book(
-    books: BooksQueries
+@router.get("/api/books/", response_model=BookList)
+def get_all_tracked_books(
+    books: BooksQueries = Depends()
 ):
-    return books.get_books()
+    return { "books": books.get_books() }
 
 
 @router.get("/api/books/{work_id}/", response_model=BookOut)
-def get_tracked_book(
-    books: BooksQueries,
-    work_id: str
+def get_tracked_book( 
+    work_id: str,
+    books: BooksQueries = Depends()
 ):
     return books.get_book(work_id)
 
 
-@router.get("/api/books/{work_id}/{type}/")
-def get_books_of_type(
-    type: str
-):
-    if type == "favorites":
-        pass
-    elif type == "previously":
-        pass
-    elif type == "next":
-        pass
-    pass
+# @router.get("/api/books/{work_id}/{type}/")
+# def get_books_of_type(
+#     type: str
+# ):
+#     if type == "favorites":
+#         pass
+#     elif type == "previously":
+#         pass
+#     elif type == "next":
+#         pass
+#     pass
 
 
-@router.post("/api/books/{work_id}/{type}/")
-def add_book_to_list(
-    type: str,
-    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data)
-):
-    if not user_data:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Not signed in",
-        )
-    elif type == "favorites":
-        pass
-    elif type == "previously":
-        pass
-    elif type == "next":
-        pass
-    pass
-
-
-# @router.post("/api/books/{type}/")
-# async def add_book_to_a_list(
+# @router.post("/api/books/{work_id}/{type}/")
+# def add_book_to_list(
 #     type: str,
-#     user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
+#     user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data)
 # ):
 #     if not user_data:
-#         return HTTPException(
+#         raise HTTPException(
 #             status_code=status.HTTP_401_UNAUTHORIZED,
-#             detail="Invalid authentication credentials",
-#             headers={"WWW-Authenticate": "Bearer"},
+#             detail="Not signed in",
 #         )
-
-#     await user_data["list"][type].append()
+#     elif type == "favorites":
+#         pass
+#     elif type == "previously":
+#         pass
+#     elif type == "next":
+#         pass
+#     pass
