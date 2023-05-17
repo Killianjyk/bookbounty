@@ -50,15 +50,13 @@ async def create_user(
 
 @router.get("/api/users/", response_model=UserList)
 def get_all_users(
-    users : UserQueries = Depends()
+    users: UserQueries = Depends()
 ):
     return { "users": users.get_all() }
 
 @router.get("/api/users/{username}/", response_model=UserOut)
 def get_user(
     username: str,
-    users : UserQueries = Depends()
+    users: UserQueries = Depends()
 ):
     return users.get_user(username)
-
-
