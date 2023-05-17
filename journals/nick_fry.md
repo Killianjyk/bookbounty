@@ -1,5 +1,10 @@
 ## 05/16/2023
     Goals:
+        - Set up paths for books lists
+    Notes for myself-
+        
+## 05/16/2023
+    Goals:
         - Finish user queries
         - Set up paths for books lists
     Notes for myself-

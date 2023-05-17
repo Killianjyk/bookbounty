@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List
-from books import BookList
+from .books import BookList
 
 
 class UserIn(BaseModel):
@@ -16,15 +16,15 @@ class UsersBooks(BaseModel):
     next: BookList
 
 
-class UserData(UserIn):
-    book_list: UsersBooks
-
-
 class UserOut(BaseModel):
     id: str
     email: str
     username: str
     full_name: str
+
+
+class UserData(UserOut):
+    book_list: UsersBooks
 
 
 class UserOutPassword(UserOut):
@@ -33,4 +33,4 @@ class UserOutPassword(UserOut):
 
 # for view
 class UserList(BaseModel):
-    users: List[UserOut]
+    users: List[UserData]
