@@ -1,11 +1,11 @@
 from .client import MongoQueries
-from models.favorites import FavoriteIn
+from models.usersbookslists import UsersBooksIn
 
 
 class FavoritesQueries(MongoQueries):
     collection_name = "favorites"
 
-    def new_favorite(self, favorite_in: FavoriteIn, user_id: str):
+    def new_favorite(self, favorite_in: UsersBooksIn, user_id: str):
         favorite = favorite_in.dict()
         favorite["user_id"] = user_id
         search_for = self.collection.find_one({ "user_id": user_id, "book_id": favorite_in.book_id })

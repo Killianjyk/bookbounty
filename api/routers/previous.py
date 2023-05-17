@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from models.authenticator import authenticator
-from queries.favorites import FavoritesQueries
-from models.usersbookslists import UsersBooksIn, UsersBooksOut, FavoritesList
+from queries.previous import PreviousQueries
+from models.usersbookslists import UsersBooksIn, UsersBooksOut, PreviousList
 from typing import Optional
 from queries.users import UserQueries
 from queries.books import BooksQueries
@@ -9,10 +9,10 @@ from queries.books import BooksQueries
 router = APIRouter()
 
 
-@router.post("/api/favorites/", response_model=UsersBooksOut)
+@router.post("/api/previous/", response_model=UsersBooksOut)
 def add_to_user_list(
     info: UsersBooksIn,
-    favorites: FavoritesQueries = Depends(),
+    previous: PreviousQueries = Depends(),
     user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data)
 ):
     if not user_data:
@@ -20,22 +20,22 @@ def add_to_user_list(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Not signed in",
         )
-    return favorites.new_favorite(info, user_data["id"])
+    return previous.new_previous(info, user_data["id"])
 
 
-@router.get("/api/favorites/{username}/", response_model=FavoritesList)
-def get_user_favorites(
+@router.get("/api/previous/{username}/", response_model=PreviousList)
+def get_user_previous(
     username: str,
-    favorites: FavoritesQueries = Depends(),
+    previous: PreviousQueries = Depends(),
     users: UserQueries = Depends(),
     books: BooksQueries = Depends()
 ):
     user_id = users.get_user(username)["id"]
-    favorite_books_ids = favorites.user_favorites(user_id)
-    favorite_books = []
-    for book_ids in favorite_books_ids:
-        favorite_books.append(books.get_book(book_ids))
-    return { "favorites": favorite_books }
+    previous_books_ids = previous.user_previous(user_id)
+    previous_books = []
+    for book_ids in previous_books_ids:
+        previous_books.append(books.get_book(book_ids))
+    return { "previous": previous_books }
     
 
 

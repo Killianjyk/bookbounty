@@ -3,12 +3,12 @@ from .books import BookOut
 from typing import List
 
 
-class FavoriteIn(BaseModel):
+class UsersBooksIn(BaseModel):
     book_id: str
     book_work_id: str
 
 
-class FavoriteOut(BaseModel):
+class UsersBooksOut(BaseModel):
     id: str
     user_id: str
     book_id: str
@@ -18,3 +18,11 @@ class FavoriteOut(BaseModel):
 # for view
 class FavoritesList(BaseModel):
     favorites: List[BookOut]
+
+
+class PreviousList(BaseModel):
+    previous: List[BookOut]
+
+
+class NextList(BaseModel):
+    next: List[BookOut]
