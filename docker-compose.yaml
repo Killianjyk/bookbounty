@@ -22,8 +22,12 @@ services:
     environment:
       MONGO_USER: username
       MONGO_PASSWORD: password
-      MONGO_HOST: mongo
+      MONGO_HOST: mongo:27017
       MONGO_DB: book-bounty-db
+      SIGNING_KEY: 87fe4a3fcfb60092dbaeb854a196bc3d9b910
+      WAIT_HOSTS: mongo:27017
+      WAIT_BEFORE: 5
+      WAIT_TIMEOUT: 60
 
   ghi:
     image: node:lts-bullseye
