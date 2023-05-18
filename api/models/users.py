@@ -16,7 +16,6 @@ class UserOut(BaseModel):
     full_name: str
 
 
-
 class UserOutPassword(UserOut):
     password: str
 
