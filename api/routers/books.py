@@ -28,7 +28,7 @@ def get_all_tracked_books(
 
 
 @router.get("/api/books/{work_id}/", response_model=BookOut)
-def get_tracked_book( 
+def get_tracked_book(
     work_id: str,
     books: BooksQueries = Depends()
 ):
