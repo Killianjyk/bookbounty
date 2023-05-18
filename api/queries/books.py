@@ -1,7 +1,5 @@
 from pymongo.errors import DuplicateKeyError
 from .client import MongoQueries
-from models.books import BookIn, BookOut, BookList
-from models.users import UsersBooks
 from models.books import BookIn, BookOut
 
 
