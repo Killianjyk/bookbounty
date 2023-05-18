@@ -18,15 +18,19 @@ from models.users import (
 
 router = APIRouter()
 
+
 class UserForm(BaseModel):
     username: str
     password: str
 
+
 class UserToken(Token):
     user: UserOut
 
+
 class HttpError(BaseModel):
     detail: str
+
 
 @router.post("/api/users/", response_model=UserToken | HttpError)
 async def create_user(
@@ -50,15 +54,14 @@ async def create_user(
 
 @router.get("/api/users/", response_model=UserList)
 def get_all_users(
-    users : UserQueries = Depends()
+    users: UserQueries = Depends()
 ):
     return { "users": users.get_all() }
+
 
 @router.get("/api/users/{username}/", response_model=UserOut)
 def get_user(
     username: str,
-    users : UserQueries = Depends()
+    users: UserQueries = Depends()
 ):
     return users.get_user(username)
-
-
