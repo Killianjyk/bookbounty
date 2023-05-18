@@ -17,6 +17,7 @@ class UserQueries(MongoQueries):
         user_data = user
         user_data["book_list"] = self.new_book_lists()
         response = self.collection.insert_one(user_data)
+        response = self.collection.insert_one(user)
         if response.inserted_id:
             user["id"] = str(response.inserted_id)
         return UserOutPassword(**user)
