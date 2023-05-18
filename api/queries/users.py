@@ -13,12 +13,9 @@ class UserQueries(MongoQueries):
         user["password"] = hashed_password
         if self.get_user(user["username"]):
             raise DuplicateUserError
-
         response = self.collection.insert_one(user)
-
         if response.inserted_id:
             user["id"] = str(response.inserted_id)
-
         return UserOutPassword(**user)
 
     def get(self, username: str):
