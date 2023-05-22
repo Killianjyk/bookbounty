@@ -7,15 +7,12 @@ class OpenLibraryQueries():
     search = "/search.json?q="
     detail = ".json"
 
-
     def get_image(self, image_id):
         return f'https://covers.openlibrary.org/b/id/{image_id}-L.jpg'
-
 
     def get_author(self, author_id: str):
         response = requests.get(self.api_url + author_id + ".json").json()
         return response["name"]
-
 
     def search_api(self, string: str):
         string = string.replace(" ", "+")
@@ -25,7 +22,6 @@ class OpenLibraryQueries():
         for i in range(0, len(response["docs"])):
             keys.append(response["docs"][i]["key"])
         return keys
-
 
     def get_book_details(self, book_id: str):
         book_id = book_id.replace("works", "books")

@@ -15,6 +15,7 @@ from models.users import (
     UserOut,
     UserList
 )
+from typing import Optional
 
 router = APIRouter()
 
@@ -59,9 +60,14 @@ def get_all_users(
     return { "users": users.get_all() }
 
 
-@router.get("/api/users/{username}/", response_model=UserOut)
+@router.get("/api/users/account/", response_model=UserOut)
 def get_user(
-    username: str,
-    users: UserQueries = Depends()
+    users: UserQueries = Depends(),
+    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data)
 ):
-    return users.get_user(username)
+    if not user_data:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Not signed in",
+        )
+    return users.get_user(user_data["username"])
