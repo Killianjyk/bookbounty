@@ -1,15 +1,15 @@
-# stages:
-#   - test
+stages:
+  - test
   # - build
   # - deploy
 
 # Run flake8 to check for code quality
-# lint-test-job:
-#   image: python:3-bullseye
-#   stage: test
-#   script:
-#     - pip install flake8
-#     - flake8 sample_service
+lint-test-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - pip install flake8
+    - flake8 api
 
 # # Run the unit tests
 # api-unit-tests-job:
