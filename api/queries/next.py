@@ -15,7 +15,7 @@ class NextQueries(MongoQueries):
         if added_next.inserted_id:
             next["id"] = str(added_next.inserted_id)
             return next
-        
+
     def user_up_next(self, user_id: str):
         up_next = []
         for next in self.collection.find({ "user_id": user_id }):
@@ -27,3 +27,9 @@ class NextQueries(MongoQueries):
         for next in self.collection.find():
             up_next.append(next)
         return up_next
+
+    def remove_next(self, book_work_id: str, user_id: str):
+        result = self.collection.delete_one(
+            {"user_id": user_id, "book_work_id": book_work_id}
+        )
+        return result.deleted_count > 0

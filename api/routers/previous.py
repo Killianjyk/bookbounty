@@ -36,6 +36,19 @@ def get_user_previous(
     for book_ids in previous_books_ids:
         previous_books.append(books.get_book(book_ids))
     return { "previous": previous_books }
-    
 
 
+@router.delete("/api/previous/{username}/{work_id}/", response_model=bool)
+def remove_previous(
+    work_id: str,
+    username: str,
+    previous: PreviousQueries = Depends(),
+    users: UserQueries = Depends(),
+    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data)
+):
+    if not user_data:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Not signed in",
+        )
+    return previous.remove_previous(work_id, users.get_user(username)["id"])

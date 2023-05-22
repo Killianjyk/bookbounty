@@ -8,17 +8,19 @@ class FavoritesQueries(MongoQueries):
     def new_favorite(self, favorite_in: UsersBooksIn, user_id: str):
         favorite = favorite_in.dict()
         favorite["user_id"] = user_id
-        search_for = self.collection.find_one({ "user_id": user_id, "book_id": favorite_in.book_id })
+        search_for = self.collection.find_one(
+            {"user_id": user_id, "book_id": favorite_in.book_id}
+        )
         if search_for:
             return search_for
         added_favorite = self.collection.insert_one(favorite)
         if added_favorite.inserted_id:
             favorite["id"] = str(added_favorite.inserted_id)
             return favorite
-        
+
     def user_favorites(self, user_id: str):
         favorites = []
-        for favorite in self.collection.find({ "user_id": user_id }):
+        for favorite in self.collection.find({"user_id": user_id}):
             favorites.append(favorite["book_work_id"])
         return favorites
 
@@ -27,3 +29,9 @@ class FavoritesQueries(MongoQueries):
         for favorite in self.collection.find():
             favorites.append(favorite)
         return favorites
+
+    def remove_favorites(self, book_work_id: str, user_id: str):
+        result = self.collection.delete_one(
+            {"user_id": user_id, "book_work_id": book_work_id}
+        )
+        return result.deleted_count > 0

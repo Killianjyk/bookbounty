@@ -15,7 +15,7 @@ class PreviousQueries(MongoQueries):
         if added_previous.inserted_id:
             previous["id"] = str(added_previous.inserted_id)
             return previous
-        
+
     def user_previous(self, user_id: str):
         previous_list = []
         for previous in self.collection.find({ "user_id": user_id }):
@@ -27,3 +27,9 @@ class PreviousQueries(MongoQueries):
         for previous in self.collection.find():
             previous_list.append(previous)
         return previous_list
+
+    def remove_previous(self, book_work_id: str, user_id: str):
+        result = self.collection.delete_one(
+            {"user_id": user_id, "book_work_id": book_work_id}
+        )
+        return result.deleted_count > 0

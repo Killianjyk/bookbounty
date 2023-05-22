@@ -27,9 +27,8 @@ class BookDetailOut(BaseModel):
     image: str
 
 
-# for view
 class BookList(BaseModel):
-    books: List[BookOut] = []
+    books: List[BookOut]
 
 
 class BookDetailsList(BaseModel):
