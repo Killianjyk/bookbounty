@@ -30,9 +30,10 @@ def get_user_next(
     users: UserQueries = Depends(),
     books: BooksQueries = Depends()
 ):
+    print("here")
     user_id = users.get_user(username)["id"]
     next_books_ids = next.user_up_next(user_id)
     next_books = []
     for book_ids in next_books_ids:
         next_books.append(books.get_book(book_ids))
-    return {"next": next_books}
+    return { "next": next_books }
