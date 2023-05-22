@@ -22,7 +22,7 @@ class OpenLibraryQueries():
         string = string.replace("%", "+")
         response = requests.get(self.api_url + self.search + string + "&limit=10").json()
         keys = []
-        for i in range(0, 10):
+        for i in range(0, len(response["docs"])):
             keys.append(response["docs"][i]["key"])
         return keys
 
@@ -30,16 +30,18 @@ class OpenLibraryQueries():
     def get_book_details(self, book_id: str):
         book_id = book_id.replace("works", "books")
         response = requests.get(self.api_url + book_id + self.detail).json()
-        print(response.keys())
         book = { "work_id": book_id }
         try:
             book["title"] = response["title"]
         except:
             book["title"] = "NO TITLE PROVIDED"
         try:
-            book["description"] = response["description"]
+            book["description"] = response["description"]["value"]
         except:
-            book["description"] = "NO DESCRIPTION PROVIDED"
+            try:
+                book["description"] = response["description"]
+            except:
+                book["description"] = "NO DESCRIPTION PROVIDED"
         try:
             book["author"] = self.get_author(response["authors"][0]["author"]["key"])
         except:
@@ -49,3 +51,11 @@ class OpenLibraryQueries():
         except:
             book["image"] = "NO COVER PROVIDED"
         return book
+
+
+class RandomWordQuery():
+    url = "https://random-word-api.herokuapp.com/word"
+
+    def get_random_word(self):
+        response = requests.get(self.url).json()
+        return response
