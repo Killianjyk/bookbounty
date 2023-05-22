@@ -15,7 +15,7 @@ class FavoritesQueries(MongoQueries):
         if added_favorite.inserted_id:
             favorite["id"] = str(added_favorite.inserted_id)
             return favorite
-        
+
     def user_favorites(self, user_id: str):
         favorites = []
         for favorite in self.collection.find({ "user_id": user_id }):
@@ -27,3 +27,9 @@ class FavoritesQueries(MongoQueries):
         for favorite in self.collection.find():
             favorites.append(favorite)
         return favorites
+
+    def remove_favorites(self, book_id: str, user_id: str):
+        result = self.collection.delete_one(
+            {"user_id": user_id, "book_id": book_id}
+        )
+        return result.deleted_count > 0

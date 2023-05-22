@@ -28,4 +28,4 @@ class BookDetailOut(BaseModel):
 
 
 class BookList(BaseModel):
-    books: List[Book]
+    books: List[BookOut]
