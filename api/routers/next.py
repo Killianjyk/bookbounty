@@ -37,3 +37,19 @@ def get_user_next(
     for book_ids in next_books_ids:
         next_books.append(books.get_book(book_ids))
     return { "next": next_books }
+
+
+@router.delete("/api/next/{username}/{work_id}/", response_model=bool)
+def remove_next(
+    work_id: str,
+    username: str,
+    next: NextQueries = Depends(),
+    users: UserQueries = Depends(),
+    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data)
+):
+    if not user_data:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Not signed in",
+        )
+    return next.remove_next(work_id, users.get_user(username)["id"])
