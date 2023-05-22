@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from models.authenticator import authenticator
-from models.books import BookIn, BookOut, BookList, BookDetailsList
+from models.books import BookIn, BookOut, BookList, BookDetailsList, BookDetailOut
 from queries.books import BooksQueries
-from queries.api import OpenLibraryQueries
+from queries.api import OpenLibraryQueries, RandomWordQuery
 
 router = APIRouter()
 
@@ -36,22 +36,25 @@ def get_tracked_book(
     return books.get_book(work_id)
 
 
+@router.get("/api/books/discover/random/", response_model=BookDetailOut)
+def random_book(
+    random_word: RandomWordQuery = Depends(),
+    api_books: OpenLibraryQueries = Depends()
+):
+    books = []
+    while len(books) == 0:
+        word = random_word.get_random_word()
+        books = api_books.search_api(word[0])
+    return api_books.get_book_details(books[0])
+
+
 @router.get("/api/books/discover/{search_bar}/", response_model=BookDetailsList)
 def search_books(
     search_bar: str,
     api_books: OpenLibraryQueries = Depends()
 ):
-    print(search_bar)
-    print("started search")
     matching_books = api_books.search_api(search_bar)
-    print("found results")
-    print(matching_books)
     matching_details = []
     for book in matching_books:
         matching_details.append(api_books.get_book_details(book))
     return { "books": matching_details }
-
-
-@router.get("/api/books/random/")
-def random_book():
-    pass
