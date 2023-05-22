@@ -19,6 +19,13 @@ class BookOutData(BookOut):
     favorited_by: int
 
 
-# for view
+class BookDetailOut(BaseModel):
+    work_id: str
+    title: str
+    author: str
+    description: str
+    image: str
+
+
 class BookList(BaseModel):
-    books: List[BookOut] = []
+    books: List[Book]

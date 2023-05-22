@@ -38,11 +38,3 @@ class UserQueries(MongoQueries):
             user["id"] = str(user["_id"])
             users.append(user)
         return users
-
-
-    def new_book_lists(self):
-        lists = {}
-        lists["favorites"] = []
-        lists["previously"] = []
-        lists["next"] = []
-        return lists
