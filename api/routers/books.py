@@ -33,7 +33,7 @@ def get_tracked_book(
     work_id: str,
     books: BooksQueries = Depends()
 ):
-    return books.get_book(work_id)
+    return books.get_book("/books/" + work_id)
 
 
 @router.get("/api/books/discover/random/", response_model=BookDetailOut)

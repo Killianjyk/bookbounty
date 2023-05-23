@@ -5,10 +5,13 @@ from models.usersbookslists import UsersBooksIn
 class PreviousQueries(MongoQueries):
     collection_name = "previous"
 
-    def new_previous(self, previous_in: UsersBooksIn, user_id: str):
+    def new_previous(self, previous_in: UsersBooksIn, user_id: str, book_id: str):
         previous = previous_in.dict()
         previous["user_id"] = user_id
-        search_for = self.collection.find_one({ "user_id": user_id, "book_id": previous_in.book_id })
+        previous["book_id"] = book_id
+        search_for = self.collection.find_one(
+            { "user_id": user_id, "work_id": previous_in.work_id }
+        )
         if search_for:
             return search_for
         added_previous = self.collection.insert_one(previous)
@@ -19,7 +22,7 @@ class PreviousQueries(MongoQueries):
     def user_previous(self, user_id: str):
         previous_list = []
         for previous in self.collection.find({ "user_id": user_id }):
-            previous_list.append(previous["book_work_id"])
+            previous_list.append(previous["work_id"])
         return previous_list
 
     def get_previous(self):
@@ -28,8 +31,8 @@ class PreviousQueries(MongoQueries):
             previous_list.append(previous)
         return previous_list
 
-    def remove_previous(self, book_work_id: str, user_id: str):
+    def remove_previous(self, work_id: str, user_id: str):
         result = self.collection.delete_one(
-            {"user_id": user_id, "book_work_id": book_work_id}
+            {"user_id": user_id, "work_id": work_id}
         )
         return result.deleted_count > 0
