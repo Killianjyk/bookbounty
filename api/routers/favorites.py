@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from models.authenticator import authenticator
 from queries.favorites import FavoritesQueries
+from models.books import BookIn
 from models.usersbookslists import UsersBooksIn, UsersBooksOut, FavoritesList
 from typing import Optional
 from queries.users import UserQueries
@@ -24,7 +25,9 @@ def add_to_user_list(
             detail="Not signed in",
         )
     book_info = books.get_book(info.work_id)
-    # add a new book if the book doesn't exist
+    if not book_info:
+        book_details = open_library.get_book_details(info.work_id)
+        book_info = books.new_book(BookIn(**book_details))
     return favorites.new_favorite(info, user_data["id"], book_info.id)
 
 
