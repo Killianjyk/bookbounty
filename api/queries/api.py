@@ -23,10 +23,10 @@ class OpenLibraryQueries():
             keys.append(response["docs"][i]["key"])
         return keys
 
-    def get_book_details(self, book_id: str):
-        book_id = book_id.replace("works", "books")
-        response = requests.get(self.api_url + book_id + self.detail).json()
-        book = { "work_id": book_id }
+    def get_book_details(self, work_id: str):
+        work_id = work_id.replace("works", "books")
+        response = requests.get(self.api_url + work_id + self.detail).json()
+        book = { "work_id": work_id }
         try:
             book["title"] = response["title"]
         except:
