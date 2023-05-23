@@ -24,7 +24,7 @@ services:
       MONGO_PASSWORD: password
       MONGO_HOST: mongo:27017
       MONGO_DB: book-bounty-db
-      SIGNING_KEY: 3ee1df34495962dc346861ff1c8f744af04555dde127424384974ef0be8e5848
+      SIGNING_KEY: ${SIGNING_KEY}
       WAIT_HOSTS: mongo:27017
       WAIT_BEFORE: 5
       WAIT_TIMEOUT: 60
@@ -42,4 +42,4 @@ services:
       NODE_ENV: development
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
-      REACT_APP_SAMPLE_SERVICE_API_HOST: ${REACT_APP_SAMPLE_SERVICE_API_HOST}
+      REACT_APP_API_HOST: http://localhost:8000

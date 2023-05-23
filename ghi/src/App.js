@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+import Nav from './Nav';
+import HomePage from './HomePage';
+import Login from './Login';
+import Logout from './Logout';
+
 
 function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
@@ -26,10 +31,16 @@ function App() {
   }, []);
 
   return (
-    <AuthProvider>
-    //   {/* All of your other components, here */}
-    </AuthProvider>
-
+    <BrowserRouter>
+      <Nav />
+      <div className="container">
+        <Routes>
+          <Route index element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
