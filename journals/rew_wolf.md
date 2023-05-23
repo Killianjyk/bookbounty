@@ -37,6 +37,29 @@ Added Token. Fixed Naming conventions. Create book works.
 # 5/22- Working as a whole team
 Goals:
 -Create delete for fav, next and previous read
--Random book working
+-Random book search up & working
+-User Account Detail Page
+
+- Notes:
+Added delete function for fav, next and previous read. Working on making random book work. Had to fix an issue we found with searching for books with our external API (when searching simple things "green" 500 error but more detail search "green gables" got results, had to modify try/except blocks to make all searches work), had to resolve this issue before going back to work on random book search.
+
+# 5/23- Working as a whole team
+Goals:
+-Create Nav bar
+-Frontend Auth
+
+- Notes:
+Created openssl key
+
+# 5/24-
+Goals:
+-
+
+- Notes:
+
+
+# 5/25-
+Goals:
+-
 
 - Notes:

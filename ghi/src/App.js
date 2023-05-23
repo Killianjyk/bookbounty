@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import Construct from "./Construct.js";
-import ErrorNotification from "./ErrorNotification";
 import "./App.css";
+import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 
 function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
@@ -27,10 +26,10 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <ErrorNotification error={error} />
-      <Construct info={launchInfo} />
-    </div>
+    <AuthProvider>
+    //   {/* All of your other components, here */}
+    </AuthProvider>
+
   );
 }
 
