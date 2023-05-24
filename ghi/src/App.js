@@ -4,7 +4,6 @@ import "./App.css";
 import Nav from "./Nav";
 import HomePage from "./HomePage";
 import Login from "./Login";
-import Logout from "./Logout";
 import Discover from "./Discover";
 import Random from "./Random";
 import BookLists from "./BookLists";
@@ -18,7 +17,7 @@ function App() {
 
   useEffect(() => {
     async function getData() {
-      let url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/launch-details`;
+      let url = `${process.env.REACT_APP_API_HOST}/api/launch-details`;
       console.log("fastapi url: ", url);
       let response = await fetch(url);
       console.log("------- hello? -------");
@@ -42,7 +41,6 @@ function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="login/" element={<Login />} />
-          <Route path="logout/" element={<Logout />} />
           <Route path="discover/" element={<Discover />} /> 
           <Route path="random/" element={< Random />} />
           <Route path="book/">

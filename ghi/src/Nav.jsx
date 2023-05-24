@@ -1,8 +1,10 @@
-import { Link, NavLink } from "react-router-dom";
-import { useGetUserQuery } from "./app/apiSlice";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useGetUserQuery, useLogoutMutation } from "./app/apiSlice";
 
 const Nav = () => {
+    const navigate = useNavigate();
     const { data: user } = useGetUserQuery();
+    const [logout] = useLogoutMutation();
     return (
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
@@ -40,11 +42,9 @@ const Nav = () => {
               <li className="nav-item">
                 <NavLink to={"/user/"} className={"nav-link"}>User Home</NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to={"/logout/"} className={"nav-link"}>Logout</NavLink>
-              </li>
               </>}
             </ul>
+            {user && <button onClick={() =>{logout(); navigate("/");}} className={"btn-danger"}>Logout</button>}
           </div>
         </div>
       </nav>
