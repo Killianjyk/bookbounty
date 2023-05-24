@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Nav from './Nav';
-import HomePage from './HomePage';
-import Login from './Login';
-import Logout from './Logout';
+import Nav from "./Nav";
+import HomePage from "./HomePage";
+import Login from "./Login";
+import Logout from "./Logout";
+import Discover from "./Discover";
+import Random from "./Random";
+import BookLists from "./BookLists";
+import BookDetails from "./BookDetails";
+import UserDetails from "./UserDetails"
 
 
 function App() {
@@ -36,8 +41,21 @@ function App() {
       <div className="container">
         <Routes>
           <Route index element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
+          <Route path="login/" element={<Login />} />
+          <Route path="logout/" element={<Logout />} />
+          <Route path="discover/" element={<Discover />} /> 
+          <Route path="random/" element={< Random />} />
+          <Route path="book/">
+            <Route index element={<BookLists name="Most Liked" />} />
+            <Route path="favorites/" element={<BookLists name="favorites" />} />
+            <Route path="previous/" element={<BookLists name="previous" />} />
+            <Route path="next/" element={<BookLists name="next" />} />
+            <Route path="details/" element={<BookDetails />} />
+          </Route>
+          <Route path="user/">
+            <Route index element={<UserDetails />} />
+            <Route path="search/" element={<Discover />} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>
