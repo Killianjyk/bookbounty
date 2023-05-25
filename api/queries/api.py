@@ -50,7 +50,7 @@ class OpenLibraryQueries():
 
 
 class RandomWordQuery():
-    url = "https://random-word-api.herokuapp.com/word"
+    url = "https://random-word-api.vercel.app/api?words=1"
 
     def get_random_word(self):
         response = requests.get(self.url).json()
