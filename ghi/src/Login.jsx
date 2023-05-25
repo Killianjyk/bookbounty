@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLoginMutation } from "./app/apiSlice";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
@@ -9,16 +9,11 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    login({username, password});
-    navigate("/");
-  };
   return (
     <div className="card text-bg-light mb-3">
       <h5 className="card-header">Login</h5>
       <div className="card-body">
-        <form onSubmit={(event) => handleSubmit(event)}>
+        <form onSubmit={(event) => {event.preventDefault(); login({username, password}); navigate("/");}}>
           <div className="mb-3">
             <label className="form-label">Username:</label>
             <input

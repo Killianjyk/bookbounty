@@ -5,7 +5,7 @@ const initialState = {
 }
 
 export const SearchSlice = createSlice({
-  name: "BookSearch",
+  name: "searchField",
   initialState, // initialState: initialState if you have a property and its the same as the variable, you can cut out the property name.
   reducers: {
     reset: (state) => {
