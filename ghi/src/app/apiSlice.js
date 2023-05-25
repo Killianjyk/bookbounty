@@ -59,7 +59,6 @@ export const bookBountyAPI = createApi({
         }),
         getBookSearch: builder.query({
             query: (search) => {
-                console.log(search);
                 return {
                     url: `/api/books/discover/${search}`
                 };

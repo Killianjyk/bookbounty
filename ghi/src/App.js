@@ -41,14 +41,14 @@ function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="login/" element={<Login />} />
-          <Route path="discover/" element={<Discover />} /> 
-          <Route path="random/" element={< Random />} />
+          <Route path="discover/" element={<Discover />} />
+          <Route path="random/" element={<Random />} />
           <Route path="book/">
             <Route index element={<BookLists name="Most Liked" />} />
             <Route path="favorites/" element={<BookLists name="favorites" />} />
             <Route path="previous/" element={<BookLists name="previous" />} />
             <Route path="next/" element={<BookLists name="next" />} />
-            <Route path="details/" element={<BookDetails />} />
+            <Route path="details/:workId" element={<BookDetails />} />
           </Route>
           <Route path="user/">
             <Route index element={<UserDetails />} />

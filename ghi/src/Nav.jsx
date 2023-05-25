@@ -28,7 +28,7 @@ const Nav = () => {
                 <NavLink to={"/random/"} className="nav-link">Random Book</NavLink>
               </li>
               <li>
-                <NavLink to={"/book/details/"} className="nav-link">Book Details</NavLink>
+                <NavLink to={"/book/details/${someWorkId}"} className="nav-link">Book Details</NavLink>
               </li>
               {user && <><li className="nav-item">
                 <NavLink to={"/book/favorites/"} className={"nav-link"}>Favorites</NavLink>

@@ -50,13 +50,21 @@ Goals:
 
 - Notes:
 Created openssl key
+Created frontend Auth
 
-# 5/24-
+# 5/24- AM working w/ Nick F and Nick M, PM whole team (spilt up to work on seperate pages)
 Goals:
--
+-Add bootstrap
+-Create Nav Bar
+-Creating paths
+-Darkmode (Nick Murphy)
+-Endpoints
+-Book details page
 
 - Notes:
+Added Bootstrap, created start of Nav bar, started creating paths to elements (currently blank). Added blank elements for all pages to be filled in, in coming days.
 
+Working on BookDetails page solo (Rew)
 
 # 5/25-
 Goals:
