@@ -1,11 +1,11 @@
+import { search, reset } from "./app/SearchSlice";
 import { useDispatch } from 'react-redux';
-import { reset, search } from './app/SearchSlice';
 import { useState } from 'react';
 
 
-const Search = () => {
+const Search = ({ type }) => {
     const dispatch = useDispatch();
-    const [searchCriteria, setSearchCriteria] = useState(''); //initializes as empty string
+    const [searchCriteria, setSearchCriteria] = useState(""); //initializes as empty string
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(search(searchCriteria));
@@ -13,30 +13,13 @@ const Search = () => {
 
     return (
         <form className="row" onSubmit={handleSubmit}>
-        <div className="col">
-            <input
-                className="form-control form-control-lg"
-                type="text"
-                placeholder="Search books"
-                value={searchCriteria}
-                onChange={(e) => setSearchCriteria(e.target.value)}
-            />
-        </div>
-        <div className="col">
-            <button className="btn btn-lg btn-success"
-            type="submit">
-            Search
-            </button>
-            <button
-                className="btn btn-lg btn-link"
-                type="button"
-                onClick={() => {
-                    dispatch(reset)
-                    setSearchCriteria('')
-                }}>
-                Reset
-            </button>
-        </div>
+            <div className="mb-3">
+                <input className="form-control" type="text" placeholder={`Search ${type}`} value={searchCriteria} onChange={(e) => setSearchCriteria(e.target.value)} />
+            </div>
+            <div className="text-center">
+                <button className="btn btn-success" type="submit">Search</button>
+                <button className="btn btn-link" type="button" onClick={() => {dispatch(reset); setSearchCriteria('');}}>Reset</button>
+            </div>
         </form>
     );
 };
