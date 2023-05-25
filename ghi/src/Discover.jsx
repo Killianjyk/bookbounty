@@ -4,7 +4,6 @@ import Search from "./Search";
 import BookLists from "./BookLists";
 
 
-
 const Discover = () => {
 
   return (<>

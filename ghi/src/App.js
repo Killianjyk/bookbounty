@@ -48,7 +48,7 @@ function App() {
             <Route path="favorites/" element={<BookLists name="favorites" />} />
             <Route path="previous/" element={<BookLists name="previous" />} />
             <Route path="next/" element={<BookLists name="next" />} />
-            <Route path="details/" element={<BookDetails />} />
+            <Route path="details/:workId" element={<BookDetails />} />
           </Route>
           <Route path="user/">
             <Route index element={<UserDetails />} />

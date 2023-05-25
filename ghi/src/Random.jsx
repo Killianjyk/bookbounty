@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useGetRandomQuery } from './app/booksApi';
+import DetailCard from './DetailCard';
 
 const Random = () => {
-  const { data, isLoading, refetch } = useGetRandomQuery();
+  const { data: book, isLoading, refetch } = useGetRandomQuery();
   const [loading, setLoading] = useState(false);
 
   const handleButtonClick = () => {
@@ -14,8 +15,8 @@ const Random = () => {
 
   return (
     <>
-      <h1>Random</h1>
-      <div>
+      <h1 className="text-center">Random</h1>
+      <div className="text-center">
         <button type='button' className='btn btn-info' onClick={handleButtonClick} disabled={isLoading || loading}>
           Random!
         </button>
@@ -25,17 +26,7 @@ const Random = () => {
             <span className="sr-only"></span>
           </div>
         )}
-        {data && !isLoading && !loading && (
-          <>
-            <div>{data.work_id}</div>
-            <div>
-              <img src={data.image} alt="Book cover" />
-            </div>
-            <div>{data.title}</div>
-            <div>{data.author}</div>
-            <div>{data.description === 'NO DESCRIPTION PROVIDED' ? null : data.description}</div>
-          </>
-        )}
+        {book && !isLoading && !loading && <DetailCard book={book}/> }
       </div>
     </>
   );
