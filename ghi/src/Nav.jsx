@@ -19,7 +19,7 @@ const Nav = () => {
                 <NavLink to={"/login/"} className={"nav-link"}>Login</NavLink>
               </li>}
               <li>
-                <NavLink to={"/discover/"} className="nav-link">Discover Books</NavLink>
+                <NavLink to="/discover/" className="nav-link">Discover Books</NavLink>
               </li>
               <li>
                 <NavLink to={"/user/search/"} className="nav-link">Discover Users</NavLink>
