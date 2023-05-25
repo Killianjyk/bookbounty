@@ -1,4 +1,4 @@
-import { search, reset } from "./app/searchSlice";
+import { search, reset } from "./app/SearchSlice";
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
