@@ -5,6 +5,7 @@ const Nav = () => {
     const navigate = useNavigate();
     const { data: user } = useGetUserQuery();
     const [logout] = useLogoutMutation();
+    
     return (
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">

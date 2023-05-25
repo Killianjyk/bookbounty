@@ -12,7 +12,6 @@ export const bookBountyAPI = createApi({
                 const body = new FormData();
                 body.append("username", username);
                 body.append("password", password);
-                console.log(body)
                 return {
                     url: "/token",
                     method: "POST",
@@ -58,6 +57,15 @@ export const bookBountyAPI = createApi({
             }),
             transformResponse: (response) => response?.users || null,
         }),
+        getBookSearch: builder.query({
+            query: (search) => {
+                console.log(search);
+                return {
+                    url: `/api/books/discover/${search}`
+                };
+            },
+            transformResponse: (response) => response?.books || null,
+        })
     })
 });
 
@@ -67,4 +75,5 @@ export const {
     useSignupMutation,
     useGetUserQuery,
     useGetAllUsersQuery,
+    useGetBookSearchQuery,
 } = bookBountyAPI;

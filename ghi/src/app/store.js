@@ -7,7 +7,7 @@ import SearchReducer from './SearchSlice'
 
 export const store = configureStore({
   reducer: {
-    bookSearch: SearchReducer,
+    searchField: SearchReducer,
     [bookBountyAPI.reducerPath]: bookBountyAPI.reducer,
     [booksApi.reducerPath]: booksApi.reducer,
   },
