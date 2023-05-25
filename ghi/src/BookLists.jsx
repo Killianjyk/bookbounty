@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useGetBookSearchQuery } from "./app/apiSlice";
-import { useEffect } from "react";
+import BookCard from "./BookCard";
 
 
 const BookLists = ({ name }) => {
@@ -10,6 +10,7 @@ const BookLists = ({ name }) => {
     if (isLoading) return <div>Loading...</div>;
     return (<>
         <h1>{name}</h1>
+        {data?.map((book) => <BookCard book={book} />)}
     </>);
 }
 
