@@ -5,7 +5,7 @@ import BookCard from "./BookCard";
 
 
 const BookLists = ({ name }) => {
-    const searchField = useSelector((state) => state.searchField.value)
+    const searchField = useSelector((state) => state.searchField.value);
     const { data: searchBooks, isLoading: searchLoad } = useGetBookSearchQuery(searchField, {skip: name!=="Search Books" || searchField==="" });
     const { data: topFavoriteBooks, isLoading: topFavoritesLoad } = useGetTopFavoriteBooksQuery({skip: name!=="Most Liked"})
     if (searchLoad || topFavoritesLoad) return <div>Loading...</div>;

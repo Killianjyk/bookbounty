@@ -9,6 +9,7 @@ const Search = ({ type }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(search(searchCriteria));
+        dispatch(reset);
     }
 
     return (
