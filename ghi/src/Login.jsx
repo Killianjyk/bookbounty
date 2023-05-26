@@ -10,7 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   return (
-    <div className="card text-bg-light mb-3">
+    <div className="card text-bg-light mb-3 txt">
       <h5 className="card-header">Login</h5>
       <div className="card-body">
         <form onSubmit={(event) => {event.preventDefault(); login({username, password}); navigate("/");}}>
@@ -19,7 +19,7 @@ const Login = () => {
             <input
               name="username"
               type="text"
-              className="form-control"
+              className="form-control bg-white dark:bg-black"
               onChange={(event) => setUsername(event.target.value)}
             />
           </div>
@@ -28,7 +28,7 @@ const Login = () => {
             <input
               name="password"
               type="password"
-              className="form-control"
+              className="form-control bg-white dark:bg-black"
               onChange={(event) => setPassword(event.target.value)}
             />
           </div>

@@ -43,7 +43,7 @@ const Nav = () => {
 
     return (
       <>
-  <div className="navbar">
+  <div className="navbar bg-amber-100 dark:bg-slate-800 txt">
   <div className="flex-1">
     <NavLink to={"/"} className="btn btn-ghost normal-case text-xl">BookBounty</NavLink>
   </div>

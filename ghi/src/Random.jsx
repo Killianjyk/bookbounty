@@ -15,9 +15,9 @@ const Random = () => {
 
   return (
     <div className="">
-      <h1 className="">Random</h1>
-      <div className="text-center">
-        <button type='button' className='btn btn-info' onClick={handleButtonClick} disabled={isLoading || loading}>
+      <h1 className="txt">Random</h1>
+      <div className="txt text-center">
+        <button type='button' className='btn btn-primary' onClick={handleButtonClick} disabled={isLoading || loading}>
           Random!
         </button>
         <br></br><br></br>

@@ -6,7 +6,7 @@ import BookLists from "./BookLists";
 const DiscoverBooks = () => {
 
   return (<>
-        <h1 className="card-header text-center">Discover Books</h1>
+        <h1 className="card-header text-center txt">Discover Books</h1>
         <div className="card text-bg-light mb-3">
           <div className="card-body">
             <Search type="Books" />
