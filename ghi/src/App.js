@@ -4,11 +4,12 @@ import "./App.css";
 import Nav from "./Nav";
 import HomePage from "./HomePage";
 import Login from "./Login";
-import Discover from "./Discover";
+import DiscoverBooks from "./DiscoverBooks";
 import Random from "./Random";
 import BookLists from "./BookLists";
 import BookDetails from "./BookDetails";
-import UserDetails from "./UserDetails"
+import UserDetails from "./UserDetails";
+import DiscoverUsers from "./DiscoverUsers";
 
 
 function App() {
@@ -42,18 +43,17 @@ function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="login/" element={<Login />} />
-          <Route path="discover/" element={<Discover />} />
-          <Route path="random/" element={<Random />} />
-          <Route path="book/">
-            <Route index element={<BookLists name="Most Liked" />} />
+          <Route path="discover/" element={<DiscoverBooks />} />
+          <Route path="random/" element={< Random />} />
+          <Route path="books/">
             <Route path="favorites/" element={<BookLists name="favorites" />} />
             <Route path="previous/" element={<BookLists name="previous" />} />
             <Route path="next/" element={<BookLists name="next" />} />
-            <Route path="details/:workId" element={<BookDetails />} />
+            <Route path=":workId/" element={<BookDetails />} />
           </Route>
-          <Route path="user/">
+          <Route path="users/">
             <Route index element={<UserDetails />} />
-            <Route path="search/" element={<Discover />} />
+            <Route path="search/" element={<DiscoverUsers />} />
           </Route>
         </Routes>
       </div>

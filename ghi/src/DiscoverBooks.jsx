@@ -1,10 +1,9 @@
-import { useGetBookSearchQuery } from "./app/apiSlice";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import BookLists from "./BookLists";
 
 
-const Discover = () => {
+const DiscoverBooks = () => {
 
   return (<>
         <h1 className="card-header text-center">Discover Books</h1>
@@ -17,9 +16,9 @@ const Discover = () => {
           </div>
         </div>
         <div>
-          <BookLists name="search"/>
+          <BookLists name="Search Books"/>
         </div>
     </>)
 };
 
-export default Discover;
+export default DiscoverBooks;

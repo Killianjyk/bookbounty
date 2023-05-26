@@ -31,7 +31,7 @@ export const bookBountyAPI = createApi({
         }),
         signup: builder.mutation({
             query: ({username, password}) => {
-                const body = FormData();
+                const body = new FormData();
                 body.append("username", username);
                 body.append("password", password);
                 return {
@@ -60,17 +60,48 @@ export const bookBountyAPI = createApi({
         getBookSearch: builder.query({
             query: (search) => {
                 return {
-                    url: `/api/books/discover/${search}`
+                    url: `/api/books/discover/${search}/`
                 };
             },
             transformResponse: (response) => response?.books || null,
         }),
+        getUserSearch: builder.query({
+            query: (search) => {
+                return {
+                    url: `/api/users/${search}`
+                };
+            },
+            transformResponse: (response) => response?.users || null,
+        }),
         getBook: builder.query({
             query: (workId) => {
                 return {
-                    url: `/api/books/${workId}`
+                    url: `/api/books/${workId}/`
                 };
             },
+        }),
+        getTopFavoriteBooks: builder.query({
+            query: () => {
+                return {
+                    url: "/api/books/"
+                };
+            },
+            transformResponse: (response) => response?.books || null,
+        }),
+        updateUserInfo: builder.mutation({
+            query: ({ email, password, full_name }) => {
+                const body = new FormData();
+                body.append("email", email);
+                body.append("password", password);
+                body.append("full_name", full_name);
+                return {
+                    url: '/api/users/',
+                    method: "PUT",
+                    body,
+                    credentials: "include",
+                };
+            },
+            invalidatesTags: ["User"],
         }),
     })
 });
@@ -83,4 +114,7 @@ export const {
     useGetAllUsersQuery,
     useGetBookSearchQuery,
     useGetBookQuery,
+    useGetTopFavoriteBooksQuery,
+    useGetUserSearchQuery,
+    useUpdateUserInfoMutation,
 } = bookBountyAPI;

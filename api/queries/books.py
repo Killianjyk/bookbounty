@@ -24,7 +24,7 @@ class BooksQueries(MongoQueries):
 
     def get_books(self):
         books = []
-        for book in self.collection.find():
+        for book in self.collection.find().sort("favorited_by", -1).limit(10):
             book["id"] = str(book["_id"])
             books.append(book)
         return books

@@ -10,7 +10,7 @@ const HomePage = () => {
           <Link to="/random">Random Book</Link>
       </div>
       <div>
-        <BookLists name="favorites"/>
+        <BookLists name="Most Liked"/>
       </div>
     </div>
   );

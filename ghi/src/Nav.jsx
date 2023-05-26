@@ -51,13 +51,12 @@ const Nav = () => {
     <ul className="menu menu-horizontal px-1">
       {!user &&  <li><NavLink to={"/login/"} >Login</NavLink></li>}
       <li><NavLink to={"/discover/"} >Discover Books</NavLink></li>
-      <li><NavLink to={"/user/search/"} >Discover Users</NavLink></li>
+      <li><NavLink to={"/users/search/"} >Discover Users</NavLink></li>
       <li><NavLink to={"/random/"} >Random Book</NavLink></li>
-      <li><NavLink to={"/book/details/${someWorkId}"} >Book Details</NavLink></li>
-      <li><NavLink to={"/book/favorites/"} >Favorites</NavLink></li>
-      <li><NavLink to={"/book/previous/"} >Previous</NavLink></li>
-      <li><NavLink to={"/book/next/"} >Next</NavLink></li>
-      {user && <li><NavLink to={"/user/"} >User Home</NavLink></li>}
+      {user && <><li><NavLink to={"/books/favorites/"} >Favorites</NavLink></li>
+      <li><NavLink to={"/books/previous/"} >Previous</NavLink></li>
+      <li><NavLink to={"/books/next/"} >Next</NavLink></li>
+      <li><NavLink to={"/users/"} >User Home</NavLink></li></>}
     </ul>
     {user && <button onClick={() =>{logout(); navigate("/");}} className={"btn-danger"}>Logout</button>}
           <button onClick={handleThemeSwitch} id="theme-toggle" type="button" className="bg-gray-400 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-sm p-2.5">
@@ -83,26 +82,20 @@ const Nav = () => {
                 <NavLink to="/discover/" className="nav-link">Discover Books</NavLink>
               </li>
               <li>
-                <NavLink to={"/user/search/"} className="nav-link">Discover Users</NavLink>
-              </li>
-              <li>
-                <NavLink to={"/random/"} className="nav-link">Random Book</NavLink>
-              </li>
-              <li>
-                <NavLink to={"/book/details/${someWorkId}"} className="nav-link">Book Details</NavLink>
+                <NavLink to={"/users/search/"} className="nav-link">Discover Users</NavLink>
               </li>
               {user && <><li className="nav-item">
-                <NavLink to={"/book/favorites/"} className={"nav-link"}>Favorites</NavLink>
+                <NavLink to={"/books/favorites/"} className={"nav-link"}>Favorites</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to={"/book/previous/"} className={"nav-link"}>Previous</NavLink>
+                <NavLink to={"/books/previous/"} className={"nav-link"}>Previous</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to={"/book/next/"} className={"nav-link"}>Next</NavLink>
+                <NavLink to={"/books/next/"} className={"nav-link"}>Next</NavLink>
               </li></>}
               {user && <>
               <li className="nav-item">
-                <NavLink to={"/user/"} className={"nav-link"}>User Home</NavLink>
+                <NavLink to={"/users/"} className={"nav-link"}>User Home</NavLink>
               </li>
               </>}
             </ul>

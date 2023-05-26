@@ -22,7 +22,7 @@ def track_book(
 
 
 @router.get("/api/books/", response_model=BookList)
-def get_all_tracked_books(
+def get_top_favorited_books(
     books: BooksQueries = Depends()
 ):
     return { "books": books.get_books() }
