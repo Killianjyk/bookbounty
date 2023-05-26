@@ -31,7 +31,7 @@ export const bookBountyAPI = createApi({
         }),
         signup: builder.mutation({
             query: ({username, password}) => {
-                const body = FormData();
+                const body = new FormData();
                 body.append("username", username);
                 body.append("password", password);
                 return {
@@ -87,7 +87,22 @@ export const bookBountyAPI = createApi({
                 };
             },
             transformResponse: (response) => response?.books || null,
-        })
+        }),
+        updateUserInfo: builder.mutation({
+            query: ({ email, password, full_name }) => {
+                const body = new FormData();
+                body.append("email", email);
+                body.append("password", password);
+                body.append("full_name", full_name);
+                return {
+                    url: '/api/users/',
+                    method: "PUT",
+                    body,
+                    credentials: "include",
+                };
+            },
+            invalidatesTags: ["User"],
+        }),
     })
 });
 
@@ -101,4 +116,5 @@ export const {
     useGetBookQuery,
     useGetTopFavoriteBooksQuery,
     useGetUserSearchQuery,
+    useUpdateUserInfoMutation,
 } = bookBountyAPI;

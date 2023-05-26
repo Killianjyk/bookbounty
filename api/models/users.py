@@ -23,3 +23,9 @@ class UserOutPassword(UserOut):
 # for view
 class UserList(BaseModel):
     users: List[UserOut]
+
+
+class UserUpdate(BaseModel):
+    email: str
+    password: str
+    full_name: str
