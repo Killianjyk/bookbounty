@@ -38,3 +38,7 @@ class UserQueries(MongoQueries):
             user["id"] = str(user["_id"])
             users.append(user)
         return users
+
+    def update_user(self, username: str, userinfo):
+        self.collection.update_one({"username": username}, userinfo)
+        

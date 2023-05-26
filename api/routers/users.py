@@ -13,7 +13,8 @@ from queries.users import UserQueries, DuplicateUserError
 from models.users import (
     UserIn,
     UserOut,
-    UserList
+    UserList,
+    UserUpdate
 )
 from typing import Optional
 
@@ -84,3 +85,26 @@ async def get_token(
             "type": "Bearer",
             "user": user,
         }
+
+@router.put("/api/users/", response_model=UserOut)
+def update_user(
+    user_update: UserUpdate,
+    users: UserQueries = Depends(),
+    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data)
+):
+    if not user_data:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Not signed in",
+        )
+    user_update = user_update.dict()
+    if user_update["password"] != "":
+        user_update["password"] = authenticator.hash_password(user_update["password"])
+    if user_update["password"] == "":
+        del user_update["password"]
+    if user_update["email"] == "":
+        del user_update["email"]
+    if user_update["full_name"] == "":
+        del user_update["full_name"]
+    users.update_user(user_data["username"], {"$set":user_update})
+    return users.get(user_data["username"])
