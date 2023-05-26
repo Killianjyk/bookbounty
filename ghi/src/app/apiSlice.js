@@ -64,7 +64,14 @@ export const bookBountyAPI = createApi({
                 };
             },
             transformResponse: (response) => response?.books || null,
-        })
+        }),
+        getBook: builder.query({
+            query: (workId) => {
+                return {
+                    url: `/api/books/${workId}`
+                };
+            },
+        }),
     })
 });
 
@@ -75,4 +82,5 @@ export const {
     useGetUserQuery,
     useGetAllUsersQuery,
     useGetBookSearchQuery,
+    useGetBookQuery,
 } = bookBountyAPI;

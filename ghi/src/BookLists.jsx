@@ -6,7 +6,6 @@ import BookCard from "./BookCard";
 const BookLists = ({ name }) => {
     const searchField = useSelector((state) => state.searchField.value)
     const { data, isLoading } = useGetBookSearchQuery(searchField, {skip: name!=="search" || searchField==="" });
-    console.log(data)
     if (isLoading) return <div>Loading...</div>;
     return (<>
         <h1>{name}</h1>

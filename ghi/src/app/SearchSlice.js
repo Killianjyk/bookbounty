@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    value: null,
+    value: "",
 }
 
 export const SearchSlice = createSlice({
@@ -9,7 +9,7 @@ export const SearchSlice = createSlice({
   initialState, // initialState: initialState if you have a property and its the same as the variable, you can cut out the property name.
   reducers: {
     reset: (state) => {
-        state.value = null; // or state.value = initialState.value;
+        state.value = ""; // or state.value = initialState.value;
     },
     search: (state, action) => {
         state.value = action.payload;

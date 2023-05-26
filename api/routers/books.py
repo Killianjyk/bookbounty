@@ -28,12 +28,12 @@ def get_all_tracked_books(
     return { "books": books.get_books() }
 
 
-@router.get("/api/books/{work_id}/", response_model=BookOut)
-def get_tracked_book(
+@router.get("/api/books/{work_id}/", response_model=BookDetailOut)
+def get_book(
     work_id: str,
-    books: BooksQueries = Depends()
+    api_books: OpenLibraryQueries = Depends()
 ):
-    return books.get_book("/books/" + work_id)
+    return api_books.get_book_details("/books/" + work_id)
 
 
 @router.get("/api/books/discover/random/", response_model=BookDetailOut)

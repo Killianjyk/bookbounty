@@ -15,6 +15,7 @@ function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
     async function getData() {
       let url = `${process.env.REACT_APP_API_HOST}/api/launch-details`;
@@ -37,7 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <div className="container">
+      <div className="container mx-auto h-screen">
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="login/" element={<Login />} />
