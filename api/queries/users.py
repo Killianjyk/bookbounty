@@ -38,3 +38,11 @@ class UserQueries(MongoQueries):
             user["id"] = str(user["_id"])
             users.append(user)
         return users
+
+
+    def get_searched(self, username):
+        users = []
+        for user in self.collection.find({"username": { "$regex": username, "$options": "i" }}).limit(10):
+            user["id"] = str(user["_id"])
+            users.append(user)
+        return users

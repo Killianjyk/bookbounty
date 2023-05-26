@@ -60,18 +60,34 @@ export const bookBountyAPI = createApi({
         getBookSearch: builder.query({
             query: (search) => {
                 return {
-                    url: `/api/books/discover/${search}`
+                    url: `/api/books/discover/${search}/`
                 };
             },
             transformResponse: (response) => response?.books || null,
         }),
+        getUserSearch: builder.query({
+            query: (search) => {
+                return {
+                    url: `/api/users/${search}`
+                };
+            },
+            transformResponse: (response) => response?.users || null,
+        }),
         getBook: builder.query({
             query: (workId) => {
                 return {
-                    url: `/api/books/${workId}`
+                    url: `/api/books/${workId}/`
                 };
             },
         }),
+        getTopFavoriteBooks: builder.query({
+            query: () => {
+                return {
+                    url: "/api/books/"
+                };
+            },
+            transformResponse: (response) => response?.books || null,
+        })
     })
 });
 
@@ -83,4 +99,6 @@ export const {
     useGetAllUsersQuery,
     useGetBookSearchQuery,
     useGetBookQuery,
+    useGetTopFavoriteBooksQuery,
+    useGetUserSearchQuery,
 } = bookBountyAPI;

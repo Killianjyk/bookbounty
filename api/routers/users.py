@@ -60,17 +60,12 @@ def get_all_users(
     return { "users": users.get_all() }
 
 
-@router.get("/api/users/account/", response_model=UserOut)
-def get_user(
-    users: UserQueries = Depends(),
-    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data)
+@router.get("/api/users/{searched_username}", response_model=UserList)
+def get_searched_users(
+    searched_username: str,
+    users: UserQueries = Depends()
 ):
-    if not user_data:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Not signed in",
-        )
-    return users.get_user(user_data["username"])
+    return { "users": users.get_searched(searched_username) }
 
 
 @router.get("/token", response_model=UserToken | None)

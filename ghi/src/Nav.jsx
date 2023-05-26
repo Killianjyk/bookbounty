@@ -22,26 +22,20 @@ const Nav = () => {
                 <NavLink to="/discover/" className="nav-link">Discover Books</NavLink>
               </li>
               <li>
-                <NavLink to={"/user/search/"} className="nav-link">Discover Users</NavLink>
-              </li>
-              <li>
-                <NavLink to={"/random/"} className="nav-link">Random Book</NavLink>
-              </li>
-              <li>
-                <NavLink to={"/book/details/"} className="nav-link">Book Details</NavLink>
+                <NavLink to={"/users/search/"} className="nav-link">Discover Users</NavLink>
               </li>
               {user && <><li className="nav-item">
-                <NavLink to={"/book/favorites/"} className={"nav-link"}>Favorites</NavLink>
+                <NavLink to={"/books/favorites/"} className={"nav-link"}>Favorites</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to={"/book/previous/"} className={"nav-link"}>Previous</NavLink>
+                <NavLink to={"/books/previous/"} className={"nav-link"}>Previous</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to={"/book/next/"} className={"nav-link"}>Next</NavLink>
+                <NavLink to={"/books/next/"} className={"nav-link"}>Next</NavLink>
               </li></>}
               {user && <>
               <li className="nav-item">
-                <NavLink to={"/user/"} className={"nav-link"}>User Home</NavLink>
+                <NavLink to={"/users/"} className={"nav-link"}>User Home</NavLink>
               </li>
               </>}
             </ul>

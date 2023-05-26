@@ -1,15 +1,18 @@
 import { useSelector } from "react-redux";
-import { useGetBookSearchQuery } from "./app/apiSlice";
+import { useGetBookSearchQuery, useGetTopFavoriteBooksQuery } from "./app/apiSlice";
 import BookCard from "./BookCard";
+
 
 
 const BookLists = ({ name }) => {
     const searchField = useSelector((state) => state.searchField.value)
-    const { data, isLoading } = useGetBookSearchQuery(searchField, {skip: name!=="search" || searchField==="" });
-    if (isLoading) return <div>Loading...</div>;
+    const { data: searchBooks, isLoading: searchLoad } = useGetBookSearchQuery(searchField, {skip: name!=="Search Books" || searchField==="" });
+    const { data: topFavoriteBooks, isLoading: topFavoritesLoad } = useGetTopFavoriteBooksQuery({skip: name!=="Most Liked"})
+    if (searchLoad || topFavoritesLoad) return <div>Loading...</div>;
     return (<>
         <h1>{name}</h1>
-        {data?.map((book) => <BookCard book={book} />)}
+        {name==="Search Books" && searchBooks?.map((book) => <BookCard book={book} />)}
+        {name==="Most Liked" && topFavoriteBooks?.map((book) => <BookCard book={book} />)}
     </>);
 }
 
