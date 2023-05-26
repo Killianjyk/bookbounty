@@ -10,7 +10,6 @@ const UserLists = ({ name }) => {
     const searchField = useSelector((state) => state.searchField.value);
     const { data: searchUsers, isLoading: searchLoad } = useGetUserSearchQuery(searchField, { skip: name!=="User Search" });
     useEffect(() => {
-        console.log("first render");
         dispatch(search(searchField));
     }, []);
     if (searchLoad) {

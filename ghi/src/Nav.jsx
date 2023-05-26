@@ -49,13 +49,14 @@ const Nav = () => {
   </div>
   <div className="flex-none">
     <ul className="menu menu-horizontal px-1">
-      {!user &&  <li><NavLink to={"/login/"} >Login</NavLink></li>}
+      {!user &&  <><li><NavLink to={"/login/"} >Login</NavLink></li>
+      <li><NavLink to={"/signup/"} >Sign Up</NavLink></li></>}
       <li><NavLink to={"/discover/"} >Discover Books</NavLink></li>
       <li><NavLink to={"/users/search/"} >Discover Users</NavLink></li>
       <li><NavLink to={"/random/"} >Random Book</NavLink></li>
-      {user && <><li><NavLink to={"/books/favorites/"} >Favorites</NavLink></li>
-      <li><NavLink to={"/books/previous/"} >Previous</NavLink></li>
-      <li><NavLink to={"/books/next/"} >Next</NavLink></li>
+      {user && <><li><NavLink to={"/books/favorites/" + user.username} >Favorites</NavLink></li>
+      <li><NavLink to={"/books/previous/" + user.username} >Previously Read</NavLink></li>
+      <li><NavLink to={"/books/next/" + user.username} >Read Next</NavLink></li>
       <li><NavLink to={"/users/"} >User Home</NavLink></li></>}
     </ul>
     {user && <button onClick={() =>{logout(); navigate("/");}} className={"btn-danger"}>Logout</button>}

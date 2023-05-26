@@ -22,10 +22,9 @@ const UserDetails = () => {
     };
 
     const onSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         // try {
         //     await updateUser({ ...formData })
-
         //     refetch();
         // } catch (error) {
         //     console.log(error)
