@@ -15,10 +15,10 @@ const Search = ({ type }) => {
     return (
         <form className="row" onSubmit={handleSubmit}>
             <div className="mb-3">
-                <input className="form-control" type="text" placeholder={`Search ${type}`} value={searchCriteria} onChange={(e) => setSearchCriteria(e.target.value)} />
+                <input className="form-control bg-white dark:bg-black txt" type="text" placeholder={`Search ${type}`} value={searchCriteria} onChange={(e) => setSearchCriteria(e.target.value)} />
             </div>
             <div className="text-center">
-                <button className="btn btn-success" type="submit">Search</button>
+                <button className="btn btn-secondary" type="submit">Search</button>
                 <button className="btn btn-link" type="button" onClick={() => {dispatch(reset); setSearchCriteria('');}}>Reset</button>
             </div>
         </form>

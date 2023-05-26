@@ -10,7 +10,7 @@ const BookLists = ({ name }) => {
     const { data: topFavoriteBooks, isLoading: topFavoritesLoad } = useGetTopFavoriteBooksQuery({skip: name!=="Most Liked"})
     if (searchLoad || topFavoritesLoad) return <div>Loading...</div>;
     return (<>
-        <h1>{name}</h1>
+        <h1 className="txt">{name}</h1>
         {name==="Search Books" && searchBooks?.map((book) => <BookCard book={book} />)}
         {name==="Most Liked" && topFavoriteBooks?.map((book) => <BookCard book={book} />)}
     </>);

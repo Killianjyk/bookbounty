@@ -17,7 +17,7 @@ const UserLists = ({ name }) => {
         return <div>Loading...</div>
     }
     return (<>
-        <h1>{name}</h1>
+        <h1 className="txt">{name}</h1>
         {name==="User Search" && searchUsers?.map((user) => <UserCard user={user} />)}
     </>);
 }
