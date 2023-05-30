@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLoginMutation } from "./app/authApiSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -35,7 +35,7 @@ const Login = () => {
               </form>
           </div>
         <p className="text-center mb-4">
-            <a href="/signup" className="txt text-sm no-underline hover:text-gray-400 dark:hover:text-gray-100">Don't have an account?</a>
+            <Link to="/signup" className="txt text-sm no-underline hover:text-gray-400 dark:hover:text-gray-100">Don't have an account?</Link>
         </p>
       </div>
   </div>
