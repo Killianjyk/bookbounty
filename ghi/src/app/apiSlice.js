@@ -86,14 +86,17 @@ export const bookBountyAPI = createApi({
         }),
         updateUserInfo: builder.mutation({
             query: ({ email, password, full_name }) => {
-                const body = new FormData();
-                body.append("email", email);
-                body.append("password", password);
-                body.append("full_name", full_name);
+                const body = {
+                    "email": email,
+                    "password": password,
+                    "full_name": full_name};
+                // body.append("email", email);
+                // body.append("password", password);
+                // body.append("full_name", full_name);
                 return {
                     url: '/api/users/',
                     method: "PUT",
-                    body,
+                    body: body,
                     credentials: "include",
                 };
             },
