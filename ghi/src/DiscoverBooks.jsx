@@ -14,7 +14,7 @@ const DiscoverBooks = () => {
             <Search type="Books" />
           </div>
           <div className="card-body text-center">
-            <Link to="/random" className="btn btn-primary">Random Book</Link>
+            <Link to="/random" className="btn btn-secondary">Random Book</Link>
           </div>
         </div>
         <div>

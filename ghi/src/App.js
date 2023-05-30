@@ -41,7 +41,7 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <div className="min-h-screen">
+      <div className="mx-auto min-w-screen min-h-screen">
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="login/" element={<Login />} />

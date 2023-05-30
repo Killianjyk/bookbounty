@@ -10,7 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   return (
-<div className="bg-cover bg-[url('https://images2.alphacoders.com/261/26102.jpg')]">
+<div className="bg-repeat h-screen bg-[url('https://images2.alphacoders.com/261/26102.jpg')]">
 <div className="card">
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-white">
@@ -35,7 +35,7 @@ const Login = () => {
               </form>
           </div>
         <p className="text-center mb-4">
-            <a href="/signup" className="text-grey-dark text-sm no-underline hover:text-grey-darker">Don't have an account?</a>
+            <a href="/signup" className="txt text-sm no-underline hover:text-gray-400 dark:hover:text-gray-100">Don't have an account?</a>
         </p>
       </div>
   </div>
