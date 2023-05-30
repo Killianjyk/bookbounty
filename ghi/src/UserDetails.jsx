@@ -35,22 +35,19 @@ const UserDetails = () => {
 
     return (
         <>
-        <h1>User Details</h1>
-        <div>
+        <h1 className="txt">User Details</h1>
+        <div className="txt">
             {user && (
             <>
             <p>Username: {user.username}</p>
-            <form onSubmit={onSubmit}>
-                <label>
-                    Full Name:
-                    <input type="full_name" name="full_name" value={formData.full_name} onChange={handleChange}/>
-                </label>
+            <p>Full Name: {user.full_name}</p>
+            <form className="txt" onSubmit={onSubmit}>
                 <label>Email:
-                    <input type="email" name="email" value={formData.email} onChange={handleChange}/>
+                    <input className="bg-white dark:bg-black" type="email" name="email" value={formData.email} onChange={handleChange}/>
                 </label>
                 <label>
                     Password:
-                    <input type="password" name="password" value={formData.password} onChange={handleChange}/>
+                    <input className="bg-white dark:bg-black" type="password" name="password" value={formData.password} onChange={handleChange}/>
                 </label>
                 <button type="submit">
                     Update

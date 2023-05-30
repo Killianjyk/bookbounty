@@ -6,10 +6,12 @@ import HomePage from "./HomePage";
 import Login from "./Login";
 import DiscoverBooks from "./DiscoverBooks";
 import Random from "./Random";
-import BookLists from "./BookLists";
 import BookDetails from "./BookDetails";
 import UserDetails from "./UserDetails";
 import DiscoverUsers from "./DiscoverUsers";
+import UserBookLists from "./UserBooksLists";
+import Signup from "./Signup";
+import Footer from "./Footer";
 
 
 function App() {
@@ -39,16 +41,17 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <div className="container mx-auto h-screen">
+      <div className="min-h-screen">
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="login/" element={<Login />} />
+          <Route path="signup/" element={<Signup />} />
           <Route path="discover/" element={<DiscoverBooks />} />
           <Route path="random/" element={< Random />} />
           <Route path="books/">
-            <Route path="favorites/" element={<BookLists name="favorites" />} />
-            <Route path="previous/" element={<BookLists name="previous" />} />
-            <Route path="next/" element={<BookLists name="next" />} />
+            <Route path="favorites/:username" element={<UserBookLists name="Favorites" />} />
+            <Route path="previous/:username" element={<UserBookLists name="Previously Read" />} />
+            <Route path="next/:username" element={<UserBookLists name="Read Next" />} />
             <Route path=":workId/" element={<BookDetails />} />
           </Route>
           <Route path="users/">
@@ -57,6 +60,7 @@ function App() {
           </Route>
         </Routes>
       </div>
+    <Footer/>
     </BrowserRouter>
   );
 }

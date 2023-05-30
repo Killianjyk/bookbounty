@@ -10,14 +10,13 @@ const UserLists = ({ name }) => {
     const searchField = useSelector((state) => state.searchField.value);
     const { data: searchUsers, isLoading: searchLoad } = useGetUserSearchQuery(searchField, { skip: name!=="User Search" });
     useEffect(() => {
-        console.log("first render");
         dispatch(search(searchField));
     }, []);
     if (searchLoad) {
         return <div>Loading...</div>
     }
     return (<>
-        <h1>{name}</h1>
+        <h1 className="txt">{name}</h1>
         {name==="User Search" && searchUsers?.map((user) => <UserCard user={user} />)}
     </>);
 }

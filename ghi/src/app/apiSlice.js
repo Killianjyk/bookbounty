@@ -30,15 +30,11 @@ export const bookBountyAPI = createApi({
             invalidatesTags: ["User"],
         }),
         signup: builder.mutation({
-            query: ({username, password}) => {
-                const body = new FormData();
-                body.append("username", username);
-                body.append("password", password);
+            query: (user) => {
                 return {
                     url: "/api/users/",
                     method: "POST",
-                    body,
-                    credentials: "include",
+                    user,
                 }
             },
             invalidatesTags: ["User"],
@@ -103,6 +99,30 @@ export const bookBountyAPI = createApi({
             },
             invalidatesTags: ["User"],
         }),
+        getFavoriteBooks: builder.query({
+            query: (username) => {
+                return {
+                    url: `/api/favorites/${username}/`
+                };
+            },
+            transformResponse: (response) => response?.favorites || null,
+        }),
+        getPreviousBooks: builder.query({
+            query: (username) => {
+                return {
+                    url: `/api/previous/${username}/`
+                };
+            },
+            transformResponse: (response) => response?.previous || null,
+        }),
+        getNextBooks: builder.query({
+            query: (username) => {
+                return {
+                    url: `/api/next/${username}/`
+                };
+            },
+            transformResponse: (response) => response?.next || null,
+        }),
     })
 });
 
@@ -117,4 +137,7 @@ export const {
     useGetTopFavoriteBooksQuery,
     useGetUserSearchQuery,
     useUpdateUserInfoMutation,
+    useGetFavoriteBooksQuery,
+    useGetPreviousBooksQuery,
+    useGetNextBooksQuery,
 } = bookBountyAPI;
