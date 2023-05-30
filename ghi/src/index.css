@@ -5,7 +5,7 @@
 
 @layer components {
   .txt {
-    @apply text-black dark:text-white;
+    @apply text-gray-700 dark:text-gray-300;
   }
 }
 

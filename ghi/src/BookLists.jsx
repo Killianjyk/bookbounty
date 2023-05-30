@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { 
+import {
     useGetBookSearchQuery,
     useGetTopFavoriteBooksQuery,
     useGetFavoriteBooksQuery,
@@ -16,9 +16,9 @@ const BookLists = ({ name, username }) => {
     const { data: favoriteBooks, isLoading: favoritesLoad } = useGetFavoriteBooksQuery(username, {skip: name!=="Favorites" || username===undefined});
     const { data: previousBooks, isLoading: previousLoad } = useGetPreviousBooksQuery(username, {skip: name!=="Previously Read" || username===undefined});
     const { data: nextBooks, isLoading: nextLoad } = useGetNextBooksQuery(username, {skip: name!=="Read Next" || username===undefined});
-    if (searchLoad || topFavoritesLoad || favoritesLoad || previousLoad || nextLoad) return <div>Loading...</div>;
+    if (searchLoad || topFavoritesLoad || favoritesLoad || previousLoad || nextLoad) return <div className="txt">Loading...</div>;
     return (<>
-        <h1 className="txt">{name}</h1>
+        <h1 className="txt text-3xl text-center mt-4">{name}</h1>
         {name==="Search Books" && searchBooks?.map((book) => <BookCard book={book} />)}
         {name==="Most Liked" && topFavoriteBooks?.map((book) => <BookCard book={book} />)}
         {name==="Favorites" && favoriteBooks?.map((book) => <BookCard book={book} />)}

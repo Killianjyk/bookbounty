@@ -11,6 +11,7 @@ import UserDetails from "./UserDetails";
 import DiscoverUsers from "./DiscoverUsers";
 import UserBookLists from "./UserBooksLists";
 import Signup from "./Signup";
+import Footer from "./Footer";
 
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <div className="container mx-auto h-screen">
+      <div className="min-h-screen">
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="login/" element={<Login />} />
@@ -59,6 +60,7 @@ function App() {
           </Route>
         </Routes>
       </div>
+    <Footer/>
     </BrowserRouter>
   );
 }

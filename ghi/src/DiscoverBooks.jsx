@@ -5,8 +5,10 @@ import BookLists from "./BookLists";
 
 const DiscoverBooks = () => {
 
-  return (<>
-        <h1 className="card-header text-center txt">Discover Books</h1>
+  return (
+  <>
+  <div className="h-full">
+        <h1 className="text-center text-3xl txt mt-4">Discover Books</h1>
         <div className="card text-bg-light mb-3">
           <div className="card-body">
             <Search type="Books" />
@@ -18,7 +20,9 @@ const DiscoverBooks = () => {
         <div>
           <BookLists name="Search Books"/>
         </div>
-    </>)
+  </div>
+    </>
+    )
 };
 
 export default DiscoverBooks;

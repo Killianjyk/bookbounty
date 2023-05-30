@@ -14,15 +14,14 @@ const Random = () => {
   };
 
   return (
-    <div className="">
-      <h1 className="txt">Random</h1>
+    <div className="h-full mb-4">
+      <h1 className="text-center text-3xl txt my-4">Random</h1>
       <div className="txt text-center">
-        <button type='button' className='btn btn-primary' onClick={handleButtonClick} disabled={isLoading || loading}>
+        <button type='button' className='btn btn-secondary' onClick={handleButtonClick} disabled={isLoading || loading}>
           Random!
         </button>
-        <br></br><br></br>
         {(isLoading || loading) && (
-          <div className=" flex justify-center items-center">
+          <div className="mt-4 flex justify-center items-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
           </div>
         )}
