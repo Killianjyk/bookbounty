@@ -22,14 +22,14 @@ const UserDetails = () => {
     };
 
     const onSubmit = async (e) => {
-        // e.preventDefault();
-        // try {
-        //     await updateUser({ ...formData })
+        e.preventDefault();
+        try {
+            await updateUser({ ...formData })
 
-        //     refetch();
-        // } catch (error) {
-        //     console.log(error)
-        // }
+            refetch();
+        } catch (error) {
+            console.log(error)
+        }
     };
 
 
@@ -40,8 +40,11 @@ const UserDetails = () => {
             {user && (
             <>
             <p>Username: {user.username}</p>
-            <p>Full Name: {user.full_name}</p>
             <form onSubmit={onSubmit}>
+                <label>
+                    Full Name:
+                    <input type="full_name" name="full_name" value={formData.full_name} onChange={handleChange}/>
+                </label>
                 <label>Email:
                     <input type="email" name="email" value={formData.email} onChange={handleChange}/>
                 </label>
