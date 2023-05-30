@@ -5,7 +5,7 @@ import {
     useGetFavoriteBooksQuery,
     useGetPreviousBooksQuery,
     useGetNextBooksQuery,
-} from "./app/apiSlice";
+} from "./app/booksApiSlice";
 import BookCard from "./BookCard";
 
 

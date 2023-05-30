@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 
-export const bookBountyAPI = createApi({
-    reducerPath: 'bookBountyAPI',
+export const authAPI = createApi({
+    reducerPath: 'authAPI',
     baseQuery: fetchBaseQuery({
         baseUrl: process.env.REACT_APP_API_HOST
     }),
@@ -29,6 +29,14 @@ export const bookBountyAPI = createApi({
             }),
             invalidatesTags: ["User"],
         }),
+        getUser: builder.query({
+            query: () => ({
+                url: '/token',
+                credentials: 'include',
+            }),
+            transformResponse: (response) => response?.user || null,
+            providesTags: ["User"],
+        }),
         signup: builder.mutation({
             query: (user) => {
                 const body = user;
@@ -41,50 +49,11 @@ export const bookBountyAPI = createApi({
             },
             invalidatesTags: ["User"],
         }),
-        getUser: builder.query({
-            query: () => ({
-                url: '/token',
-                credentials: 'include',
-            }),
-            transformResponse: (response) => response?.user || null,
-            providesTags: ["User"],
-        }),
         getAllUsers: builder.query({
             query: () => ({
                 url: "/api/users/"
             }),
             transformResponse: (response) => response?.users || null,
-        }),
-        getBookSearch: builder.query({
-            query: (search) => {
-                return {
-                    url: `/api/books/discover/${search}/`
-                };
-            },
-            transformResponse: (response) => response?.books || null,
-        }),
-        getUserSearch: builder.query({
-            query: (search) => {
-                return {
-                    url: `/api/users/${search}`
-                };
-            },
-            transformResponse: (response) => response?.users || null,
-        }),
-        getBook: builder.query({
-            query: (workId) => {
-                return {
-                    url: `/api/books/${workId}/`
-                };
-            },
-        }),
-        getTopFavoriteBooks: builder.query({
-            query: () => {
-                return {
-                    url: "/api/books/"
-                };
-            },
-            transformResponse: (response) => response?.books || null,
         }),
         updateUserInfo: builder.mutation({
             query: ({ email, password, full_name }) => {
@@ -102,29 +71,13 @@ export const bookBountyAPI = createApi({
             },
             invalidatesTags: ["User"],
         }),
-        getFavoriteBooks: builder.query({
-            query: (username) => {
+        getUserSearch: builder.query({
+            query: (search) => {
                 return {
-                    url: `/api/favorites/${username}/`
+                    url: `/api/users/${search}`
                 };
             },
-            transformResponse: (response) => response?.favorites || null,
-        }),
-        getPreviousBooks: builder.query({
-            query: (username) => {
-                return {
-                    url: `/api/previous/${username}/`
-                };
-            },
-            transformResponse: (response) => response?.previous || null,
-        }),
-        getNextBooks: builder.query({
-            query: (username) => {
-                return {
-                    url: `/api/next/${username}/`
-                };
-            },
-            transformResponse: (response) => response?.next || null,
+            transformResponse: (response) => response?.users || null,
         }),
     })
 });
@@ -135,12 +88,6 @@ export const {
     useSignupMutation,
     useGetUserQuery,
     useGetAllUsersQuery,
-    useGetBookSearchQuery,
-    useGetBookQuery,
-    useGetTopFavoriteBooksQuery,
     useGetUserSearchQuery,
     useUpdateUserInfoMutation,
-    useGetFavoriteBooksQuery,
-    useGetPreviousBooksQuery,
-    useGetNextBooksQuery,
-} = bookBountyAPI;
+} = authAPI;
