@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetUserQuery, useUpdateUserInfoMutation } from "./app/apiSlice";
+import { useGetUserQuery, useUpdateUserInfoMutation } from "./app/authApiSlice";
 import { useNavigate } from "react-router-dom";
 
 

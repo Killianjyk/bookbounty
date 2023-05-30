@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { search } from "./app/SearchSlice";
-import { useGetUserSearchQuery } from "./app/apiSlice";
+import { useGetUserSearchQuery } from "./app/authApiSlice";
 import { useEffect } from "react";
 import UserCard from "./UserCard";
 

@@ -1,4 +1,4 @@
-import { useGetUserQuery } from "./app/apiSlice";
+import { useGetUserQuery } from "./app/authApiSlice";
 import { useParams } from "react-router-dom";
 import BookLists from "./BookLists";
 

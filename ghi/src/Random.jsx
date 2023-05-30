@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useGetRandomQuery } from './app/booksApi';
+import { useGetRandomQuery } from './app/booksApiSlice';
 import DetailCard from './DetailCard';
 
 const Random = () => {
