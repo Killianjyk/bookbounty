@@ -31,11 +31,13 @@ export const bookBountyAPI = createApi({
         }),
         signup: builder.mutation({
             query: (user) => {
+                const body = user;
                 return {
-                    url: "/api/users/",
+                    url: '/api/users/',
                     method: "POST",
-                    user,
-                }
+                    body: body,
+                    credentials: "include",
+                };
             },
             invalidatesTags: ["User"],
         }),
@@ -89,10 +91,8 @@ export const bookBountyAPI = createApi({
                 const body = {
                     "email": email,
                     "password": password,
-                    "full_name": full_name};
-                // body.append("email", email);
-                // body.append("password", password);
-                // body.append("full_name", full_name);
+                    "full_name": full_name
+                };
                 return {
                     url: '/api/users/',
                     method: "PUT",

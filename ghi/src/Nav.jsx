@@ -97,7 +97,7 @@ const Nav = () => {
         <li><NavLink className="dark:hover:text-gray-300 dark:hover:text-gray-700" to={"/books/previous/" + user.username} >Previously Read</NavLink></li>
         <li><NavLink className="dark:hover:text-gray-300 dark:hover:text-gray-700" to={"/books/next/" + user.username} >Read Next</NavLink></li>
         <li><NavLink className="dark:hover:text-gray-300 dark:hover:text-gray-700" to={"/users/"} >User Home</NavLink></li></>}
-        {user && <><li><NavLink onClick={() =>{logout(); navigate("/");}} className="bg-orange-200 dark:bg-slate-800 hover:bg-red-400 dark:hover:bg-red-800 txt">Logout</NavLink></li></>}
+        {user && <><li><NavLink onClick={async () =>{await logout(); navigate("/");}} className="bg-orange-200 dark:bg-slate-800 hover:bg-red-400 dark:hover:bg-red-800 txt">Logout</NavLink></li></>}
       </ul>
     </div>
     <NavLink to={"/"} className="btn btn-ghost normal-case text-xl dark:hover:bg-slate-700">BookBounty</NavLink>
@@ -113,7 +113,7 @@ const Nav = () => {
       <li><NavLink className="dark:hover:bg-slate-700 dark:hover:text-gray-300" to={"/books/previous/" + user.username} >Previously Read</NavLink></li>
       <li><NavLink className="dark:hover:bg-slate-700 dark:hover:text-gray-300" to={"/books/next/" + user.username} >Read Next</NavLink></li>
       <li><NavLink className="dark:hover:bg-slate-700 dark:hover:text-gray-300" to={"/users/"} >User Home</NavLink></li></>}
-      {user && <><li><NavLink onClick={() =>{logout(); navigate("/");}} className="bg-orange-200 dark:bg-slate-800 hover:bg-red-400 dark:hover:bg-red-800 txt">Logout</NavLink></li></>}
+      {user && <><li><NavLink onClick={async () =>{await logout(); navigate("/");}} className="bg-orange-200 dark:bg-slate-800 hover:bg-red-400 dark:hover:bg-red-800 txt">Logout</NavLink></li></>}
     </ul>
   </div>
   <div className="navbar-end">
