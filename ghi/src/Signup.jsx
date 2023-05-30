@@ -60,7 +60,7 @@ const Signup = () => {
     //     </form>
     //   </div>
     // </div>
-
+<div className="bg-repeat h-screen bg-[url('https://p0.pikist.com/photos/626/38/background-book-font-text-old-german-book-printing-antique-hymnal-faith.jpg')]">
     <div className="container mx-auto py-8 h-screen">
       <div className="w-5/6 lg:w-1/2 mx-auto bg-white rounded shadow">
             <div className="py-4 px-8 text-black text-xl border-b border-grey-lighter">Register for an account</div>
@@ -96,7 +96,7 @@ const Signup = () => {
             <a href="/login" className="txt text-sm no-underline hover:text-gray-400 dark:hover:text-gray-100">I already have an account</a>
         </p>
     </div>
-
+</div>
 
   );
 }
