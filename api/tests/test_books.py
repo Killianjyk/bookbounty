@@ -2,6 +2,7 @@ from main import app
 from queries.books import BooksQueries
 from models.books import BookIn, BookOut
 from fastapi.testclient import TestClient
+from queries.api import OpenLibraryQueries
 
 client = TestClient(app)
 
@@ -18,8 +19,17 @@ class FakeBookQueries:
     def get_books(self):
         return []
 
-    def get_book(self, work_id: str):
-        pass
+
+class FakeOpenLibraryQueries:
+    def get_book_details(self, work_id: str):
+        return {
+            "work_id": work_id,
+            "title": "string",
+            "author": "string",
+            "description": "string",
+            "image": "string"
+        }
+
 
 
 # # faked logged in user
@@ -64,10 +74,20 @@ def test_get_top_favorited_books():
 
 def test_get_book():
     # arrange
+    app.dependency_overrides[OpenLibraryQueries] = FakeOpenLibraryQueries
     # act
+    response = client.get("/api/books/12345/")
     # assert
+    assert response.status_code == 200
+    assert response.json() == {
+            "work_id": "/books/12345",
+            "title": "string",
+            "author": "string",
+            "description": "string",
+            "image": "string"
+        }
     # cleanup
-    pass
+    app.dependency_overrides = {}
 
 
 def test_random_book():
