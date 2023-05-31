@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const BookCard = ({ book }) => {
     return (
-    <Link to={book.work_id} className="mx-auto my-2 block max-w-sm p-6 bg-orange-200 border border-gray-200 rounded-lg shadow hover:bg-orange-300 dark:bg-slate-800 dark:border-gray-700 dark:hover:bg-slate-600">
+    <Link to={book.work_id} className="mx-auto my-2 block max-w-sm p-6 bg-orange-200 rounded-lg shadow hover:bg-orange-300 dark:bg-slate-800 dark:border-gray-700 dark:hover:bg-slate-600 animate-shad">
 
         {/* <div className="card mb-3 txt">
             <div className="card-title">{book.title}</div>
