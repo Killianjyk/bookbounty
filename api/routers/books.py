@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from models.books import (
     BookIn,
     BookOut,
-    BookList,
     BookDataList,
     BookDetailsList,
     BookDetailOut,
