@@ -66,8 +66,54 @@ Added Bootstrap, created start of Nav bar, started creating paths to elements (c
 
 Working on BookDetails page solo (Rew)
 
-# 5/25-
+# 5/25- Whole team
 Goals:
--
+-Get Detail page working
+-Fixed react not working proprtly on my laptop- deleted code from windows=setup.js
+-Card set up to be used in list pages
+-Starting some styling
+
+- Notes:
+Showed detail page to whole team- we tried to troubleshoot. Created branch to be able to work on it on all our computers. Detail page working. Book cards working. Playing with some early styling.
+
+# 5/26- Whole team
+Goals:
+-Users page
+-funcion for routing for users page
+-Adjusted backend for users page
+
+- Notes:
+
+# 5/30- Whole team
+Goals:
+-Add to list and remove from list (frontend)
+-Add buttons (fav, add to next read)
+-Get post request working for signup
+-Made site it look good in all formats (ipad, iphone, android, etc)
+
+- Notes:
+
+# 5/31- Whole team
+Goals:
+List of current TO DO:
+-Buttons (nick)
+-Favorites
+-Random book- when no image, backend (Nick M)
+-Split up slices (apislice)
+-Tests in PM
+-Discover users (rew), home page, detail page & User details (killian) (styling)
+
+- Notes:
+Set up foundation for tests we want to complete (will split up)
+
+# 6/1- Whole team
+Goals:
+
+
+- Notes:
+
+# 6/2- Whole team
+Goals:
+
 
 - Notes:

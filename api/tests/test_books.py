@@ -5,7 +5,8 @@ from fastapi.testclient import TestClient
 
 client = TestClient(app)
 
-class FakeBookQueries():
+
+class FakeBookQueries:
     def new_book(self, book_data: BookIn):
         return {
             "id": "12345",
@@ -25,6 +26,7 @@ class FakeBookQueries():
 # from models.authenticator import authenticator
 # def fake_get_current_account_data():
 #     return {}
+
 
 def test_track_book():
     # arrange
@@ -50,10 +52,14 @@ def test_track_book():
 
 def test_get_top_favorited_books():
     # arrange
+    app.dependency_overrides[BooksQueries] = FakeBookQueries
     # act
+    response = client.get("/api/books/")
     # assert
+    assert response.status_code == 200
+    assert response.json() == {"books": []}
     # cleanup
-    pass
+    app.dependency_overrides = {}
 
 
 def test_get_book():
