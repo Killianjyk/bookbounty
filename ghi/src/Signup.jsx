@@ -57,7 +57,7 @@ const Signup = () => {
 <div className="card">
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-50 shad">
-          <img className="h-10 mr-2 drop-shadow-[1px_1px_4px_rgba(0,0,0,1)]" src="/Marcus-Roberto-Google-Play-Google-Play-Books.512.png" alt="logo"/>
+          <img className="h-10 mr-2 drop-shadow-[1px_1px_8px_rgba(0,0,0,1)]" src="/Marcus-Roberto-Google-Play-Google-Play-Books.512.png" alt="logo"/>
           BookBounty
       </a>
       <div className="w-full bg-orange-200 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
