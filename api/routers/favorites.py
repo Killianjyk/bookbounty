@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from models.authenticator import authenticator
+from models.authenticator import authenticator as auth
 from queries.favorites import FavoritesQueries
 from models.books import BookIn
 from models.usersbookslists import UsersBooksIn, UsersBooksOut, FavoritesList
@@ -17,7 +17,7 @@ def add_to_user_list(
     books: BooksQueries = Depends(),
     favorites: FavoritesQueries = Depends(),
     open_library: OpenLibraryQueries = Depends(),
-    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
+    user_data: Optional[dict] = Depends(auth.try_get_current_account_data),
 ):
     if not user_data:
         raise HTTPException(
@@ -28,7 +28,11 @@ def add_to_user_list(
     if not book_info:
         book_details = open_library.get_book_details(info.work_id)
         book_info = books.new_book(BookIn(**book_details))
-    favorited_book = favorites.new_favorite(info, user_data["id"], book_info.id)
+    favorited_book = favorites.new_favorite(
+        info,
+        user_data["id"],
+        book_info.id,
+    )
     books.increment_favorites(info.work_id)
     return favorited_book
 
@@ -54,7 +58,7 @@ def check_favorite(
     username: str,
     favorites: FavoritesQueries = Depends(),
     users: UserQueries = Depends(),
-    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
+    user_data: Optional[dict] = Depends(auth.try_get_current_account_data),
 ):
     if not user_data:
         raise HTTPException(
@@ -74,7 +78,7 @@ def remove_favorite(
     favorites: FavoritesQueries = Depends(),
     users: UserQueries = Depends(),
     books: BooksQueries = Depends(),
-    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
+    user_data: Optional[dict] = Depends(auth.try_get_current_account_data),
 ):
     if not user_data:
         raise HTTPException(

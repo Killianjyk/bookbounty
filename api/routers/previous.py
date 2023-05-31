@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from models.authenticator import authenticator
+from models.authenticator import authenticator as auth
 from queries.previous import PreviousQueries
 from models.usersbookslists import UsersBooksIn, UsersBooksOut, PreviousList
 from typing import Optional
@@ -17,7 +17,7 @@ def add_to_user_list(
     books: BooksQueries = Depends(),
     previous: PreviousQueries = Depends(),
     open_library: OpenLibraryQueries = Depends(),
-    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
+    user_data: Optional[dict] = Depends(auth.try_get_current_account_data),
 ):
     if not user_data:
         raise HTTPException(
@@ -52,7 +52,7 @@ def check_previous(
     username: str,
     previous: PreviousQueries = Depends(),
     users: UserQueries = Depends(),
-    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
+    user_data: Optional[dict] = Depends(auth.try_get_current_account_data),
 ):
     if not user_data:
         raise HTTPException(
@@ -71,7 +71,7 @@ def remove_previous(
     username: str,
     users: UserQueries = Depends(),
     previous: PreviousQueries = Depends(),
-    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
+    user_data: Optional[dict] = Depends(auth.try_get_current_account_data),
 ):
     if not user_data:
         raise HTTPException(

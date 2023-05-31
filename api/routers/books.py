@@ -16,7 +16,7 @@ router = APIRouter()
 def track_book(info: BookIn, books: BooksQueries = Depends()):
     try:
         book = books.new_book(info)
-    except:
+    except Exception:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot track this book",
@@ -46,7 +46,10 @@ def random_book(
     return api_books.get_book_details(books[0])
 
 
-@router.get("/api/books/discover/{search_bar}/", response_model=BookDetailsList)
+@router.get(
+    "/api/books/discover/{search_bar}/",
+    response_model=BookDetailsList,
+)
 def search_books(search_bar: str, api_books: OpenLibraryQueries = Depends()):
     matching_books = api_books.search_api(search_bar)
     matching_details = []

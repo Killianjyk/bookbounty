@@ -7,7 +7,7 @@ from fastapi import (
     Request,
 )
 from jwtdown_fastapi.authentication import Token
-from models.authenticator import authenticator
+from models.authenticator import authenticator as auth
 from pydantic import BaseModel
 from queries.users import UserQueries, DuplicateUserError
 from models.users import UserIn, UserOut, UserList, UserUpdate
@@ -36,7 +36,7 @@ async def create_user(
     response: Response,
     users: UserQueries = Depends(),
 ):
-    hashed_password = authenticator.hash_password(info.password)
+    hashed_password = auth.hash_password(info.password)
     try:
         user = users.signup(info, hashed_password)
     except DuplicateUserError:
@@ -45,7 +45,7 @@ async def create_user(
             detail="Cannot create an user with those credentials",
         )
     form = UserForm(username=info.email, password=info.password)
-    token = await authenticator.login(response, request, form, users)
+    token = await auth.login(response, request, form, users)
     return UserToken(user=user, **token.dict())
 
 
@@ -62,11 +62,11 @@ def get_searched_users(searched_username: str, users: UserQueries = Depends()):
 @router.get("/token", response_model=UserToken | None)
 async def get_token(
     request: Request,
-    user: UserOut = Depends(authenticator.try_get_current_account_data),
+    user: UserOut = Depends(auth.try_get_current_account_data),
 ) -> UserToken | None:
-    if user and authenticator.cookie_name in request.cookies:
+    if user and auth.cookie_name in request.cookies:
         return {
-            "access_token": request.cookies[authenticator.cookie_name],
+            "access_token": request.cookies[auth.cookie_name],
             "type": "Bearer",
             "user": user,
         }
@@ -76,7 +76,7 @@ async def get_token(
 def update_user(
     user_update: UserUpdate,
     users: UserQueries = Depends(),
-    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
+    user_data: Optional[dict] = Depends(auth.try_get_current_account_data),
 ):
     if not user_data:
         raise HTTPException(
@@ -85,7 +85,7 @@ def update_user(
         )
     user_update = user_update.dict()
     if user_update["password"] != "":
-        user_update["password"] = authenticator.hash_password(user_update["password"])
+        user_update["password"] = auth.hash_password(user_update["password"])
     if user_update["password"] == "":
         del user_update["password"]
     if user_update["email"] == "":

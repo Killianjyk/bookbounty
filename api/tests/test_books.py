@@ -1,6 +1,6 @@
 from main import app
 from queries.books import BooksQueries
-from models.books import BookIn, BookOut
+from models.books import BookIn
 from fastapi.testclient import TestClient
 from queries.api import OpenLibraryQueries
 
@@ -27,9 +27,8 @@ class FakeOpenLibraryQueries:
             "title": "string",
             "author": "string",
             "description": "string",
-            "image": "string"
+            "image": "string",
         }
-
 
 
 # # faked logged in user
@@ -80,12 +79,12 @@ def test_get_book():
     # assert
     assert response.status_code == 200
     assert response.json() == {
-            "work_id": "/books/12345",
-            "title": "string",
-            "author": "string",
-            "description": "string",
-            "image": "string"
-        }
+        "work_id": "/books/12345",
+        "title": "string",
+        "author": "string",
+        "description": "string",
+        "image": "string",
+    }
     # cleanup
     app.dependency_overrides = {}
 

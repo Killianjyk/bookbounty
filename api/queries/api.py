@@ -30,22 +30,23 @@ class OpenLibraryQueries:
         book = {"work_id": work_id}
         try:
             book["title"] = response["title"]
-        except:
+        except Exception:
             book["title"] = "NO TITLE PROVIDED"
         try:
             book["description"] = response["description"]["value"]
-        except:
+        except Exception:
             try:
                 book["description"] = response["description"]
-            except:
+            except Exception:
                 book["description"] = "NO DESCRIPTION PROVIDED"
         try:
-            book["author"] = self.get_author(response["authors"][0]["author"]["key"])
-        except:
+            author = response["authors"][0]["author"]["key"]
+            book["author"] = self.get_author(author)
+        except Exception:
             book["author"] = "NO AUTHOR PROVIDED"
         try:
             book["image"] = self.get_image(response["covers"][0])
-        except:
+        except Exception:
             book["image"] = "NO COVER PROVIDED"
         return book
 
