@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLoginMutation } from "./app/authApiSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -13,8 +13,8 @@ const Login = () => {
 <div className="bg-repeat h-screen bg-[url('https://images2.alphacoders.com/261/26102.jpg')]">
 <div className="card">
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-white">
-          <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo"/>
+      <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-50 shad">
+          <img className="h-10 mr-2 drop-shadow-[1px_1px_4px_rgba(0,0,0,1)]" src="/Marcus-Roberto-Google-Play-Google-Play-Books.512.png" alt="logo"/>
           BookBounty
       </a>
       <div className="w-full bg-orange-200 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -35,7 +35,7 @@ const Login = () => {
               </form>
           </div>
         <p className="text-center mb-4">
-            <a href="/signup" className="txt text-sm no-underline hover:text-gray-400 dark:hover:text-gray-100">Don't have an account?</a>
+            <Link to="/signup" className="txt text-sm no-underline hover:text-gray-400 dark:hover:text-gray-100">Don't have an account?</Link>
         </p>
       </div>
   </div>

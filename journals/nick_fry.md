@@ -1,10 +1,12 @@
 ## 05/31/2023
     Goals:
         - Set up testing for books routers
+            - understand testing
         - Finish integration of user buttons to front end
     Notes for myself-
         Buttons added under a link are not clickable
             this needs to be fixed (probably with css)
+        Cannot have multiple slices in the same file with current slice formatting
 
 ## 05/31/2023
     Goals:
