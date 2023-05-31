@@ -17,7 +17,7 @@ def add_to_user_list(
     next: NextQueries = Depends(),
     books: BooksQueries = Depends(),
     open_library: OpenLibraryQueries = Depends(),
-    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data)
+    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
 ):
     if not user_data:
         raise HTTPException(
@@ -36,14 +36,33 @@ def get_user_next(
     username: str,
     next: NextQueries = Depends(),
     users: UserQueries = Depends(),
-    books: BooksQueries = Depends()
+    books: BooksQueries = Depends(),
 ):
     user_id = users.get_user(username)["id"]
     next_books_work_ids = next.user_up_next(user_id)
     next_books = []
     for work_id in next_books_work_ids:
         next_books.append(books.get_book(work_id))
-    return { "next": next_books }
+    return {"next": next_books}
+
+
+@router.get("/api/next/{username}/{work_id}/", response_model=bool)
+def check_next(
+    work_id: str,
+    username: str,
+    next: NextQueries = Depends(),
+    users: UserQueries = Depends(),
+    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
+):
+    if not user_data:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Not signed in",
+        )
+    return next.is_queued(
+        "/books/" + work_id,
+        users.get_user(username)["id"],
+    )
 
 
 @router.delete("/api/next/{username}/{work_id}/", response_model=bool)
@@ -52,11 +71,14 @@ def remove_next(
     username: str,
     next: NextQueries = Depends(),
     users: UserQueries = Depends(),
-    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data)
+    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
 ):
     if not user_data:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Not signed in",
         )
-    return next.remove_next("/books/" + work_id, users.get_user(username)["id"])
+    return next.remove_next(
+        "/books/" + work_id,
+        users.get_user(username)["id"],
+    )

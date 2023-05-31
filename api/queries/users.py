@@ -1,9 +1,10 @@
 from models.users import UserIn, UserOut, UserOutPassword
-from pymongo.errors import DuplicateKeyError
 from .client import MongoQueries
+
 
 class DuplicateUserError(ValueError):
     pass
+
 
 class UserQueries(MongoQueries):
     collection_name = "users"
@@ -19,14 +20,18 @@ class UserQueries(MongoQueries):
         return UserOutPassword(**user)
 
     def get(self, username: str):
-        user = self.collection.find_one({"username": username}) or self.collection.find_one({"email": username})
+        user = self.collection.find_one(
+            {"username": username}
+        ) or self.collection.find_one({"email": username})
         if not user:
             return None
         user["id"] = str(user["_id"])
         return UserOutPassword(**user)
 
     def get_user(self, username: str):
-        user = self.collection.find_one({"username": username}) or self.collection.find_one({"email": username})
+        user = self.collection.find_one(
+            {"username": username}
+        ) or self.collection.find_one({"email": username})
         if not user:
             return None
         user["id"] = str(user["_id"])
@@ -41,7 +46,9 @@ class UserQueries(MongoQueries):
 
     def get_searched(self, username):
         users = []
-        for user in self.collection.find({"username": { "$regex": username, "$options": "i" }}).limit(10):
+        for user in self.collection.find(
+            {"username": {"$regex": username, "$options": "i"}}
+        ).limit(10):
             user["id"] = str(user["_id"])
             users.append(user)
         return users

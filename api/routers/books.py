@@ -1,16 +1,20 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from models.authenticator import authenticator
-from models.books import BookIn, BookOut, BookList, BookDetailsList, BookDetailOut
+from models.books import (
+    BookIn,
+    BookOut,
+    BookList,
+    BookDataList,
+    BookDetailsList,
+    BookDetailOut,
+)
 from queries.books import BooksQueries
 from queries.api import OpenLibraryQueries, RandomWordQuery
 
 router = APIRouter()
 
+
 @router.post("/api/books/", response_model=BookOut)
-def track_book(
-    info: BookIn,
-    books: BooksQueries = Depends()
-):
+def track_book(info: BookIn, books: BooksQueries = Depends()):
     try:
         book = books.new_book(info)
     except:
@@ -21,25 +25,20 @@ def track_book(
     return book
 
 
-@router.get("/api/books/", response_model=BookList)
-def get_top_favorited_books(
-    books: BooksQueries = Depends()
-):
-    return { "books": books.get_books() }
+@router.get("/api/books/", response_model=BookDataList)
+def get_top_favorited_books(books: BooksQueries = Depends()):
+    return {"books": books.get_books()}
 
 
 @router.get("/api/books/{work_id}/", response_model=BookDetailOut)
-def get_book(
-    work_id: str,
-    api_books: OpenLibraryQueries = Depends()
-):
+def get_book(work_id: str, api_books: OpenLibraryQueries = Depends()):
     return api_books.get_book_details("/books/" + work_id)
 
 
 @router.get("/api/books/discover/random/", response_model=BookDetailOut)
 def random_book(
     random_word: RandomWordQuery = Depends(),
-    api_books: OpenLibraryQueries = Depends()
+    api_books: OpenLibraryQueries = Depends(),
 ):
     books = []
     while len(books) == 0:
@@ -49,12 +48,9 @@ def random_book(
 
 
 @router.get("/api/books/discover/{search_bar}/", response_model=BookDetailsList)
-def search_books(
-    search_bar: str,
-    api_books: OpenLibraryQueries = Depends()
-):
+def search_books(search_bar: str, api_books: OpenLibraryQueries = Depends()):
     matching_books = api_books.search_api(search_bar)
     matching_details = []
     for book in matching_books:
         matching_details.append(api_books.get_book_details(book))
-    return { "books": matching_details }
+    return {"books": matching_details}

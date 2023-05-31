@@ -31,5 +31,9 @@ class BookList(BaseModel):
     books: List[BookOut]
 
 
+class BookDataList(BaseModel):
+    books: List[BookOutData]
+
+
 class BookDetailsList(BaseModel):
     books: List[BookDetailOut] = []

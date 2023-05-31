@@ -2,10 +2,12 @@ import { useSelector } from "react-redux";
 import {
     useGetBookSearchQuery,
     useGetTopFavoriteBooksQuery,
+} from "./app/booksApiSlice";
+import {
     useGetFavoriteBooksQuery,
     useGetPreviousBooksQuery,
     useGetNextBooksQuery,
-} from "./app/booksApiSlice";
+} from "./app/listApiSlice"
 import BookCard from "./BookCard";
 
 

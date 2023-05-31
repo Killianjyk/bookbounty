@@ -10,7 +10,7 @@ class NextQueries(MongoQueries):
         next["user_id"] = user_id
         next["book_id"] = book_id
         search_for = self.collection.find_one(
-            { "user_id": user_id, "work_id": next_in.work_id }
+            {"user_id": user_id, "work_id": next_in.work_id}
         )
         if search_for:
             return search_for
@@ -21,7 +21,7 @@ class NextQueries(MongoQueries):
 
     def user_up_next(self, user_id: str):
         up_next = []
-        for next in self.collection.find({ "user_id": user_id }):
+        for next in self.collection.find({"user_id": user_id}):
             up_next.append(next["work_id"])
         return up_next
 
@@ -31,8 +31,21 @@ class NextQueries(MongoQueries):
             up_next.append(next)
         return up_next
 
+    def is_queued(self, work_id: str, user_id: str):
+        return bool(
+            self.collection.find_one(
+                {
+                    "user_id": user_id,
+                    "work_id": work_id,
+                }
+            )
+        )
+
     def remove_next(self, work_id: str, user_id: str):
         result = self.collection.delete_one(
-            {"user_id": user_id, "work_id": work_id}
+            {
+                "user_id": user_id,
+                "work_id": work_id,
+            }
         )
         return result.deleted_count > 0

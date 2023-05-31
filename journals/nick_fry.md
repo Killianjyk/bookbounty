@@ -1,4 +1,25 @@
-## 05/16/2023
+## 05/31/2023
+    Goals:
+        - Set up testing for books routers
+        - Finish integration of user buttons to front end
+    Notes for myself-
+        Buttons added under a link are not clickable
+            this needs to be fixed (probably with css)
+
+## 05/31/2023
+    Goals:
+        - Split API slices into manageable chunks 
+    Notes for myself-
+        slices need to be registered with the store
+        each slice needs its own middleware and exported data
+        
+## 05/26/2023
+    Goals:
+        - Add sign up capabilities to the front end
+    Notes for myself-
+        FormData does not work for sign up
+
+## 05/17/2023
     Goals:
         - Set up paths for books lists
     Notes for myself-

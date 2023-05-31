@@ -10,12 +10,7 @@ from jwtdown_fastapi.authentication import Token
 from models.authenticator import authenticator
 from pydantic import BaseModel
 from queries.users import UserQueries, DuplicateUserError
-from models.users import (
-    UserIn,
-    UserOut,
-    UserList,
-    UserUpdate
-)
+from models.users import UserIn, UserOut, UserList, UserUpdate
 from typing import Optional
 
 router = APIRouter()
@@ -55,24 +50,19 @@ async def create_user(
 
 
 @router.get("/api/users/", response_model=UserList)
-def get_all_users(
-    users: UserQueries = Depends()
-):
-    return { "users": users.get_all() }
+def get_all_users(users: UserQueries = Depends()):
+    return {"users": users.get_all()}
 
 
 @router.get("/api/users/{searched_username}", response_model=UserList)
-def get_searched_users(
-    searched_username: str,
-    users: UserQueries = Depends()
-):
-    return { "users": users.get_searched(searched_username) }
+def get_searched_users(searched_username: str, users: UserQueries = Depends()):
+    return {"users": users.get_searched(searched_username)}
 
 
 @router.get("/token", response_model=UserToken | None)
 async def get_token(
     request: Request,
-    user: UserOut = Depends(authenticator.try_get_current_account_data)
+    user: UserOut = Depends(authenticator.try_get_current_account_data),
 ) -> UserToken | None:
     if user and authenticator.cookie_name in request.cookies:
         return {
@@ -81,11 +71,12 @@ async def get_token(
             "user": user,
         }
 
+
 @router.put("/api/users/", response_model=UserOut)
 def update_user(
     user_update: UserUpdate,
     users: UserQueries = Depends(),
-    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data)
+    user_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
 ):
     if not user_data:
         raise HTTPException(
@@ -101,5 +92,5 @@ def update_user(
         del user_update["email"]
     if user_update["full_name"] == "":
         del user_update["full_name"]
-    users.update_user(user_data["username"], {"$set":user_update})
+    users.update_user(user_data["username"], {"$set": user_update})
     return users.get(user_data["username"])

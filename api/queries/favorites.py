@@ -5,7 +5,12 @@ from models.usersbookslists import UsersBooksIn
 class FavoritesQueries(MongoQueries):
     collection_name = "favorites"
 
-    def new_favorite(self, favorite_in: UsersBooksIn, user_id: str, book_id: str):
+    def new_favorite(
+        self,
+        favorite_in: UsersBooksIn,
+        user_id: str,
+        book_id: str,
+    ):
         favorite = favorite_in.dict()
         favorite["user_id"] = user_id
         favorite["book_id"] = book_id
@@ -31,8 +36,20 @@ class FavoritesQueries(MongoQueries):
             favorites.append(favorite)
         return favorites
 
+    def is_favorited(self, work_id: str, user_id: str):
+        book = self.collection.find_one(
+            {
+                "user_id": user_id,
+                "work_id": work_id,
+            }
+        )
+        return bool(book)
+
     def remove_favorite(self, work_id: str, user_id: str):
         result = self.collection.delete_one(
-            {"user_id": user_id, "work_id": work_id}
+            {
+                "user_id": user_id,
+                "work_id": work_id,
+            }
         )
         return result.deleted_count > 0

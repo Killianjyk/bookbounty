@@ -35,14 +35,6 @@ export const booksAPI = createApi({
                 url: "/api/books/discover/random/"
             }),
         }),
-        getFavoriteBooks: builder.query({
-            query: (username) => {
-                return {
-                    url: `/api/favorites/${username}/`
-                };
-            },
-            transformResponse: (response) => response?.favorites || null,
-        }),
         getPreviousBooks: builder.query({
             query: (username) => {
                 return {
@@ -67,7 +59,6 @@ export const {
     useGetBookSearchQuery,
     useGetBookQuery,
     useGetTopFavoriteBooksQuery,
-    useGetFavoriteBooksQuery,
     useGetPreviousBooksQuery,
     useGetNextBooksQuery,
 } = booksAPI;

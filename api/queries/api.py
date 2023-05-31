@@ -1,14 +1,13 @@
 import requests
-import json
 
 
-class OpenLibraryQueries():
+class OpenLibraryQueries:
     api_url = "https://openlibrary.org"
     search = "/search.json?q="
     detail = ".json"
 
     def get_image(self, image_id):
-        return f'https://covers.openlibrary.org/b/id/{image_id}-M.jpg'
+        return f"https://covers.openlibrary.org/b/id/{image_id}-M.jpg"
 
     def get_author(self, author_id: str):
         response = requests.get(self.api_url + author_id + ".json").json()
@@ -17,7 +16,9 @@ class OpenLibraryQueries():
     def search_api(self, string: str):
         string = string.replace(" ", "+")
         string = string.replace("%", "+")
-        response = requests.get(self.api_url + self.search + string + "&limit=10").json()
+        response = requests.get(
+            self.api_url + self.search + string + "&limit=10"
+        ).json()
         keys = []
         for i in range(0, len(response["docs"])):
             keys.append(response["docs"][i]["key"])
@@ -26,7 +27,7 @@ class OpenLibraryQueries():
     def get_book_details(self, work_id: str):
         work_id = work_id.replace("works", "books")
         response = requests.get(self.api_url + work_id + self.detail).json()
-        book = { "work_id": work_id }
+        book = {"work_id": work_id}
         try:
             book["title"] = response["title"]
         except:
@@ -49,7 +50,7 @@ class OpenLibraryQueries():
         return book
 
 
-class RandomWordQuery():
+class RandomWordQuery:
     url = "https://random-word-api.vercel.app/api?words=1"
 
     def get_random_word(self):
