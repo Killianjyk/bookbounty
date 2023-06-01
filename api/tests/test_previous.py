@@ -17,6 +17,7 @@ client = TestClient(app)
 
 
 def test_add_to_user_list():
+    # arrange
     app.dependency_overrides[PreviousQueries] = FakePreviousQueries
     app.dependency_overrides[UserQueries] = FakeUserQueries
     app.dependency_overrides[BooksQueries] = FakeBooksQueries
@@ -27,6 +28,7 @@ def test_add_to_user_list():
     user_book_in = {"work_id": "/books/12345"}
     # act
     res = client.post("/api/previous/", json=user_book_in)
+    # assert
     assert res.status_code == 200
     assert res.json() == {
         "user_id": "user id",

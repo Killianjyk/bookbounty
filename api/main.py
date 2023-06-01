@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
-from routers import users, books, favorites, next, previous
+from routers import users, books, favorites, next, previous, reviews
 from models.authenticator import authenticator
 
 app = FastAPI()
@@ -34,3 +34,4 @@ app.include_router(books.router, tags=["Books"])
 app.include_router(favorites.router, tags=["Favorites"])
 app.include_router(next.router, tags=["Read Next"])
 app.include_router(previous.router, tags=["Read Previously"])
+app.include_router(reviews.router, tags=["Reviews"])

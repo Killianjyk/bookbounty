@@ -1,5 +1,6 @@
 from models.usersbookslists import UsersBooksIn
 from models.books import BookOut, BookIn
+from models.reviews import Review
 
 
 def fake_get_current_account_data():
@@ -174,4 +175,57 @@ class FakePreviousQueries:
         return True
 
     def remove_previous(self, work_id: str, user_id: str):
+        return True
+
+
+class FakeReviewsQueries:
+    review_text = "review text"
+    stars = 5
+    def get_review(self, work_id: str, user_id: str):
+        return {
+            "id": "review id",
+            "user_id": user_id,
+            "work_id": work_id,
+            "stars": self.stars,
+            "text": self.review_text,
+        }
+
+    def get_reviews(self):
+        return [{
+            "id": "review id",
+            "user_id": "user id",
+            "work_id": "/books/12345",
+            "stars": self.stars,
+            "text": self.review_text,
+        }]
+    
+    def get_book_reviews(self, work_id: str):
+        return [{
+            "id": "review id",
+            "user_id": "user id",
+            "work_id": work_id,
+            "stars": self.stars,
+            "text": self.review_text,
+        }]
+    
+    def new_review(self, review_in: Review, user_id: str):
+        review = review_in.dict()
+        review["id"] = "review id"
+        review["user_id"] = user_id
+        return review
+
+    def update_review(self, review: Review, user_id: str):
+        self.review_text = review.text
+        self.stars = review.stars
+    
+    def get_user_reviews(self, user_id: str):
+        return [{
+            "id": "review id",
+            "user_id": user_id,
+            "work_id": "/books/12345",
+            "stars": self.stars,
+            "text": self.review_text,
+        }]
+
+    def delete_review(self, work_id: str, user_id: str):
         return True
