@@ -50,11 +50,6 @@ class FakeRandomWordQuery:
         return ["word"]
 
 
-# # faked logged in user
-# from models.authenticator import authenticator
-# def fake_get_current_account_data():
-#     return {}
-
 
 def test_track_book():
     # arrange
