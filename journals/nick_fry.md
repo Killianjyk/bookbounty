@@ -1,3 +1,9 @@
+## 06/01/2023
+    Goals:
+        - Finish unit tests for routers
+        - Add button integration to book details
+    Notes for myself-
+
 ## 05/31/2023
     Goals:
         - Set up testing for books routers

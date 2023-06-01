@@ -12,8 +12,10 @@ client = TestClient(app)
 
 
 def fake_get_current_account_data():
-    return {"username": "hello",
-            "id": "user_id"}
+    return {
+        "username": "username",
+        "id": "user_id",
+    }
 
 
 class FakeFavoritesQueries:
@@ -34,11 +36,14 @@ class FakeFavoritesQueries:
         favorite["book_id"] = book_id
         favorite["id"] = "12345"
         return favorite
+    
+    def user_favorites(self, user_id: str):
+        return ["/books/12345", "/books/12346"]
 
 
 class FakeUserQueries:
     def get_user(self, username: str):
-        return {"id": "hello"}
+        return {"id": "username"}
 
 
 class FakeBooksQueries:
@@ -101,10 +106,28 @@ def test_add_to_user_list():
 
 def test_get_user_favorites():
     # arrange
+    app.dependency_overrides[FavoritesQueries] = FakeFavoritesQueries
+    app.dependency_overrides[UserQueries] = FakeUserQueries
+    app.dependency_overrides[BooksQueries] = FakeBooksQueries
     # act
+    response = client.get("/api/favorites/username/")
     # assert
+    assert response.status_code == 200
+    assert response.json() == {
+        "favorites": [{
+            "id": "12345",
+            "work_id": "/books/12345",
+            "title": "title",
+            "author": "author",
+        }, {
+            "id": "12345",
+            "work_id": "/books/12346",
+            "title": "title",
+            "author": "author",
+        }]
+    }
     # cleanup
-    pass
+    app.dependency_overrides = {}
 
 
 def test_check_favorite():
@@ -113,7 +136,7 @@ def test_check_favorite():
     app.dependency_overrides[UserQueries] = FakeUserQueries
     app.dependency_overrides[auth.try_get_current_account_data] = fake_get_current_account_data
     # act
-    response = client.get("/api/favorites/hello/12345/")
+    response = client.get("/api/favorites/username/12345/")
     # assert
     assert response.status_code == 200
     assert response.json() == True
@@ -131,7 +154,7 @@ def test_remove_favorite():
         auth.try_get_current_account_data
     ] = fake_get_current_account_data
     # act
-    res = client.delete("/api/favorites/hello/123abc")
+    res = client.delete("/api/favorites/username/123abc")
     data = res.json()
     # assert
     assert res.status_code == 200

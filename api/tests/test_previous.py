@@ -32,10 +32,13 @@ class FakePreviousQueries:
         previous["book_id"] = book_id
         previous["id"] = "12345"
         return previous
+    
+    def user_previous(self, user_id: str):
+        return ["/books/12345", "/books/12346"]
 
 class FakeUserQueries:
     def get_user(self, username: str):
-        return {"id":"hello"}
+        return {"id": username}
 
 
 class FakeBooksQueries:
@@ -88,10 +91,28 @@ def test_add_to_user_list():
 
 def test_get_user_previous():
     # arrange
+    app.dependency_overrides[PreviousQueries] = FakePreviousQueries
+    app.dependency_overrides[UserQueries] = FakeUserQueries
+    app.dependency_overrides[BooksQueries] = FakeBooksQueries
     # act
+    response = client.get("/api/previous/username/")
     # assert
+    assert response.status_code == 200
+    assert response.json() == {
+        "previous": [{
+            "id": "12345",
+            "work_id": "/books/12345",
+            "title": "title",
+            "author": "author",
+        }, {
+            "id": "12345",
+            "work_id": "/books/12346",
+            "title": "title",
+            "author": "author",
+        }]
+    }
     # cleanup
-    pass
+    app.dependency_overrides = {}
 
 
 def test_check_previous():
