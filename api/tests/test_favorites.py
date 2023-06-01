@@ -4,11 +4,16 @@ from queries.favorites import FavoritesQueries
 from queries.users import UserQueries
 from queries.books import BooksQueries
 from models.authenticator import authenticator as auth
+from models.usersbookslists import UsersBooksIn
+from models.books import BookOut, BookIn
+from queries.api import OpenLibraryQueries
 
 client = TestClient(app)
 
+
 def fake_get_current_account_data():
-    return {"username":"hello"}
+    return {"username": "hello",
+            "id": "user_id"}
 
 
 class FakeFavoritesQueries:
@@ -18,23 +23,80 @@ class FakeFavoritesQueries:
     def remove_favorite(self, work_id: str, user_id: str):
         return True
 
+    def new_favorite(
+        self,
+        favorite_in: UsersBooksIn,
+        user_id: str,
+        book_id: str,
+    ):
+        favorite = favorite_in.dict()
+        favorite["user_id"] = user_id
+        favorite["book_id"] = book_id
+        favorite["id"] = "12345"
+        return favorite
+
 
 class FakeUserQueries:
     def get_user(self, username: str):
-        return {"id":"hello"}
+        return {"id": "hello"}
 
 
 class FakeBooksQueries:
     def decrement_favorites(self, work_id: str):
         return
 
+    def increment_favorites(self, work_id: str):
+        return
+
+    def get_book(self, work_id: str):
+        return BookOut(**{
+            "id": "12345",
+            "work_id": work_id,
+            "title": "title",
+            "author": "author",
+        })
+
+    def new_book(self, book_data: BookIn):
+        book = book_data.dict()
+        book["id"] = "12345"
+        return BookOut(**book)
+
+
+class FakeOpenLibraryQueries:
+    def get_book_details(self, work_id: str):
+        return {
+            "work_id": work_id,
+            "title": "title",
+            "author": "author",
+            "description": "string",
+            "image": "string",
+        }
+
 
 def test_add_to_user_list():
     # arrange
+    app.dependency_overrides[FavoritesQueries] = FakeFavoritesQueries
+    app.dependency_overrides[UserQueries] = FakeUserQueries
+    app.dependency_overrides[BooksQueries] = FakeBooksQueries
+    app.dependency_overrides[OpenLibraryQueries] = FakeOpenLibraryQueries
+    app.dependency_overrides[
+        auth.try_get_current_account_data
+    ] = fake_get_current_account_data
+    user_book_in = {
+        "work_id": "12345"
+    }
     # act
-    # assert
+    res = client.post("/api/favorites/", json=user_book_in)
+    data = res.json()
+    assert res.status_code == 200
+    assert data == {
+        "user_id": "user_id",
+        "book_id": "12345",
+        "id": "12345",
+        "work_id": "12345",
+    }
     # cleanup
-    pass
+    app.dependency_overrides = {}
 
 
 def test_get_user_favorites():
