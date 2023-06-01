@@ -4,57 +4,16 @@ from queries.next import NextQueries
 from queries.users import UserQueries
 from queries.books import BooksQueries
 from queries.api import OpenLibraryQueries
-from models.usersbookslists import UsersBooksIn
-from models.books import BookOut, BookIn
 from models.authenticator import authenticator as auth
+from tests.test_queries import (
+    fake_get_current_account_data,
+    FakeNextQueries,
+    FakeUserQueries,
+    FakeBooksQueries,
+    FakeOpenLibraryQueries,
+)
+
 client = TestClient(app)
-
-def fake_get_current_account_data():
-    return {"username":"username", "id": "user_id"}
-
-
-class FakeNextQueries:
-    def is_queued(self, work_id: str, user_id: str):
-        return True
-
-    def remove_next(self, work_id: str, user_id: str):
-        return True
-
-    def new_next(self, next_in: UsersBooksIn, user_id: str, book_id: str):
-        next = next_in.dict()
-        next["user_id"] = user_id
-        next["book_id"] = book_id
-        next["id"] = "12345"
-        return next
-    
-    def user_up_next(self, user_id: str):
-        return ["/books/12345", "/books/12346"]
-
-
-class FakeUserQueries:
-    def get_user(self, username: str):
-        return {"id":"user_id"}
-
-
-class FakeBooksQueries:
-    def get_book(self, work_id: str):
-        return BookOut(**{
-            "id": "12345",
-            "work_id": work_id,
-            "title": "title",
-            "author": "author",
-        })
-
-
-class FakeOpenLibraryQueries:
-    def get_book_details(self, work_id: str):
-        return {
-            "work_id": work_id,
-            "title": "title",
-            "author": "author",
-            "description": "string",
-            "image": "string",
-        }
 
 
 def test_add_to_user_list():
@@ -65,17 +24,15 @@ def test_add_to_user_list():
     app.dependency_overrides[
         auth.try_get_current_account_data
     ] = fake_get_current_account_data
-    user_book_in = {
-        "work_id": "12345"
-    }
+    user_book_in = {"work_id": "/books/12345"}
     # act
     res = client.post("/api/next/", json=user_book_in)
     assert res.status_code == 200
     assert res.json() == {
-        "user_id": "user_id",
+        "user_id": "user id",
         "book_id": "12345",
-        "id": "12345",
-        "work_id": "12345",
+        "id": "nxt id",
+        "work_id": "/books/12345",
     }
     # cleanup
     app.dependency_overrides = {}
@@ -91,17 +48,20 @@ def test_get_user_next():
     # assert
     assert response.status_code == 200
     assert response.json() == {
-        "next": [{
-            "id": "12345",
-            "work_id": "/books/12345",
-            "title": "title",
-            "author": "author",
-        }, {
-            "id": "12345",
-            "work_id": "/books/12346",
-            "title": "title",
-            "author": "author",
-        }]
+        "next": [
+            {
+                "id": "12345",
+                "work_id": "/books/12345",
+                "title": "title working",
+                "author": "author working",
+            },
+            {
+                "id": "12345",
+                "work_id": "/books/12346",
+                "title": "title working",
+                "author": "author working",
+            },
+        ]
     }
     # cleanup
     app.dependency_overrides = {}
@@ -111,12 +71,15 @@ def test_check_next():
     # arrange
     app.dependency_overrides[NextQueries] = FakeNextQueries
     app.dependency_overrides[UserQueries] = FakeUserQueries
-    app.dependency_overrides[auth.try_get_current_account_data] = fake_get_current_account_data
+    app.dependency_overrides[
+        auth.try_get_current_account_data
+    ] = fake_get_current_account_data
     # act
     response = client.get("/api/next/username/12345/")
     # assert
+    correct_response = True
     assert response.status_code == 200
-    assert response.json() == True
+    assert response.json() == correct_response
     # cleanup
     app.dependency_overrides = {}
 
@@ -134,7 +97,8 @@ def test_remove_next():
     res = client.delete("/api/next/username/123abc")
     data = res.json()
     # assert
+    correct_response = True
     assert res.status_code == 200
-    assert data == True
+    assert data == correct_response
     # cleanup
     app.dependency_overrides = {}

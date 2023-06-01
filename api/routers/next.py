@@ -45,6 +45,7 @@ def get_user_next(
         next_books.append(books.get_book(work_id))
     return {"next": next_books}
 
+
 @router.get("/api/next/{username}/{work_id}/", response_model=bool)
 def check_next(
     work_id: str,
