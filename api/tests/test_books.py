@@ -2,7 +2,7 @@ from main import app
 from queries.books import BooksQueries
 from models.books import BookIn
 from fastapi.testclient import TestClient
-from queries.api import OpenLibraryQueries
+from queries.api import OpenLibraryQueries, RandomWordQuery
 
 client = TestClient(app)
 
@@ -29,6 +29,25 @@ class FakeOpenLibraryQueries:
             "description": "string",
             "image": "string",
         }
+
+    def search_api(self, string: str):
+        return [
+            "/books/12345",
+            "/books/12346",
+            "/books/12347",
+            "/books/12348",
+            "/books/12349",
+            "/books/12350",
+            "/books/12351",
+            "/books/12352",
+            "/books/12353",
+            "/books/12354",
+        ]
+
+
+class FakeRandomWordQuery:
+    def get_random_word(self):
+        return ["word"]
 
 
 # # faked logged in user
@@ -91,15 +110,103 @@ def test_get_book():
 
 def test_random_book():
     # arrange
+    app.dependency_overrides[OpenLibraryQueries] = FakeOpenLibraryQueries
+    app.dependency_overrides[RandomWordQuery] = FakeRandomWordQuery
     # act
+    response = client.get("/api/books/discover/random/")
     # assert
+    assert response.status_code == 200
+    assert response.json() == {
+        "work_id": "/books/12345",
+        "title": "string",
+        "author": "string",
+        "description": "string",
+        "image": "string",
+    }
     # cleanup
-    pass
+    app.dependency_overrides = {}
 
 
 def test_search_books():
     # arrange
+    app.dependency_overrides[OpenLibraryQueries] = FakeOpenLibraryQueries
     # act
+    response = client.get("/api/books/discover/word/")
     # assert
+    assert response.status_code == 200
+    assert response.json() == {
+        "books": [
+            {
+                "work_id": "/books/12345",
+                "title": "string",
+                "author": "string",
+                "description": "string",
+                "image": "string",
+            },
+            {
+                "work_id": "/books/12346",
+                "title": "string",
+                "author": "string",
+                "description": "string",
+                "image": "string",
+            },
+            {
+                "work_id": "/books/12347",
+                "title": "string",
+                "author": "string",
+                "description": "string",
+                "image": "string",
+            },
+            {
+                "work_id": "/books/12348",
+                "title": "string",
+                "author": "string",
+                "description": "string",
+                "image": "string",
+            },
+            {
+                "work_id": "/books/12349",
+                "title": "string",
+                "author": "string",
+                "description": "string",
+                "image": "string",
+            },
+            {
+                "work_id": "/books/12350",
+                "title": "string",
+                "author": "string",
+                "description": "string",
+                "image": "string",
+            },
+            {
+                "work_id": "/books/12351",
+                "title": "string",
+                "author": "string",
+                "description": "string",
+                "image": "string",
+            },
+            {
+                "work_id": "/books/12352",
+                "title": "string",
+                "author": "string",
+                "description": "string",
+                "image": "string",
+            },
+            {
+                "work_id": "/books/12353",
+                "title": "string",
+                "author": "string",
+                "description": "string",
+                "image": "string",
+            },
+            {
+                "work_id": "/books/12354",
+                "title": "string",
+                "author": "string",
+                "description": "string",
+                "image": "string",
+            },
+        ]
+    }
     # cleanup
-    pass
+    app.dependency_overrides = {}
