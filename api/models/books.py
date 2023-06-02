@@ -17,6 +17,7 @@ class BookOut(BaseModel):
 
 class BookOutData(BookOut):
     favorited_by: int
+    image: str
 
 
 class BookDetailOut(BaseModel):

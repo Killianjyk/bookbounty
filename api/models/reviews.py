@@ -8,7 +8,7 @@ class Review(BaseModel):
 
 class ReviewOut(Review):
     id: str
-    user_id: str
+    username: str
 
 class ReviewList(BaseModel):
     reviews: List[ReviewOut]

@@ -37,33 +37,6 @@ const UserDetails = () => {
 
 
     return (
-      //     <div className="h-full">
-      //     <div className="text-center">
-      //     <h1 className="card-header text-center text-3xl mt-4 mb-4 txt">User Details</h1>
-      //     <div className="txt">
-      //         {user && (
-      //         <>
-      //         <p>Username: {user.username}</p>
-      //             <form className="txt" onSubmit={onSubmit}>
-      //                 <div>
-      //                     <label htmlFor="full_name">Full Name:</label>
-      //                     <input className="bg-white dark:bg-black" name="full_name" id="full_name" placeholder={user.full_name} value={formData.full_name} onChange={handleChange}/>
-      //                 </div>
-      //                 <div>
-      //                     <label>Email:</label>
-      //                     <input className="bg-white dark:bg-black" name="email" id="email" placeholder={user.email} value={formData.email} onChange={handleChange}/>
-      //                 </div>
-      //                 <div>
-      //                     <label>Password:</label>
-      //                     <input className="bg-white dark:bg-black" name="password" placeholder="*******" value={formData.password} onChange={handleChange}/>
-      //                 </div>
-      //                 <button className="btn" type="submit">Update</button>
-      //             </form>
-      //         </>)}
-      //     </div>
-      //     </div>
-      //     </div>
-      // );
       <section className="py-40 bg-orange-100 dark:bg-slate-700 bg-opacity-50 h-screen">
         <div className="mx-auto container max-w-2xl md:w-3/4 shadow-md">
           {user && (

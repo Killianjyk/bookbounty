@@ -25,8 +25,14 @@ def track_book(info: BookIn, books: BooksQueries = Depends()):
 
 
 @router.get("/api/books/", response_model=BookDataList)
-def get_top_favorited_books(books: BooksQueries = Depends()):
-    return {"books": books.get_books()}
+def get_top_favorited_books(
+    books: BooksQueries = Depends(),
+    open_library: OpenLibraryQueries = Depends(),
+):
+    favorite_books = books.get_books()
+    for book in favorite_books:
+        book["image"] = open_library.get_book_details(book["work_id"])["image"]
+    return {"books": favorite_books}
 
 
 @router.get("/api/books/{work_id}/", response_model=BookDetailOut)
