@@ -1,8 +1,18 @@
 ## 06/01/2023
     Goals:
+        - Finish Reviews front end (except styling)
+        - Set up reviews so that it can be edited in place
+    Notes for myself-
+        Talk to instructors next week about code consistancy and formatting
+    
+
+## 06/01/2023
+    Goals:
         - Finish unit tests for routers
         - Add button integration to book details
     Notes for myself-
+        Backend for reviews is finished
+        Tests for reviews is finished
 
 ## 05/31/2023
     Goals:

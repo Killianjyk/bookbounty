@@ -1,5 +1,6 @@
 from models.users import UserIn, UserOut, UserOutPassword
 from .client import MongoQueries
+from bson.objectid import ObjectId
 
 
 class DuplicateUserError(ValueError):
@@ -18,6 +19,10 @@ class UserQueries(MongoQueries):
         if response.inserted_id:
             user["id"] = str(response.inserted_id)
         return UserOutPassword(**user)
+
+    def get_by_id(self, user_id: str):
+        user = self.collection.find_one({"_id": ObjectId(user_id)})
+        return user["username"]
 
     def get(self, username: str):
         user = self.collection.find_one(

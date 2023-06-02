@@ -1,10 +1,11 @@
 import Buttons from "./Buttons";
 import { useGetUserQuery } from "./app/authApiSlice";
-
+import ReviewList from "./ReviewList";
+import ReviewForm from "./ReviewForm";
 
 const DetailCard = ({ book }) => {
   const { data: user } = useGetUserQuery();
-  return (
+  return (<>
     <div className="my-4 text-center block mx-auto max-w-sm p-6 bg-orange-200 border border-gray-200 rounded-lg shadow dark:bg-slate-800 dark:border-gray-700">
       <h1 className="txt text-3xl">{book.title}</h1>
       <h2 className="txt text-xl mb-4">{book.author}</h2>
@@ -14,7 +15,12 @@ const DetailCard = ({ book }) => {
         {user && <Buttons work_id={book.work_id.substring(7)} />}
       </div>
     </div>
-  );
+    {user && <>
+      <div>Leave a review</div>
+      <ReviewForm workId={book.work_id} />
+    </>}
+    <ReviewList workId={book.work_id.substring(7)} />
+  </>);
 }
 
 export default DetailCard;
