@@ -13,7 +13,10 @@ const UserLists = ({ name }) => {
         dispatch(search(searchField));
     }, []);
     if (searchLoad) {
-        return <div>Loading...</div>
+        return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',}}>Loading...</div>;
+    }
+    if (!searchUsers || searchUsers.length === 0) {
+        return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',}}>No matching result found</div>;
     }
     return (<>
         <h1 className="txt">{name}</h1>
