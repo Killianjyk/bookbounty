@@ -23,30 +23,69 @@ const BookLists = ({ name, username }) => {
     if (searchLoad || topFavoritesLoad || favoritesLoad || previousLoad || nextLoad) return <div className="txt">Loading...</div>;
 
     let num = 1;
-
+    let num2 = 1;
 
 
     return (<>
         <h1 className="txt text-3xl text-center mt-4">{name}</h1>
         {name==="Search Books" && searchBooks?.map((book) => <BookCard book={book} />)}
 
-<div className="container mx-auto">
-  <table className="table mx-auto">
-    <tbody>
+
+{/* <div className="carousel w-full">
+  <div id="slide1" className="carousel-item relative w-full">
+    <img src="https://www.hdcarwallpapers.com/walls/aston_martin_dbs_770_ultimate_2023_8k_3-HD.jpg" className="w-full" />
+    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+      <a href="#slide3" className="btn btn-circle">❮</a>
+      <a href="#slide2" className="btn btn-circle">❯</a>
+    </div>
+  </div>
+  <div id="slide2" className="carousel-item relative w-full">
+    <img src="https://wallpapercave.com/wp/wp5636803.jpg" className="w-full" />
+    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+      <a href="#slide1" className="btn btn-circle">❮</a>
+      <a href="#slide3" className="btn btn-circle">❯</a>
+    </div>
+  </div>
+  <div id="slide3" className="carousel-item relative w-full">
+    <img src="https://images.hdqwalls.com/wallpapers/ford-gt-2020-42.jpg" className="w-full" />
+    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+      <a href="#slide2" className="btn btn-circle">❮</a>
+      <a href="#slide1" className="btn btn-circle">❯</a>
+    </div>
+  </div>
+</div> */}
+
+
+<div className="">
 
         {
         name==="Most Liked" && topFavoriteBooks?.map((book) => <>
 
-<tr className="">
-  <th className="border-none bg-orange-100 dark:bg-slate-700">{num++}</th>
-  <td className="border-none bg-orange-100 dark:bg-slate-700">
-    <BookCardHome book={book} />
-  </td>
-</tr>
+  <div className="">{num2++}</div>
+  <div className="">{console.log(book)}</div>
 
         </>)
         }
 
+</div>
+
+
+
+
+
+<div className="container mx-auto">
+  <table className="table mx-auto">
+    <tbody>
+        {
+        name==="Most Liked" && topFavoriteBooks?.map((book) => <>
+<tr className="">
+  <th className="z-10 border-none bg-orange-100 dark:bg-slate-700">{num++}</th>
+  <div className="my-2 bg-orange-100 dark:bg-slate-700">
+    <BookCardHome book={book} />
+  </div>
+</tr>
+        </>)
+        }
     </tbody>
   </table>
 </div>
