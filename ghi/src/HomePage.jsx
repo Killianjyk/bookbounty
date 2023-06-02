@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import BookLists from "./BookLists";
-
+import Carousel from "./Carousel";
 
 const HomePage = () => {
   return (
@@ -16,6 +16,9 @@ const HomePage = () => {
     <div className="bg-orange-200 dark:bg-slate-800 text-center rounded-lg py-2 ring-1 ring-slate-900/5 shadow-xl w-full my-4">
         <p className="m-4">Try our new random book feature!</p>
         <Link className="btn btn-secondary mb-4" to="/random">Random Book</Link>
+    </div>
+    <div>
+      <Carousel />
     </div>
     <div>
       <BookLists name="Most Liked"/>
