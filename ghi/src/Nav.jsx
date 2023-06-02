@@ -94,7 +94,7 @@ const Nav = () => {
           </ul>
         </li></>}
 
-        {user && <><li><NavLink onClick={async () =>{await logout(); navigate("/");}} className="bg-orange-200 dark:bg-slate-800 hover:bg-red-400 dark:hover:bg-red-800 txt">Logout</NavLink></li></>}
+        {user && <><li><NavLink onClick={async () =>{await logout(); navigate("/");}} className="bg-orange-200 dark:bg-slate-800 hover:bg-red-400 dark:hover:bg-[#dc262690] txt">Logout</NavLink></li></>}
       </ul>
     </div>
     <NavLink to={"/"} className="btn btn-ghost normal-case text-xl dark:hover:bg-slate-700">BookBounty</NavLink>
@@ -131,7 +131,7 @@ const Nav = () => {
         </ul>
       </li></>}
 
-      {user && <><li><NavLink onClick={async () =>{await logout(); navigate("/");}} className="bg-orange-200 dark:bg-slate-800 hover:bg-red-400 dark:hover:bg-red-800 txt">Logout</NavLink></li></>}
+      {user && <><li><NavLink onClick={async () =>{await logout(); navigate("/");}} className="bg-orange-200 dark:bg-slate-800 hover:bg-red-400 dark:hover:bg-[#dc262690] txt">Logout</NavLink></li></>}
     </ul>
   </div>
   <div className="navbar-end">

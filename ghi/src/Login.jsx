@@ -21,7 +21,7 @@ const Login = () => {
   };
 
   return (
-<div className="bg-repeat h-screen bg-[url('https://images2.alphacoders.com/261/26102.jpg')]">
+<div className="bg-repeat h-screen bg-[url('../public/26102.jpg')]">
 <div className="card">
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-50 shad">
