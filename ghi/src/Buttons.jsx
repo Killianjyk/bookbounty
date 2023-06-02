@@ -1,4 +1,4 @@
-import { 
+import {
     useGetFavoriteStatusQuery,
     useRemoveFavoriteStatusMutation,
     useAddFavoriteStatusMutation,
@@ -24,17 +24,17 @@ const Buttons = ({ work_id }) => {
     const [addPrevious] = useAddPreviousStatusMutation();
     const [removePrevious] = useRemovePreviousStatusMutation();
     return (<>
-        {favorited ? 
+        {favorited ?
             <button onClick={async (event) => {event.preventDefault(); await unFavorite({ username: user.username, work_id }); favoriteRefetch();}} className="btn">Unfavorite</button>
                 :
             <button onClick={async (event) => {event.preventDefault(); await favorite("/books/"+work_id); favoriteRefetch();}} className="btn">Favorite</button>
         }
-        {queued ? 
+        {queued ?
             <button onClick={async (event) => {event.preventDefault(); await removeNext({ username: user.username, work_id }); nextRefetch();}} className="btn">Remove from Next</button>
-                : 
+                :
             <button onClick={async (event) => {event.preventDefault(); await addNext("/books/"+work_id); nextRefetch();}} className="btn">Read Next</button>
         }
-        {logged ? 
+        {logged ?
             <button onClick={async (event) => {event.preventDefault(); await removePrevious({ username: user.username, work_id }); prevRefetch();}} className="btn">Mark unread</button>
                 :
             <button onClick={async (event) => {event.preventDefault(); await addPrevious("/books/"+work_id); prevRefetch();}} className="btn">Mark Read</button>

@@ -50,7 +50,7 @@ const Nav = () => {
       // Remove the src attribute
       image.removeAttribute("src");
       // Add a new src attribute
-      image.setAttribute("src", "/dark-mode-icon.png");
+      image.setAttribute("src", "/dark-mode-icon-blue.png");
 
     }
   };
@@ -97,7 +97,10 @@ const Nav = () => {
         {user && <><li><NavLink onClick={async () =>{await logout(); navigate("/");}} className="bg-orange-200 dark:bg-slate-800 hover:bg-red-400 dark:hover:bg-[#dc262690] txt">Logout</NavLink></li></>}
       </ul>
     </div>
-    <NavLink to={"/"} className="btn btn-ghost normal-case text-xl dark:hover:bg-slate-700">BookBounty</NavLink>
+    <NavLink to={"/"} className="btn btn-ghost normal-case text-xl dark:hover:bg-slate-700">
+      <img className="h-8 mr-2" src="/Marcus-Roberto-Google-Play-Google-Play-Books.512.png" alt="logo"/>
+      BookBounty
+    </NavLink>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">

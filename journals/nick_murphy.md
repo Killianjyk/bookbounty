@@ -19,6 +19,8 @@ Goals:
 
 Notes:
 
+    - forgot that css has a z-axis
+
 # 6/1
 
 Finished unit tests
