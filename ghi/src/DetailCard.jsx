@@ -1,6 +1,7 @@
+import Buttons from "./Buttons";
+import { useGetUserQuery } from "./app/authApiSlice";
 import ReviewList from "./ReviewList";
 import ReviewForm from "./ReviewForm";
-import { useGetUserQuery } from "./app/authApiSlice";
 
 const DetailCard = ({ book }) => {
   const { data: user } = useGetUserQuery();
@@ -10,7 +11,8 @@ const DetailCard = ({ book }) => {
       <h2 className="txt text-xl mb-4">{book.author}</h2>
       <div>
         <img className="mx-auto my-4" src={book.image} alt={book.title} />
-        <p className="txt text-sm">{book.description}</p>
+        <p className="txt text-sm mb-4">{book.description}</p>
+        {user && <Buttons work_id={book.work_id.substring(7)} />}
       </div>
     </div>
     {user && <>

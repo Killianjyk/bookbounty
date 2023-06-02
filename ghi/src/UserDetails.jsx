@@ -41,7 +41,7 @@ const UserDetails = () => {
         <div className="mx-auto container max-w-2xl md:w-3/4 shadow-md">
           {user && (
             <>
-              <div className="bg-gray-100 p-4 border-t-2 bg-opacity-5 border-indigo-400 rounded-t">
+              <div className="bg-gray-100 p-4 border-t-2 bg-opacity-3 border-black-400 rounded-t">
                 <div className="max-w-sm mx-auto md:w-full md:mx-0">
                   <div className="inline-flex items-center space-x-4">
                     <h1 className="text-gray-600">Username: {user.username}</h1>

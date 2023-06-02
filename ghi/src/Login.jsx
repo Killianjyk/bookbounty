@@ -24,10 +24,10 @@ const Login = () => {
 <div className="bg-repeat h-screen bg-[url('../public/26102.jpg')]">
 <div className="card">
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-50 shad">
+      <Link to="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-50 shad">
           <img className="h-10 mr-2 drop-shadow-[1px_1px_8px_rgba(0,0,0,1)]" src="/Marcus-Roberto-Google-Play-Google-Play-Books.512.png" alt="logo"/>
           BookBounty
-      </a>
+      </Link>
       <div className="w-full bg-orange-200 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
