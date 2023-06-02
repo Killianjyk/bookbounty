@@ -57,30 +57,6 @@ const Nav = () => {
 
     return (
       <>
-  {/* <div className="navbar bg-orange-200 dark:bg-slate-800 txt">
-  <div className="flex-1">
-    <NavLink to={"/"} className="btn btn-ghost normal-case text-xl dark:hover:bg-slate-700">BookBounty</NavLink>
-  </div>
-  <div className="flex-none">
-    <ul className="menu menu-horizontal px-1">
-      {!user &&  <><li><NavLink className="dark:hover:bg-slate-700" to={"/login/"} >Login</NavLink></li>
-      <li><NavLink className="dark:hover:bg-slate-700" to={"/signup/"} >Sign Up</NavLink></li></>}
-      <li><NavLink className="dark:hover:bg-slate-700" to={"/discover/"} >Discover Books</NavLink></li>
-      <li><NavLink className="dark:hover:bg-slate-700" to={"/users/search/"} >Discover Users</NavLink></li>
-      <li><NavLink className="dark:hover:bg-slate-700" to={"/random/"} >Random Book</NavLink></li>
-      {user && <><li><NavLink className="dark:hover:bg-slate-700" to={"/books/favorites/" + user.username} >Favorites</NavLink></li>
-      <li><NavLink className="dark:hover:bg-slate-700" to={"/books/previous/" + user.username} >Previously Read</NavLink></li>
-      <li><NavLink className="dark:hover:bg-slate-700" to={"/books/next/" + user.username} >Read Next</NavLink></li>
-      <li><NavLink className="dark:hover:bg-slate-700" to={"/users/"} >User Home</NavLink></li></>}
-      {user && <><li><NavLink onClick={() =>{logout(); navigate("/");}} className="bg-orange-200 dark:bg-slate-800 hover:bg-red-400 dark:hover:bg-red-800 txt">Logout</NavLink></li></>}
-    </ul>
-  <button onClick={handleThemeSwitch} id="theme-toggle" type="button" className="rounded-full bg-orange-200 mr-2">
-      <img className="w-10 h-10" id="theme-toggle-icon" src="/light-mode-icon.png"></img>
-  </button>
-  </div>
-</div> */}
-
-
 <div className="navbar bg-orange-200 dark:bg-slate-800 txt">
   <div className="navbar-start">
     <div className="dropdown">
@@ -90,13 +66,34 @@ const Nav = () => {
       <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-orange-200 dark:bg-slate-800 rounded-box w-52">
         {!user &&  <><li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/login/"} >Login</NavLink></li>
         <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/signup/"} >Sign Up</NavLink></li></>}
-        <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/discover/"} >Discover Books</NavLink></li>
-        <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/users/search/"} >Discover Users</NavLink></li>
-        <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/random/"} >Random Book</NavLink></li>
-        {user && <><li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/books/favorites/" + user.username} >Favorites</NavLink></li>
-        <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/books/previous/" + user.username} >Previously Read</NavLink></li>
-        <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/books/next/" + user.username} >Read Next</NavLink></li>
+        {user && <>
         <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/users/"} >User Home</NavLink></li></>}
+
+        <li tabIndex={0}>
+          <a className="justify-between dark:hover:bg-[#D3D3D325]">
+            Discover
+            <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+          </a>
+          <ul className="p-2 z-10 bg-orange-50 dark:bg-slate-900">
+            <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/discover/"} >Discover Books</NavLink></li>
+            <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/users/search/"} >Discover Users</NavLink></li>
+            <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/random/"} >Random Book</NavLink></li>
+          </ul>
+        </li>
+
+        {user && <>
+        <li tabIndex={0}>
+          <a className="justify-between dark:hover:bg-[#D3D3D325]">
+            Your Books
+            <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+          </a>
+          <ul className="p-2 z-10 bg-orange-50 dark:bg-slate-900">
+            <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/books/favorites/" + user.username} >Favorites</NavLink></li>
+            <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/books/previous/" + user.username} >Previously Read</NavLink></li>
+            <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/books/next/" + user.username} >Read Next</NavLink></li>
+          </ul>
+        </li></>}
+
         {user && <><li><NavLink onClick={async () =>{await logout(); navigate("/");}} className="bg-orange-200 dark:bg-slate-800 hover:bg-red-400 dark:hover:bg-red-800 txt">Logout</NavLink></li></>}
       </ul>
     </div>
@@ -106,13 +103,34 @@ const Nav = () => {
     <ul className="menu menu-horizontal px-1">
       {!user &&  <><li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/login/"} >Login</NavLink></li>
       <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/signup/"} >Sign Up</NavLink></li></>}
-      <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/discover/"} >Discover Books</NavLink></li>
-      <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/users/search/"} >Discover Users</NavLink></li>
-      <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/random/"} >Random Book</NavLink></li>
-      {user && <><li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/books/favorites/" + user.username} >Favorites</NavLink></li>
-      <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/books/previous/" + user.username} >Previously Read</NavLink></li>
-      <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/books/next/" + user.username} >Read Next</NavLink></li>
+
+      {user && <>
       <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/users/"} >User Home</NavLink></li></>}
+
+      <li tabIndex={0}>
+        <a className="dark:hover:bg-[#D3D3D325]">
+          Discover
+          <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+        </a>
+        <ul className="p-2 bg-orange-50 dark:bg-slate-900 z-10">
+          <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-600" to={"/discover/"} >Discover Books</NavLink></li>
+          <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-600" to={"/users/search/"} >Discover Users</NavLink></li>
+          <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-600" to={"/random/"} >Random Book</NavLink></li>
+        </ul>
+      </li>
+
+      {user && <><li tabIndex={0}>
+        <a className="dark:hover:bg-[#D3D3D325]">
+          Your Books
+          <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+        </a>
+        <ul className="p-2 bg-orange-50 dark:bg-slate-900 z-10">
+          <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/books/favorites/" + user.username} >Favorites</NavLink></li>
+          <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/books/previous/" + user.username} >Previously Read</NavLink></li>
+          <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/books/next/" + user.username} >Read Next</NavLink></li>
+        </ul>
+      </li></>}
+
       {user && <><li><NavLink onClick={async () =>{await logout(); navigate("/");}} className="bg-orange-200 dark:bg-slate-800 hover:bg-red-400 dark:hover:bg-red-800 txt">Logout</NavLink></li></>}
     </ul>
   </div>
