@@ -1,6 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import { useGetTopFavoriteBooksQuery } from "./app/booksApiSlice";
+import { Link } from "react-router-dom";
 
 
 export default function Carousel() {
@@ -14,40 +15,26 @@ export default function Carousel() {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: false,
   };
+
+  let num = 1;
+
   return (
+    <div className="w-80 mx-auto" >
     <Slider {...settings}>
-      <div>
-        <img className="mx-auto" src={topFavoriteBooks[0].image}></img>
-      </div>
-      <div>
-        <img className="mx-auto" src={topFavoriteBooks[1].image}></img>
-      </div>
-      <div>
-        <img className="mx-auto" src={topFavoriteBooks[2].image}></img>
-      </div>
-      <div>
-        <img className="mx-auto" src={topFavoriteBooks[3].image}></img>
-      </div>
-      <div>
-        <img className="mx-auto" src={topFavoriteBooks[4].image}></img>
-      </div>
-      <div>
-        <img className="mx-auto" src={topFavoriteBooks[5].image}></img>
-      </div>
-            <div>
-        <img className="mx-auto" src={topFavoriteBooks[6].image}></img>
-      </div>
-      <div>
-        <img className="mx-auto" src={topFavoriteBooks[7].image}></img>
-      </div>
-      <div>
-        <img className="mx-auto" src={topFavoriteBooks[8].image}></img>
-      </div>
-      <div>
-        <img className="mx-auto" src={topFavoriteBooks[9].image}></img>
-      </div>
+        {topFavoriteBooks?.map((book) => (
+          <div className="">
+            <Link to={book.work_id} key={book.id}>
+                <div>{num++}/10</div>
+                <img className="mx-auto" src={book.image} alt={book.title} />
+            </Link>
+          </div>
+        ))}
     </Slider>
+    </div>
   );
 }

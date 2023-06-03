@@ -19,6 +19,11 @@
   transition: box-shadow 0.4s ease-in-out;
 }
 
+.slick-prev:before,
+.slick-next:before {
+  color: gray;
+}
+
 /* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

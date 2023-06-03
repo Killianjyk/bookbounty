@@ -4,7 +4,7 @@ import Carousel from "./Carousel";
 
 const HomePage = () => {
   return (
-    <div className="px-4 py-5 my-5 text-center txt">
+    <div className="px-4 my-4 text-center txt">
     <div className="bg-orange-200 dark:bg-slate-800 text-center rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl w-full my-2">
       <h1 className="text-5xl font-bold">BookBounty</h1>
       <div className="">

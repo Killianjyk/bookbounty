@@ -7,7 +7,7 @@ class OpenLibraryQueries:
     detail = ".json"
 
     def get_image(self, image_id):
-        return f"https://covers.openlibrary.org/b/id/{image_id}-M.jpg"
+        return f"https://covers.openlibrary.org/b/id/{image_id}-L.jpg"
 
     def get_author(self, author_id: str):
         response = requests.get(self.api_url + author_id + ".json").json()
