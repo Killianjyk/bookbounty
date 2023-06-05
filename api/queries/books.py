@@ -40,7 +40,9 @@ class BooksQueries(MongoQueries):
         if book:
             favorited_by = book.get("favorited_by", 0)
             favorited_by += 1
-            self.collection.update_one({"work_id": work_id}, {"$set": {"favorited_by": favorited_by}})
+            self.collection.update_one(
+                {"work_id": work_id}, {"$set": {"favorited_by": favorited_by}}
+            )
             return favorited_by
         else:
             # Handle the case when the book is not found
@@ -51,7 +53,9 @@ class BooksQueries(MongoQueries):
         if book:
             favorited_by = book.get("favorited_by", 0)
             favorited_by -= 1
-            self.collection.update_one({"work_id": work_id}, {"$set": {"favorited_by": favorited_by}})
+            self.collection.update_one(
+                {"work_id": work_id}, {"$set": {"favorited_by": favorited_by}}
+            )
             return favorited_by
         else:
             # Handle the case when the book is not found

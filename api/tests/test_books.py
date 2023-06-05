@@ -58,6 +58,7 @@ def test_get_book():
         "author": "author working",
         "description": "description working",
         "image": "image working",
+        "publish_date": "publish date working",
     }
     # cleanup
     app.dependency_overrides = {}
@@ -77,6 +78,7 @@ def test_random_book():
         "author": "author working",
         "description": "description working",
         "image": "image working",
+        "publish_date": "publish date working",
     }
     # cleanup
     app.dependency_overrides = {}
@@ -97,6 +99,7 @@ def test_search_books():
                 "author": "author working",
                 "description": "description working",
                 "image": "image working",
+                "publish_date": "publish date working",
             },
             {
                 "work_id": "/books/12346",
@@ -104,6 +107,7 @@ def test_search_books():
                 "author": "author working",
                 "description": "description working",
                 "image": "image working",
+                "publish_date": "publish date working",
             },
             {
                 "work_id": "/books/12347",
@@ -111,6 +115,7 @@ def test_search_books():
                 "author": "author working",
                 "description": "description working",
                 "image": "image working",
+                "publish_date": "publish date working",
             },
             {
                 "work_id": "/books/12348",
@@ -118,6 +123,7 @@ def test_search_books():
                 "author": "author working",
                 "description": "description working",
                 "image": "image working",
+                "publish_date": "publish date working",
             },
             {
                 "work_id": "/books/12349",
@@ -125,6 +131,7 @@ def test_search_books():
                 "author": "author working",
                 "description": "description working",
                 "image": "image working",
+                "publish_date": "publish date working",
             },
             {
                 "work_id": "/books/12350",
@@ -132,6 +139,7 @@ def test_search_books():
                 "author": "author working",
                 "description": "description working",
                 "image": "image working",
+                "publish_date": "publish date working",
             },
             {
                 "work_id": "/books/12351",
@@ -139,6 +147,7 @@ def test_search_books():
                 "author": "author working",
                 "description": "description working",
                 "image": "image working",
+                "publish_date": "publish date working",
             },
             {
                 "work_id": "/books/12352",
@@ -146,6 +155,7 @@ def test_search_books():
                 "author": "author working",
                 "description": "description working",
                 "image": "image working",
+                "publish_date": "publish date working",
             },
             {
                 "work_id": "/books/12353",
@@ -153,6 +163,7 @@ def test_search_books():
                 "author": "author working",
                 "description": "description working",
                 "image": "image working",
+                "publish_date": "publish date working",
             },
             {
                 "work_id": "/books/12354",
@@ -160,6 +171,7 @@ def test_search_books():
                 "author": "author working",
                 "description": "description working",
                 "image": "image working",
+                "publish_date": "publish date working",
             },
         ]
     }

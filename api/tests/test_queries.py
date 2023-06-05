@@ -32,6 +32,9 @@ class FakeUserQueries:
             "full_name": self.name,
         }
 
+    def get_by_id(self, user_id: str):
+        return "username"
+
     def get_all(self):
         return [
             {
@@ -92,6 +95,7 @@ class FakeOpenLibraryQueries:
             "author": "author working",
             "description": "description working",
             "image": "image working",
+            "publish_date": "publish date working",
         }
 
     def search_api(self, string: str):
@@ -181,6 +185,7 @@ class FakePreviousQueries:
 class FakeReviewsQueries:
     review_text = "review text"
     stars = 5
+
     def get_review(self, work_id: str, user_id: str):
         return {
             "id": "review id",
@@ -191,23 +196,27 @@ class FakeReviewsQueries:
         }
 
     def get_reviews(self):
-        return [{
-            "id": "review id",
-            "user_id": "user id",
-            "work_id": "/books/12345",
-            "stars": self.stars,
-            "text": self.review_text,
-        }]
-    
+        return [
+            {
+                "id": "review id",
+                "user_id": "user id",
+                "work_id": "/books/12345",
+                "stars": self.stars,
+                "text": self.review_text,
+            }
+        ]
+
     def get_book_reviews(self, work_id: str):
-        return [{
-            "id": "review id",
-            "user_id": "user id",
-            "work_id": work_id,
-            "stars": self.stars,
-            "text": self.review_text,
-        }]
-    
+        return [
+            {
+                "id": "review id",
+                "user_id": "user id",
+                "work_id": work_id,
+                "stars": self.stars,
+                "text": self.review_text,
+            }
+        ]
+
     def new_review(self, review_in: Review, user_id: str):
         review = review_in.dict()
         review["id"] = "review id"
@@ -217,15 +226,17 @@ class FakeReviewsQueries:
     def update_review(self, review: Review, user_id: str):
         self.review_text = review.text
         self.stars = review.stars
-    
+
     def get_user_reviews(self, user_id: str):
-        return [{
-            "id": "review id",
-            "user_id": user_id,
-            "work_id": "/books/12345",
-            "stars": self.stars,
-            "text": self.review_text,
-        }]
+        return [
+            {
+                "id": "review id",
+                "user_id": user_id,
+                "work_id": "/books/12345",
+                "stars": self.stars,
+                "text": self.review_text,
+            }
+        ]
 
     def delete_review(self, work_id: str, user_id: str):
         return True
