@@ -23,16 +23,14 @@ const Random = () => {
         {(isLoading || loading) && (
           <div className="mt-4 flex justify-center items-center">
             {/* <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div> */}
-
-<div class="book">
-	<div class="book__pg-shadow"></div>
-	<div class="book__pg"></div>
-	<div class="book__pg book__pg--2"></div>
-	<div class="book__pg book__pg--3"></div>
-	<div class="book__pg book__pg--4"></div>
-	<div class="book__pg book__pg--5"></div>
-</div>
-
+            <div className="book">
+              <div className="book__pg-shadow"></div>
+              <div className="book__pg"></div>
+              <div className="book__pg book__pg--2"></div>
+              <div className="book__pg book__pg--3"></div>
+              <div className="book__pg book__pg--4"></div>
+              <div className="book__pg book__pg--5"></div>
+            </div>
           </div>
         )}
         {book && !isLoading && !loading && <DetailCard book={book}/> }

@@ -2,7 +2,6 @@ import React from "react";
 import Slider from "react-slick";
 import { useGetTopFavoriteBooksQuery } from "./app/booksApiSlice";
 import { Link } from "react-router-dom";
-import BookCardHome from "./BookCardHome";
 
 
 export default function Carousel() {
@@ -42,7 +41,7 @@ export default function Carousel() {
     <Slider {...settings}>
         {topFavoriteBooks?.map((book) => (
           <div className="">
-            <Link to={book.work_id} key={book.id}>
+            <Link to={book.work_id}>
                 <div>{num++}/10</div>
                 <img className="mx-auto" src={book.image} alt={book.title} />
             </Link>
