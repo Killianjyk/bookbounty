@@ -41,25 +41,27 @@ const UserDetails = () => {
         <div className="mx-auto container max-w-2xl md:w-3/4 shadow-md">
           {user && (
             <>
-              <div className="bg-gray-100 p-4 border-t-2 bg-opacity-3 border-black-400 rounded-t">
+              <div className="bg-orange-200 dark:bg-slate-800 txt p-4 border-t-2 bg-opacity-3 border-black-400 rounded-t">
                 <div className="max-w-sm mx-auto md:w-full md:mx-0">
                   <div className="inline-flex items-center space-x-4">
-                    <h1 className="text-gray-600">Username: {user.username}</h1>
+                    <h1 className="dark:hover:text-gray-300 dark:hover:bg-slate-700 font-bold">
+                      User: {user.username}
+                    </h1>
                   </div>
                 </div>
               </div>
-              <div className="bg-white space-y-6">
+              <div className="bg-orange-50 dark:bg-slate-900 space-y-6">
                 <div className="md:inline-flex space-y-4 md:space-y-0 w-full p-4 text-gray-500 items-center">
                   <h2 className="md:w-1/3 max-w-sm mx-auto">Account</h2>
                   <div className="md:w-2/3 max-w-sm mx-auto">
                     <label className="text-sm text-gray-400">Email</label>
                     <div className="w-full inline-flex border">
-                      <div className="pt-2 w-1/12 bg-gray-100 bg-opacity-50">
+                      <div className="pt-2 w-1/12 bg-gray-100 bg-opacity-80">
                         <svg
                           fill="none"
                           className="w-6 text-gray-400 mx-auto"
                           viewBox="0 0 24 24"
-                          stroke="currentColor"
+                          stroke="teal"
                         >
                           <path
                             strokeLinecap="round"
@@ -71,10 +73,10 @@ const UserDetails = () => {
                       </div>
                       <input
                         type="email"
-                        className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
+                        className="w-11/12 focus:outline-none focus:text-gray-600 p-2 bg-white text-gray-700 border-gray-300"
                         name="email"
                         id="email"
-                        placeholder= {user.email}
+                        placeholder={user.email}
                         value={formData.email}
                         onChange={handleChange}
                       />
@@ -90,12 +92,12 @@ const UserDetails = () => {
                     <div>
                       <label className="text-sm text-gray-400">Full name</label>
                       <div className="w-full inline-flex border">
-                        <div className="w-1/12 pt-2 bg-gray-100">
+                        <div className="pt-2 w-1/12 bg-gray-100 bg-opacity-80">
                           <svg
                             fill="none"
                             className="w-6 text-gray-400 mx-auto"
                             viewBox="0 0 24 24"
-                            stroke="currentColor"
+                            stroke="Teal"
                           >
                             <path
                               strokeLinecap="round"
@@ -122,17 +124,17 @@ const UserDetails = () => {
                 <hr />
 
                 <div className="md:inline-flex w-full space-y-4 md:space-y-0 p-8 text-gray-500 items-center">
-                  <h2 className="md:w-4/12 max-w-sm mx-auto">
+                  <h2 className="md:w-4/12 max-w-sm mx-auto ">
                     Change password
                   </h2>
-                  <div className="md:w-5/12 w-full md:pl-9 max-w-sm mx-auto space-y-5 md:inline-flex pl-2">
-                    <div className="w-full inline-flex border-b">
-                      <div className="w-1/12 pt-2">
+                  <div className="md:w-5/12 w-full md:pl-9 max-w-sm mx-auto space-y-5 md:inline-flex pl-2 ">
+                    <div className="w-full inline-flex border bg-gray-100 bg-opacity-80">
+                      <div className="flex items-center justify-center w-10 pl-1 ">
                         <svg
                           fill="none"
-                          className="w-6 text-gray-400 mx-auto"
+                          className="w-6 h-6 text-gray-400"
                           viewBox="0 0 24 24"
-                          stroke="currentColor"
+                          stroke="teal"
                         >
                           <path
                             strokeLinecap="round"
@@ -144,7 +146,7 @@ const UserDetails = () => {
                       </div>
                       <input
                         type="password"
-                        className="w-11/12 focus:outline-none focus:text-gray-600 p-2 ml-4"
+                        className="w-11/12 focus:outline-none focus:text-gray-600 p-2 ml-2"
                         name="password"
                         placeholder="*******"
                         value={formData.password}
