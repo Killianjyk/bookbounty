@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { createSlice } from "@reduxjs/toolkit";
 
 
 export const reviewAPI = createApi({
@@ -13,6 +12,7 @@ export const reviewAPI = createApi({
                 return `/api/reviews/${work_id}/`;
             }, 
             transformResponse: (response) => response?.reviews || null,
+            providesTags: ["Reviews"],
         }),
         deleteBookReview: builder.mutation({
             query: (work_id) => {
@@ -21,7 +21,8 @@ export const reviewAPI = createApi({
                     method: "DELETE",
                     credentials: "include",
                 };
-            }
+            },
+            invalidatesTags: ["Reviews"],
         }),
         getUserReviews: builder.query({
             query: () => {
@@ -29,7 +30,8 @@ export const reviewAPI = createApi({
                     url: "/api/reviews/",
                     credentials: "include",
                 };
-            }
+            },
+            providesTags: ["Reviews"],
         }),
         makeReview: builder.mutation({
             query: (review) => {
@@ -44,7 +46,8 @@ export const reviewAPI = createApi({
                     body: review,
                     credentials: "include",
                 };
-            }
+            },
+            invalidatesTags: ["Reviews"],
         }),
         updateReview: builder.mutation({
             query: (review) => {
@@ -54,7 +57,8 @@ export const reviewAPI = createApi({
                     body: review,
                     credentials: "include",
                 };
-            }
+            },
+            invalidatesTags: ["Reviews"],
         })
     })
 });
