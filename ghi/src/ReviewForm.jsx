@@ -1,20 +1,39 @@
 import { useMakeReviewMutation, useUpdateReviewMutation } from "./app/reviewApiSlice";
+import { useDeleteBookReviewMutation } from "./app/reviewApiSlice";
 import { useState } from "react";
 
 
 const ReviewForm = ({ workId, reviewData, editStatus }) => {
+    const [deleteReview] = useDeleteBookReviewMutation();
     const [updateReview] = useUpdateReviewMutation();
     const [makeReview] = useMakeReviewMutation();
     const [formData, setFormData] = useState({
         stars: reviewData?.stars || 0,
         text: reviewData?.text || "",
-        work_id: workId,
+        work_id: "/books/" + workId,
     });
     const handleChange = (e) => {
         setFormData({...formData, [e.target.name]: e.target.value,});
     };
+    const handleDeleteReview = (event) =>{
+        event.preventDefault(); 
+        deleteReview(workId); 
+        setFormData({
+            stars: 0,
+            text: "",
+            work_id: "/books/" + workId
+        })
+    }
+    const handleUpdate = async (event) => {
+        event.preventDefault();
+        await updateReview(formData);
+    }
+    const handleCreate = async (event) => {
+        event.preventDefault();
+        await makeReview(formData);
+    }
     return (<>
-        <form className="border border-blue-700">
+        <form className="border">
             <div className="flex mb-4">
                 <div className="flex w-1/4">
                     <label>Rating</label>
@@ -33,10 +52,11 @@ const ReviewForm = ({ workId, reviewData, editStatus }) => {
                     </div>
                 </div>
             </div>
-            { editStatus ?
-                <button onClick={async (event) => {event.preventDefault(); await updateReview(formData); /* change state to rerender page */}}>Update</button>
-                    :
-                <button onClick={async (event) => {event.preventDefault(); await makeReview(formData); /* change state to rerender page */ }}>Submit</button>
+            { editStatus ? <>
+                <button onClick={(event) => handleUpdate(event)}>Update</button>
+                <button onClick={(event) => handleDeleteReview(event)}>Delete</button>
+                    </>:
+                <button onClick={(event) => handleCreate(event)}>Submit</button>
             }
         </form>
     </>);

@@ -23,10 +23,17 @@ def get_book_reviews(
     work_id: str,
     reviews: ReviewsQueries = Depends(),
     users: UserQueries = Depends(),
+    user_data: Optional[dict] = Depends(auth.try_get_current_account_data),
 ):
+    users_review = None
     books_reviews = reviews.get_book_reviews("/books/" + work_id)
     for book_review in books_reviews:
         book_review["username"] = users.get_by_id(book_review["user_id"])
+        if user_data and user_data["username"] == book_review["username"]:
+            users_review = book_review
+            books_reviews.remove(book_review)
+    if users_review:
+        books_reviews.insert(0, users_review)
     return {"reviews": books_reviews}
 
 @router.post("/api/reviews/", response_model=ReviewOut)

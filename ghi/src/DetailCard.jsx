@@ -16,11 +16,9 @@ const DetailCard = ({ book }) => {
         {user && <Buttons work_id={book.work_id.substring(7)} />}
       </div>
     </div>
-    {user && <>
-      <div>Leave a review</div>
-      <ReviewForm workId={book.work_id} />
-    </>}
-    <ReviewList workId={book.work_id.substring(7)} />
+    <div>
+      <ReviewList workId={book.work_id.substring(7)} />
+    </div>
   </>);
 }
 

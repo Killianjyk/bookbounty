@@ -1,3 +1,10 @@
+## 06/05/2023
+    Goals:
+        - Finish up reviews reloading and UI ease
+    Notes:
+        Tags in redux are extremely usefull for knowing when to refetch data
+        Tags can be used with more specific peramiters such as ID
+
 ## 06/01/2023
     Goals:
         - Finish Reviews front end (except styling)
@@ -5,7 +12,6 @@
     Notes for myself-
         Talk to instructors next week about code consistancy and formatting
     
-
 ## 06/01/2023
     Goals:
         - Finish unit tests for routers
