@@ -108,12 +108,19 @@ Set up foundation for tests we want to complete (will split up)
 
 # 6/1- Whole team
 Goals:
-
+-Finish making all tests (15 total)
 
 - Notes:
+We split up all tests and each made at least 3. Finished making tests.
 
-# 6/2- Whole team
+# 6/2- Sick
+
+# 6/5- Whole team
 Goals:
-
+-Discover Users needs styling (table or card like in wireframing)
+-Book Reviews on books detail page
+-User home page styling (Rew)
+-Add logged in user to Nav bar
+-Get books in (favs, next, previous) going horizontal like on wireframing
 
 - Notes:
