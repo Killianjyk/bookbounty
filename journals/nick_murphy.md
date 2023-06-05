@@ -1,4 +1,27 @@
-# 6/2s
+# 6/6
+    Goals:
+     - Improve navbar spacing
+
+# 6/5
+    - Over weekend I:
+        - Improved carousel list
+        - Improved book details backend by:
+            - only return books with a cover
+            - have a second check for description
+            - added publish date
+        - added openlibrary to footer
+        - added a cool spinner to random
+    Goals:
+        - make top favorites increment and decrement work in backend
+        - improve navbar with icons and more dropdowns
+
+    Notes: understand "$set" in MongoDB
+
+# 6/3
+
+    started on carousel and top favorited styling
+
+# 6/2
 
 Goals:
     - Make Prev, Next work in frontend
