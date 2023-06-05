@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import { useGetTopFavoriteBooksQuery } from "./app/booksApiSlice";
 import { Link } from "react-router-dom";
+import BookCardHome from "./BookCardHome";
 
 
 export default function Carousel() {
@@ -22,9 +23,22 @@ export default function Carousel() {
   };
 
   let num = 1;
+  let num2 = 1;
+
+  let elements = document.getElementsByClassName('clickable');
+  for (let i = 0; i < elements.length; i++) {
+    let element = elements[i];
+    element.addEventListener('click', function() {
+        let href = this.dataset.href;
+        if (href) {
+            window.location.assign(href);
+        }
+    });
+}
 
   return (
-    <div className="w-80 mx-auto" >
+    <>
+    <div className="w-80 mx-auto mb-8" >
     <Slider {...settings}>
         {topFavoriteBooks?.map((book) => (
           <div className="">
@@ -36,5 +50,21 @@ export default function Carousel() {
         ))}
     </Slider>
     </div>
+
+
+        {
+        topFavoriteBooks?.map((book) => <>
+          <Link to={book.work_id} className="w-80 border container mx-auto block p-1 bg-orange-200 rounded-lg shadow hover:bg-orange-300 dark:bg-slate-800 dark:border-gray-700 dark:hover:bg-slate-600">
+            <p className="text-left">
+              {num2++}
+              <span className="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white"> {book.title}</span>
+            </p>
+          </Link>
+        </>)
+        }
+
+
+
+    </>
   );
 }

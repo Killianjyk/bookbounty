@@ -12,6 +12,7 @@ const DetailCard = ({ book }) => {
       <div>
         <img className="mx-auto my-4" src={book.image} alt={book.title} />
         <p className="txt text-sm mb-4">{book.description}</p>
+        <p className="txt text-sm mb-4">{book.publish_date}</p>
         {user && <Buttons work_id={book.work_id.substring(7)} />}
       </div>
     </div>
