@@ -26,6 +26,7 @@ class BookDetailOut(BaseModel):
     author: str
     description: str
     image: str
+    publish_date: str
 
 
 class BookList(BaseModel):

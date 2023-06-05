@@ -46,9 +46,14 @@ def random_book(
     api_books: OpenLibraryQueries = Depends(),
 ):
     books = []
+    word = random_word.get_random_word()
+    num = 0
     while len(books) == 0:
-        word = random_word.get_random_word()
-        books = api_books.search_api(word[0])
+
+        book = api_books.search_api(word[num])
+        if api_books.get_book_details(book[0])["image"] != "NO COVER PROVIDED":
+            books = book
+        num += 1
     return api_books.get_book_details(books[0])
 
 

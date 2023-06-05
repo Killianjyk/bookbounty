@@ -27,6 +27,8 @@ class OpenLibraryQueries:
     def get_book_details(self, work_id: str):
         work_id = work_id.replace("works", "books")
         response = requests.get(self.api_url + work_id + self.detail).json()
+
+        work_id = work_id.replace("works", "books")
         book = {"work_id": work_id}
         try:
             book["title"] = response["title"]
@@ -38,7 +40,11 @@ class OpenLibraryQueries:
             try:
                 book["description"] = response["description"]
             except Exception:
-                book["description"] = "NO DESCRIPTION PROVIDED"
+                try:
+                    book["description"] = requests.get(self.api_url + work_id.replace("books", "works")
+                                                       + "/editions" + self.detail).json()["description"]["value"]
+                except Exception:
+                    book["description"] = "NO DESCRIPTION PROVIDED"
         try:
             author = response["authors"][0]["author"]["key"]
             book["author"] = self.get_author(author)
@@ -48,11 +54,16 @@ class OpenLibraryQueries:
             book["image"] = self.get_image(response["covers"][0])
         except Exception:
             book["image"] = "NO COVER PROVIDED"
+        try:
+            book["publish_date"] = requests.get(self.api_url + work_id.replace("books", "works")
+                                                + "/editions" + self.detail).json()["entries"][0]["publish_date"]
+        except Exception:
+            book["publish_date"] = "NO PUBLISH DATE PROVIDED"
         return book
 
 
 class RandomWordQuery:
-    url = "https://random-word-api.vercel.app/api?words=1"
+    url = "https://random-word-api.vercel.app/api?words=100"
 
     def get_random_word(self):
         response = requests.get(self.url).json()
