@@ -25,14 +25,9 @@ const BookLists = ({ name, username }) => {
     username,
     { skip: name !== "Read Next" || username === undefined }
   );
-  if (
-    searchLoad ||
-    favoritesLoad ||
-    previousLoad ||
-    nextLoad
-  )
+  if (searchLoad || favoritesLoad || previousLoad || nextLoad)
     return (
-      <div className="mt-4 flex justify-center items-center">
+      <div className="mt-4 flex justify-center place-items-center">
         <div className="book">
           <div className="book__pg-shadow"></div>
           <div className="book__pg"></div>
@@ -49,15 +44,28 @@ const BookLists = ({ name, username }) => {
   }
 
   return (
-    <>
+    <div className="flex flex-col items-center">
       <h1 className="txt text-3xl text-center mt-4">{listTitle}</h1>
-        <div className="grid grid-cols-2 md:grid-cols-4">
-        {name==="Search Books" && searchBooks?.map((book) => <BookCard book={book} key={book.work_id} />)}
-        {name==="Favorites" && favoriteBooks?.map((book) => <BookCard book={book} key={book.work_id} />)}
-        {name==="Previously Read" && previousBooks?.map((book) => <BookCard book={book} key={book.work_id} />)}
-        {name==="Read Next" && nextBooks?.map((book) => <BookCard book={book} key={book.work_id} />)}
+      <div className="flex justify-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {name === "Search Books" &&
+            searchBooks?.map((book) => (
+              <div key={book.work_id}>
+                <BookCard book={book} />
+              </div>
+            ))}
+          {(name === "Favorites" ||
+            name === "Previously Read" ||
+            name === "Read Next") &&
+            favoriteBooks?.map((book) => (
+              <div key={book.work_id}>
+                <BookCard book={book} />
+              </div>
+            ))}
         </div>
-    </>);
+      </div>
+    </div>
+  );
 };
 
 export default BookLists;
