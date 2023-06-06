@@ -1,5 +1,5 @@
 from .client import MongoQueries
-from models.books import BookIn, BookOut
+from models.books import BookInData, BookOut
 
 
 class BookUserError(ValueError):
@@ -9,17 +9,17 @@ class BookUserError(ValueError):
 class BooksQueries(MongoQueries):
     collection_name = "books"
 
-    def new_book(self, book_data: BookIn):
-        book = book_data.dict()
-        search_for = self.collection.find_one({"work_id": book_data.work_id})
+    def new_book(self, book_data: BookInData):
+        book_data = book_data.dict()
+        search_for = self.collection.find_one({"work_id": book_data["work_id"]})
         if search_for:
             search_for["id"] = str(search_for["_id"])
             return BookOut(**search_for)
-        book["favorited_by"] = 0
-        response = self.collection.insert_one(book)
+        book_data["favorited_by"] = 0
+        response = self.collection.insert_one(book_data)
         if response.inserted_id:
-            book["id"] = str(response.inserted_id)
-        return BookOut(**book)
+            book_data["id"] = str(response.inserted_id)
+        return BookOut(**book_data)
 
     def get_books(self):
         books = []

@@ -6,7 +6,7 @@ from typing import Optional
 from queries.users import UserQueries
 from queries.books import BooksQueries
 from queries.api import OpenLibraryQueries
-from models.books import BookIn
+from models.books import BookInData
 
 router = APIRouter()
 
@@ -27,7 +27,7 @@ def add_to_user_list(
     book_info = books.get_book(info.work_id)
     if not book_info:
         book_details = open_library.get_book_details(info.work_id)
-        book_info = books.new_book(BookIn(**book_details))
+        book_info = books.new_book(BookInData(**book_details))
     return previous.new_previous(info, user_data["id"], book_info.id)
 
 

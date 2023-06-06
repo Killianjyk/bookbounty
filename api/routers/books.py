@@ -5,6 +5,7 @@ from models.books import (
     BookDataList,
     BookDetailsList,
     BookDetailOut,
+    BookInData
 )
 from queries.books import BooksQueries
 from queries.api import OpenLibraryQueries, RandomWordQuery
@@ -13,9 +14,17 @@ router = APIRouter()
 
 
 @router.post("/api/books/", response_model=BookOut)
-def track_book(info: BookIn, books: BooksQueries = Depends()):
+def track_book(
+    info: BookIn,
+    books: BooksQueries = Depends(),
+    open_library: OpenLibraryQueries = Depends()
+):
+
+    book = info.dict()
     try:
-        book = books.new_book(info)
+
+        book["image"] = open_library.get_book_details(book["work_id"])["image"]
+        book = books.new_book(BookInData(**book))
     except Exception:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

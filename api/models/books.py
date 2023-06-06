@@ -13,11 +13,15 @@ class BookOut(BaseModel):
     work_id: str
     title: str
     author: str
+    image: str
+
+
+class BookInData(BookIn):
+    image: str
 
 
 class BookOutData(BookOut):
     favorited_by: int
-    image: str
 
 
 class BookDetailOut(BaseModel):
