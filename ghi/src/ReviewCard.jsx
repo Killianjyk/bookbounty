@@ -2,7 +2,7 @@
 
 const ReviewCard = ({ review }) => {
     return (
-    <div className="border">
+    <div className="mx-auto my-6 block max-w-[80%] p-6 bg-orange-200 rounded-lg shadow hover:bg-orange-300 dark:bg-slate-800 dark:border-gray-700 dark:hover:bg-slate-600 animate-shad">
         <div className="flex mb-4">
             <div className="w-1/2">Review by: {review?.username}</div>
             <div className="w-1/2">
