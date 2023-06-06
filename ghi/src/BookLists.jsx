@@ -1,8 +1,5 @@
 import { useSelector } from "react-redux";
-import {
-  useGetBookSearchQuery,
-  useGetTopFavoriteBooksQuery,
-} from "./app/booksApiSlice";
+import { useGetBookSearchQuery } from "./app/booksApiSlice";
 import {
   useGetFavoriteBooksQuery,
   useGetPreviousBooksQuery,
@@ -16,8 +13,6 @@ const BookLists = ({ name, username }) => {
     searchField,
     { skip: name !== "Search Books" || searchField === "" }
   );
-  const { data: topFavoriteBooks, isLoading: topFavoritesLoad } =
-    useGetTopFavoriteBooksQuery({ skip: name !== "Most Liked" });
   const { data: favoriteBooks, isLoading: favoritesLoad } =
     useGetFavoriteBooksQuery(username, {
       skip: name !== "Favorites" || username === undefined,
@@ -32,7 +27,6 @@ const BookLists = ({ name, username }) => {
   );
   if (
     searchLoad ||
-    topFavoritesLoad ||
     favoritesLoad ||
     previousLoad ||
     nextLoad
@@ -49,9 +43,6 @@ const BookLists = ({ name, username }) => {
         </div>
       </div>
     );
-
-  let num = 1;
-
   let listTitle = name;
   if (username) {
     listTitle = `${username}- ${name}`;
