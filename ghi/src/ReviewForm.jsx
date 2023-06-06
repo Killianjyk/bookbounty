@@ -42,7 +42,7 @@ const ReviewForm = ({ workId, reviewData, editStatus }) => {
     return (<>
     <div className="mx-auto my-6 block max-w-[80%] p-6 bg-orange-300 rounded-lg shadow dark:bg-slate-600 dark:border-gray-700 animate-shad">
             <form>
-                <div className="flex mb-4">
+                <div className="md:flex mb-4">
                     <div className="w-1/4">
                         <label className="underline txt p-4">Rating:</label>
                         <div>
@@ -52,8 +52,8 @@ const ReviewForm = ({ workId, reviewData, editStatus }) => {
                         </div>
                     </div>
                     <div className="w-3/4">
-                        <label className="underline txt p-4">Text:</label>
-                        <textarea type="text" name="text" id="text" value={formData.text} onChange={handleChange} className="w-[100%] bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 txt" />
+                        <label className="underline txt p-4">Comment:</label>
+                        <textarea type="text" name="text" id="text" value={formData.text} onChange={handleChange} className="w-[100%] p-2 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 txt" />
                     </div>
                 </div>
                 <div className="text-center"> { editStatus ? <>
