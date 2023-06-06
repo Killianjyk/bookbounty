@@ -1,17 +1,13 @@
-import { useSelector, useDispatch } from "react-redux";
-import { search } from "./app/SearchSlice";
+import { useSelector } from "react-redux";
 import { useGetUserSearchQuery } from "./app/authApiSlice";
-import { useEffect } from "react";
 import UserCard from "./UserCard";
 
 const UserLists = ({ name }) => {
-  const dispatch = useDispatch();
   const searchField = useSelector((state) => state.searchField.value);
   const { data: searchUsers, isLoading: searchLoad } = useGetUserSearchQuery(
     searchField,
     { skip: name !== "User Search" },
   );
-  useEffect(() => dispatch(search(searchField)));
 
   if (searchLoad) {
     return (
@@ -41,11 +37,7 @@ const UserLists = ({ name }) => {
       <h1 className="txt">{name}</h1>
       <div className="grid grid-cols-3 gap-4">
         {name === "User Search" &&
-          searchUsers.map((user) => (
-            <div className="p-4">
-              <UserCard user={user} key={user.username} />
-            </div>
-          ))}
+          searchUsers.map((user) => (<UserCard user={user} key={user.username} />))}
       </div>
     </>
   );

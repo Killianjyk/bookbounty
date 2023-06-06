@@ -28,7 +28,7 @@ const Nav = () => {
       html.classList.remove('dark');
       setTheme('light');
     }
-  }, [theme]);
+  });
 
   // handle switch theme
   const handleThemeSwitch = () => {
