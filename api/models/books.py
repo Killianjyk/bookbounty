@@ -2,6 +2,9 @@ from pydantic import BaseModel
 from typing import List
 
 
+class Search(BaseModel):
+    search_bar: str
+
 class BookIn(BaseModel):
     work_id: str
     title: str

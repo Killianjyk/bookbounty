@@ -6,6 +6,7 @@ from models.books import (
     BookDetailsList,
     BookDetailOut,
     BookInData,
+    Search,
 )
 from queries.books import BooksQueries
 from queries.api import OpenLibraryQueries, RandomWordQuery
@@ -21,7 +22,7 @@ def track_book(
 ):
     book = info.dict()
     try:
-        book["image"] = open_library.get_book_details(book["work_id"])["image"]
+        book["image"] = open_library.get_book_image(book["work_id"])
         book = books.new_book(BookInData(**book))
     except Exception:
         raise HTTPException(
@@ -37,8 +38,6 @@ def get_top_favorited_books(
     open_library: OpenLibraryQueries = Depends(),
 ):
     favorite_books = books.get_books()
-    for book in favorite_books:
-        book["image"] = open_library.get_book_details(book["work_id"])["image"]
     return {"books": favorite_books}
 
 

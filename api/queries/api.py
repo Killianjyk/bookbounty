@@ -6,7 +6,7 @@ class OpenLibraryQueries:
     search = "/search.json?q="
     detail = ".json"
 
-    def get_image(self, image_id):
+    def get_image_url(self, image_id):
         return f"https://covers.openlibrary.org/b/id/{image_id}-L.jpg"
 
     def get_author(self, author_id: str):
@@ -15,7 +15,6 @@ class OpenLibraryQueries:
 
     def search_api(self, string: str):
         string = string.replace(" ", "+")
-        string = string.replace("%", "+")
         response = requests.get(
             self.api_url + self.search + string + "&limit=10"
         ).json()
@@ -27,8 +26,6 @@ class OpenLibraryQueries:
     def get_book_details(self, work_id: str):
         work_id = work_id.replace("works", "books")
         response = requests.get(self.api_url + work_id + self.detail).json()
-
-        work_id = work_id.replace("works", "books")
         book = {"work_id": work_id}
         try:
             book["title"] = response["title"]
@@ -55,7 +52,7 @@ class OpenLibraryQueries:
         except Exception:
             book["author"] = "NO AUTHOR PROVIDED"
         try:
-            book["image"] = self.get_image(response["covers"][0])
+            book["image"] = self.get_image_url(response["covers"][0])
         except Exception:
             book["image"] = "NO COVER PROVIDED"
         try:
@@ -68,6 +65,14 @@ class OpenLibraryQueries:
         except Exception:
             book["publish_date"] = "NO PUBLISH DATE PROVIDED"
         return book
+
+    def get_book_image(self, work_id: str):
+        work_id = work_id.replace("works", "books")
+        response = requests.get(self.api_url + work_id + self.detail).json()
+        try:
+            return self.get_image_url(response["covers"][0])
+        except Exception:
+            return "NO COVER PROVIDED"
 
 
 class RandomWordQuery:
