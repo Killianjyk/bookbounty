@@ -118,9 +118,23 @@ We split up all tests and each made at least 3. Finished making tests.
 # 6/5- Whole team
 Goals:
 -Discover Users needs styling (table or card like in wireframing)
--Book Reviews on books detail page
--User home page styling (Rew)
+-Book Reviews on books detail page (Killian)
+-User home page styling (Rew)- done
 -Add logged in user to Nav bar
--Get books in (favs, next, previous) going horizontal like on wireframing
+-Get books in (favs, next, previous) going horizontal in group of 3 like on wireframing
+-Make book reviews look nice (styling)
+
+- Notes:
+
+# 6/6- Whole team
+Goals:
+-Discover Users needs styling (table or card like in wireframing) - (Rew)
+-Change search button color (Rew)
+-Book Reviews on books detail page (Nick F)
+-Add logged in user to Nav bar, like on SIS
+-Get books in (favs, next, previous) going horizontal in group of 3 like on wireframing (Nick M)
+-Light mode/dark mode glitch (Nick M)
+-Make a 404 page
+
 
 - Notes:

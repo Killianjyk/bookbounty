@@ -1,42 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 const UserCard = ({ user }) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
-
   return (
-    <div className="card mb-3 txt">
-      <div className="card-title cursor-pointer ml-8" onClick={toggleDropdown} style={{ fontSize: '16px', fontWeight: 'bold', color:'blue' }}>
-
-        {user.username}
-      </div>
-      <div
-        className="p-1 max-w-lg"
-        style={{ display: dropdownOpen ? "block" : "none" }}
-      >
-        <ul className="ml-10 space-y-1">
-          <li>
-            <div className="bg-white">
-              <Link to={`/books/favorites/${user.username}/`}>Favorites</Link>
-            </div>
-          </li>
-          <li>
-            <div className="bg-white">
-              <Link to={`/books/previous/${user.username}/`}>
-                Previously Read
-              </Link>
-            </div>
-          </li>
-          <li>
-            <div className="bg-white">
-              <Link to={`/books/next/${user.username}/`}>Read Next</Link>
-            </div>
-          </li>
-        </ul>
+    <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card-body">
+        <h2 className="card-title justify-center">{user.username}</h2>
+        <div className="card-actions justify-end">
+          <Link
+            to={`/books/favorites/${user.username}`}
+            className="btn btn-xs btn-secondary"
+          >
+            Favorites
+          </Link>
+          <Link
+            to={`/books/previous/${user.username}`}
+            className="btn btn-xs btn-neutral btn-primary"
+          >
+            Previously Read
+          </Link>
+          <Link
+            to={`/books/next/${user.username}`}
+            className="btn btn-xs btn-neutral btn-primary"
+          >
+            Read Next
+          </Link>
+        </div>
       </div>
     </div>
   );

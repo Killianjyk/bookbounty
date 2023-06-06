@@ -28,7 +28,9 @@ const UserDetails = () => {
                 formData
             );
             refetch();
-            window.alert("Account information has been updated!")
+            window.alert(
+              "Notification: Account information has been updated! Please note that the modifications will take effect upon your next login. We kindly request you to log out and log back in to observe the changes."
+            );
             console.log(formData);
         } catch (error) {
             console.log(error);

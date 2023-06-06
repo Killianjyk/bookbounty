@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import { useGetUserQuery } from "./app/authApiSlice";
+
 
 const BookCard = ({ book }) => {
-    const { data: user } = useGetUserQuery();
     return (
     <Link to={book.work_id} className="mx-auto p-2 mx-1 block max-w-sm my-1 bg-orange-200 rounded-lg shadow hover:bg-orange-300 dark:bg-slate-800 dark:border-gray-700 dark:hover:bg-slate-600 animate-shad">
         <h5 className="text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{book.title}</h5>
