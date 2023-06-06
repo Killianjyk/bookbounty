@@ -12,6 +12,7 @@ import DiscoverUsers from "./DiscoverUsers";
 import UserBookLists from "./UserBooksLists";
 import Signup from "./Signup";
 import Footer from "./Footer";
+import ErrorPage from "./ErrorPage"
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
             <Route index element={<UserDetails />} />
             <Route path="search/" element={<DiscoverUsers />} />
           </Route>
+          <Route path="*" element={<ErrorPage />}/>
         </Routes>
       </div>
     <Footer/>

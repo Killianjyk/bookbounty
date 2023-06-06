@@ -9,14 +9,23 @@ const UserLists = ({ name }) => {
   const searchField = useSelector((state) => state.searchField.value);
   const { data: searchUsers, isLoading: searchLoad } = useGetUserSearchQuery(
     searchField,
-    { skip: name !== "User Search" }
+    { skip: name !== "User Search" },
   );
-  useEffect(() => {
-    dispatch(search(searchField));
-  }, []);
+  useEffect(() => dispatch(search(searchField)));
 
   if (searchLoad) {
-    return <div className="flex justify-center items-center">Loading...</div>;
+    return (
+      <div className="mt-4 flex justify-center items-center">
+        <div className="book">
+          <div className="book__pg-shadow"></div>
+          <div className="book__pg"></div>
+          <div className="book__pg book__pg--2"></div>
+          <div className="book__pg book__pg--3"></div>
+          <div className="book__pg book__pg--4"></div>
+          <div className="book__pg book__pg--5"></div>
+        </div>
+      </div>
+    );
   }
 
   if (!searchUsers || searchUsers.length === 0) {

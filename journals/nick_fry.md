@@ -1,3 +1,11 @@
+## 06/06/2023
+    Goals:
+        - Add styling to review list and cards
+            - set up styling for phones and smaller screens as well
+        - Edit tags for redux to be smarter for reloading purposes
+    Notes:
+        Issues on gitlab need to be understood more clearly
+
 ## 06/05/2023
     Goals:
         - Finish up reviews reloading and UI ease

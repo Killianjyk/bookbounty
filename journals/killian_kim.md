@@ -1,6 +1,21 @@
-# 6/2s
+# 6/6
+    -Work on styling for discover users page.
+        Should be in tables, with links to favorites, read next, previously read next to each user's username.
+    -Finished writing codes for 404 page.
+        If an endpoint does not exist it will redirect users to this error page.
+        Users will have an option to go back to the previous page.
+    -Changed the message after user updates their account information on user detail page.
+    -Might be making a profile page during stretch week. It will have the list of all the reviews.
+
+# 6/5
+    -Worked on user detail page. There are issues where after the user updates their account info, it does send data back to the backedn
+        but does not automatically update on the frontend. This is most likely due to authentication issue (token). User information updates
+        when the user logs out and logs back in. We are currently settling for creating a message indicating that the information will update after re-logging in.
+    -Will be asking questions on whether we can make a new token when updating the account info. It will be during stretch week.
+
+# 6/2
 Goals:
-    -Work on styling for discover users page
+    -Work on styling for discover users page. Made it into a dropdown when
     -When you search for users that don’t exist, it should return no matching result found
     -In userhome, make it look like a profile page, and have the button “edit” where then you can edit information on there
     -next week have SEIRS/Instructors in the room to take a look at our codes

@@ -7,8 +7,19 @@ const BookDetails = () => {
   const { workId } = useParams();
   const { data: book, error, isLoading } = useGetBookQuery(workId);
   if (isLoading) {
-    return <div>Loading...</div>;
-  }
+    return (
+      <div className="mt-4 flex justify-center items-center">
+        <div className="book">
+          <div className="book__pg-shadow"></div>
+          <div className="book__pg"></div>
+          <div className="book__pg book__pg--2"></div>
+          <div className="book__pg book__pg--3"></div>
+          <div className="book__pg book__pg--4"></div>
+          <div className="book__pg book__pg--5"></div>
+        </div>
+      </div>
+    )
+  };
   if (error) {
     console.log(error);
     return <div>Error: {error.message}</div>;

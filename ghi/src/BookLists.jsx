@@ -1,8 +1,5 @@
 import { useSelector } from "react-redux";
-import {
-  useGetBookSearchQuery,
-  useGetTopFavoriteBooksQuery,
-} from "./app/booksApiSlice";
+import { useGetBookSearchQuery } from "./app/booksApiSlice";
 import {
   useGetFavoriteBooksQuery,
   useGetPreviousBooksQuery,
@@ -16,8 +13,6 @@ const BookLists = ({ name, username }) => {
     searchField,
     { skip: name !== "Search Books" || searchField === "" }
   );
-  const { data: topFavoriteBooks, isLoading: topFavoritesLoad } =
-    useGetTopFavoriteBooksQuery({ skip: name !== "Most Liked" });
   const { data: favoriteBooks, isLoading: favoritesLoad } =
     useGetFavoriteBooksQuery(username, {
       skip: name !== "Favorites" || username === undefined,
@@ -32,15 +27,22 @@ const BookLists = ({ name, username }) => {
   );
   if (
     searchLoad ||
-    topFavoritesLoad ||
     favoritesLoad ||
     previousLoad ||
     nextLoad
   )
-    return <div className="txt">Loading...</div>;
-
-  let num = 1;
-
+    return (
+      <div className="mt-4 flex justify-center items-center">
+        <div className="book">
+          <div className="book__pg-shadow"></div>
+          <div className="book__pg"></div>
+          <div className="book__pg book__pg--2"></div>
+          <div className="book__pg book__pg--3"></div>
+          <div className="book__pg book__pg--4"></div>
+          <div className="book__pg book__pg--5"></div>
+        </div>
+      </div>
+    );
   let listTitle = name;
   if (username) {
     listTitle = `${username}- ${name}`;
