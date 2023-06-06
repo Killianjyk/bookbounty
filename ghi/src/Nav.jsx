@@ -42,14 +42,6 @@ const Nav = () => {
       // Add a new src attribute
       image.setAttribute("src", "/light-mode-icon-orange.png");
 
-      let magnifyIcon1 = document.getElementById("magnify1");
-      magnifyIcon1.removeAttribute("src");
-      magnifyIcon1.setAttribute("src", "/clipart1021634-white.png");
-
-      let magnifyIcon2 = document.getElementById("magnify2");
-      magnifyIcon2.removeAttribute("src");
-      magnifyIcon2.setAttribute("src", "/clipart1021634-white.png");
-
     } else {
       setTheme('light');
       localStorage.setItem('theme', 'light');
@@ -59,22 +51,13 @@ const Nav = () => {
       image.removeAttribute("src");
       // Add a new src attribute
       image.setAttribute("src", "/dark-mode-icon-blue.png");
-
-      let magnifyIcon1 = document.getElementById("magnify1");
-      magnifyIcon1.removeAttribute("src");
-      magnifyIcon1.setAttribute("src", "/clipart1021634.png");
-
-      let magnifyIcon2 = document.getElementById("magnify2");
-      magnifyIcon2.removeAttribute("src");
-      magnifyIcon2.setAttribute("src", "/clipart1021634.png");
-
     }
   };
 
     return (
       <>
 <div className="navbar bg-orange-200 dark:bg-slate-800 txt">
-  <div className="navbar-start">
+  <div className="navbar-start lg:flex">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -109,19 +92,32 @@ const Nav = () => {
 
       </ul>
     </div>
-    <NavLink to={"/"} className="btn btn-ghost normal-case text-xl dark:hover:bg-slate-700">
+    <NavLink to={"/"} className="mr-8 btn btn-ghost normal-case text-xl dark:hover:bg-slate-700">
       <img className="h-8 mr-2" src="/Marcus-Roberto-Google-Play-Google-Play-Books.512.png" alt="logo"/>
       BookBounty
     </NavLink>
   </div>
-  <div className="navbar-center hidden lg:flex">
+  <div className="hidden lg:flex">
+
     <ul className="menu menu-horizontal px-1">
-      {!user &&  <><li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/login/"} >Login</NavLink></li>
-      <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/signup/"} >Sign Up</NavLink></li></>}
+
+
 
         <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-600" to={"/discover/"} >Discover Books</NavLink></li>
         <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-600" to={"/users/search/"} >Discover Users</NavLink></li>
         <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-600" to={"/random/"} >Random Book</NavLink></li>
+
+    </ul>
+  </div>
+
+
+  <div className="navbar-end">
+
+<div className="hidden lg:flex">
+    <ul className="menu menu-horizontal px-1">
+
+      {!user &&  <><li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/login/"} >Login</NavLink></li>
+      <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/signup/"} >Sign Up</NavLink></li></>}
 
       {user && <><li className="" tabIndex={0}>
         <a className="dark:hover:text-gray-300 hover:text-gray-700 dark:hover:bg-[#D3D3D325]">
@@ -144,7 +140,7 @@ const Nav = () => {
 
     </ul>
   </div>
-  <div className="navbar-end">
+
     <button onClick={handleThemeSwitch} id="theme-toggle" type="button" className="mr-2">
       <img className="h-10" id="theme-toggle-icon" src="/dark-mode-icon-blue.png"></img>
     </button>
