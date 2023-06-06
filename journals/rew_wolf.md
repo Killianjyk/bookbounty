@@ -136,5 +136,28 @@ Goals:
 -Light mode/dark mode glitch (Nick M)
 -Make a 404 page
 
+- Notes:
+Craeted and placed favicon from default react icon
+Changed search button coloring (dark/light)
+Discover Users styling- made cards and styling them
+
+# 6/7- Whole team
+Goals:
+
+
+
+- Notes:
+
+# 6/8- Whole team
+Goals:
+
+
+
+- Notes:
+
+# 6/9- Whole team
+Goals:
+
+
 
 - Notes:
