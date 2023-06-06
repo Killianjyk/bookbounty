@@ -12,14 +12,14 @@ const ErrorPage = () => {
     };
 
     return (
-        <div className="bg-components h-screen justify-center">
+        <div className="bg-components h-full text-center">
             <center className="mt-24 m-auto">
                 <img
                 className="dog-404"
                 src="https://i.imgur.com/Tt02lJ7.png"
                 alt="Picture1"
                 />
-                <div className="tracking-widest mt-4">
+                <div className="tracking-widest mt-4 w-full">
                     <span className="text-gray-500 text-6xl block">
                         <span>4 0 4</span>
                     </span>
