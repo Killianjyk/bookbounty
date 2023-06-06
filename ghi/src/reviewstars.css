@@ -1,0 +1,9 @@
+.star {
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.star.active {
+  color: gold;
+}

@@ -20,7 +20,7 @@ const UserLists = ({ name }) => {
     }
     return (<>
         <h1 className="txt">{name}</h1>
-        {name==="User Search" && searchUsers?.map((user) => <UserCard user={user} />)}
+        {name==="User Search" && searchUsers?.map((user) => <UserCard user={user} key={user.username} />)}
     </>);
 }
 
