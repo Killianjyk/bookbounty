@@ -6,9 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function Carousel() {
 
-  const { data: topFavoriteBooks, isLoading: topFavoritesLoad } = useGetTopFavoriteBooksQuery();
-
-  if (topFavoritesLoad) return <div className="txt">Loading...</div>;
+  const { data: topFavoriteBooks } = useGetTopFavoriteBooksQuery();
 
   const settings = {
     dots: true,
