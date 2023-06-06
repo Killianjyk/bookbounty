@@ -1,9 +1,6 @@
-import { useDeleteBookReviewMutation } from "./app/reviewApiSlice";
-import { useGetUserQuery } from "./app/authApiSlice";
+
 
 const ReviewCard = ({ review }) => {
-    const { data: user } = useGetUserQuery();
-    const [deleteReview] = useDeleteBookReviewMutation();
     return (
     <div className="border">
         <div className="flex mb-4">

@@ -18,6 +18,7 @@ def get_all_reviews(
         book_review["username"] = users.get_by_id(book_review["user_id"])
     return {"reviews": books_reviews}
 
+
 @router.get("/api/reviews/{work_id}/", response_model=ReviewList)
 def get_book_reviews(
     work_id: str,
@@ -36,6 +37,7 @@ def get_book_reviews(
         books_reviews.insert(0, users_review)
     return {"reviews": books_reviews}
 
+
 @router.post("/api/reviews/", response_model=ReviewOut)
 def make_book_review(
     review_in: Review,
@@ -50,6 +52,7 @@ def make_book_review(
     new_review = reviews.new_review(review_in, user_data["id"])
     new_review["username"] = user_data["username"]
     return ReviewOut(**new_review)
+
 
 @router.put("/api/reviews/", response_model=ReviewOut)
 def update_book_review(
@@ -67,6 +70,7 @@ def update_book_review(
     review["username"] = user_data["username"]
     return ReviewOut(**review)
 
+
 @router.get("/api/reviews/", response_model=ReviewList)
 def get_user_reviews(
     reviews: ReviewsQueries = Depends(),
@@ -81,6 +85,7 @@ def get_user_reviews(
     for book_review in books_reviews:
         book_review["username"] = user_data["username"]
     return {"reviews": books_reviews}
+
 
 @router.delete("/api/reviews/{work_id}/", response_model=bool)
 def delete_review(

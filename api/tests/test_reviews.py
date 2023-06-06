@@ -2,9 +2,11 @@ from main import app
 from fastapi.testclient import TestClient
 from models.authenticator import authenticator as auth
 from queries.reviews import ReviewsQueries
+from queries.users import UserQueries
 from tests.test_queries import (
     fake_get_current_account_data,
     FakeReviewsQueries,
+    FakeUserQueries,
 )
 
 client = TestClient(app)
@@ -13,18 +15,21 @@ client = TestClient(app)
 def test_get_all_reviews():
     # arrange
     app.dependency_overrides[ReviewsQueries] = FakeReviewsQueries
+    app.dependency_overrides[UserQueries] = FakeUserQueries
     # act
     response = client.get("/api/reviews/all/")
     # assert
     assert response.status_code == 200
     assert response.json() == {
-        "reviews": [{
-            "id": "review id",
-            "user_id": "user id",
-            "work_id": "/books/12345",
-            "stars": 5,
-            "text": "review text",
-        }]
+        "reviews": [
+            {
+                "id": "review id",
+                "username": "username",
+                "work_id": "/books/12345",
+                "stars": 5,
+                "text": "review text",
+            }
+        ]
     }
     # cleanup
     app.dependency_overrides = {}
@@ -33,18 +38,24 @@ def test_get_all_reviews():
 def test_get_book_reviews():
     # arrange
     app.dependency_overrides[ReviewsQueries] = FakeReviewsQueries
+    app.dependency_overrides[UserQueries] = FakeUserQueries
+    app.dependency_overrides[
+        auth.try_get_current_account_data
+    ] = fake_get_current_account_data
     # act
     response = client.get("/api/reviews/12345")
     # assert
     assert response.status_code == 200
     assert response.json() == {
-        "reviews": [{
-            "id": "review id",
-            "user_id": "user id",
-            "work_id": "/books/12345",
-            "stars": 5,
-            "text": "review text",
-        }]
+        "reviews": [
+            {
+                "id": "review id",
+                "username": "username",
+                "work_id": "/books/12345",
+                "stars": 5,
+                "text": "review text",
+            }
+        ]
     }
     # cleanup
     app.dependency_overrides = {}
@@ -67,7 +78,7 @@ def test_make_book_review():
     assert response.status_code == 200
     assert response.json() == {
         "id": "review id",
-        "user_id": "user id",
+        "username": "username",
         "work_id": "/books/12345",
         "stars": 5,
         "text": "review text",
@@ -87,13 +98,15 @@ def test_get_user_reviews():
     # assert
     assert response.status_code == 200
     assert response.json() == {
-        "reviews": [{
-            "id": "review id",
-            "user_id": "user id",
-            "work_id": "/books/12345",
-            "stars": 5,
-            "text": "review text",
-        }]
+        "reviews": [
+            {
+                "id": "review id",
+                "username": "username",
+                "work_id": "/books/12345",
+                "stars": 5,
+                "text": "review text",
+            }
+        ]
     }
     # cleanup
     app.dependency_overrides = {}
@@ -116,7 +129,7 @@ def test_update_book_review():
     assert response.status_code == 200
     assert response.json() == {
         "id": "review id",
-        "user_id": "user id",
+        "username": "username",
         "work_id": "/books/12345",
         "stars": 4,
         "text": "review text update",

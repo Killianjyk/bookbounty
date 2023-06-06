@@ -49,7 +49,6 @@ def random_book(
     word = random_word.get_random_word()
     num = 0
     while len(books) == 0:
-
         book = api_books.search_api(word[num])
         if api_books.get_book_details(book[0])["image"] != "NO COVER PROVIDED":
             books = book

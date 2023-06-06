@@ -41,8 +41,12 @@ class OpenLibraryQueries:
                 book["description"] = response["description"]
             except Exception:
                 try:
-                    book["description"] = requests.get(self.api_url + work_id.replace("books", "works")
-                                                       + "/editions" + self.detail).json()["description"]["value"]
+                    book["description"] = requests.get(
+                        self.api_url
+                        + work_id.replace("books", "works")
+                        + "/editions"
+                        + self.detail
+                    ).json()["description"]["value"]
                 except Exception:
                     book["description"] = "NO DESCRIPTION PROVIDED"
         try:
@@ -55,8 +59,12 @@ class OpenLibraryQueries:
         except Exception:
             book["image"] = "NO COVER PROVIDED"
         try:
-            book["publish_date"] = requests.get(self.api_url + work_id.replace("books", "works")
-                                                + "/editions" + self.detail).json()["entries"][0]["publish_date"]
+            book["publish_date"] = requests.get(
+                self.api_url
+                + work_id.replace("books", "works")
+                + "/editions"
+                + self.detail
+            ).json()["entries"][0]["publish_date"]
         except Exception:
             book["publish_date"] = "NO PUBLISH DATE PROVIDED"
         return book
