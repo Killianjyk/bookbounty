@@ -1,5 +1,5 @@
 from models.usersbookslists import UsersBooksIn
-from models.books import BookOut, BookIn
+from models.books import BookOut, BookInData
 from models.reviews import Review
 
 
@@ -69,10 +69,11 @@ class FakeBooksQueries:
                 "id": "12345",
                 "title": "title working",
                 "author": "author working",
+                "image": "image working",
             }
         )
 
-    def new_book(self, book_data: BookIn):
+    def new_book(self, book_data: BookInData):
         book = book_data.dict()
         book["id"] = "12345"
         return BookOut(**book)

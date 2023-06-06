@@ -5,7 +5,7 @@ from models.books import (
     BookDataList,
     BookDetailsList,
     BookDetailOut,
-    BookInData
+    BookInData,
 )
 from queries.books import BooksQueries
 from queries.api import OpenLibraryQueries, RandomWordQuery
@@ -17,12 +17,10 @@ router = APIRouter()
 def track_book(
     info: BookIn,
     books: BooksQueries = Depends(),
-    open_library: OpenLibraryQueries = Depends()
+    open_library: OpenLibraryQueries = Depends(),
 ):
-
     book = info.dict()
     try:
-
         book["image"] = open_library.get_book_details(book["work_id"])["image"]
         book = books.new_book(BookInData(**book))
     except Exception:

@@ -8,15 +8,15 @@ class BookIn(BaseModel):
     author: str
 
 
+class BookInData(BookIn):
+    image: str
+
+
 class BookOut(BaseModel):
     id: str
     work_id: str
     title: str
     author: str
-    image: str
-
-
-class BookInData(BookIn):
     image: str
 
 
