@@ -34,7 +34,7 @@ const UserLists = ({ name }) => {
         {name === "User Search" &&
           searchUsers.map((user) => (
             <div className="p-4">
-              <UserCard user={user} />
+              <UserCard user={user} key={user.username} />
             </div>
           ))}
       </div>

@@ -50,14 +50,18 @@ const BookLists = ({ name, username }) => {
     <>
       <h1 className="txt text-3xl text-center mt-4">{listTitle}</h1>
       {name === "Search Books" &&
-        searchBooks?.map((book) => <BookCard book={book} />)}
+        searchBooks?.map((book) => <BookCard book={book} key={book.work_id} />)}
 
       {name === "Favorites" &&
-        favoriteBooks?.map((book) => <BookCard book={book} />)}
+        favoriteBooks?.map((book) => (
+          <BookCard book={book} key={book.work_id} />
+        ))}
       {name === "Previously Read" &&
-        previousBooks?.map((book) => <BookCard book={book} />)}
+        previousBooks?.map((book) => (
+          <BookCard book={book} key={book.work_id} />
+        ))}
       {name === "Read Next" &&
-        nextBooks?.map((book) => <BookCard book={book} />)}
+        nextBooks?.map((book) => <BookCard book={book} key={book.work_id} />)}
     </>
   );
 };
