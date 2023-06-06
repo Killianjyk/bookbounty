@@ -24,12 +24,18 @@ const BookLists = ({ name, username }) => {
 
     return (<>
         <h1 className="txt text-3xl text-center mt-4">{name}</h1>
+        <div className="grid grid-cols-2 md:grid-cols-4">
         {name==="Search Books" && searchBooks?.map((book) => <BookCard book={book} />)}
-
-
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4">
         {name==="Favorites" && favoriteBooks?.map((book) => <BookCard book={book} />)}
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4">
         {name==="Previously Read" && previousBooks?.map((book) => <BookCard book={book} />)}
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4">
         {name==="Read Next" && nextBooks?.map((book) => <BookCard book={book} />)}
+        </div>
     </>);
 }
 

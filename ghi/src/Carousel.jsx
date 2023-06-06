@@ -24,17 +24,6 @@ export default function Carousel() {
   let num = 1;
   let num2 = 1;
 
-  let elements = document.getElementsByClassName('clickable');
-  for (let i = 0; i < elements.length; i++) {
-    let element = elements[i];
-    element.addEventListener('click', function() {
-        let href = this.dataset.href;
-        if (href) {
-            window.location.assign(href);
-        }
-    });
-}
-
   return (
     <>
     <div className="w-80 mx-auto mb-8" >
