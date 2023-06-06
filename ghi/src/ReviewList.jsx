@@ -14,7 +14,7 @@ const ReviewList = ({ workId }) => {
                 :
             user && <ReviewForm workId={workId} editStatus={false} />
         }
-        {reviews?.map((review) => <ReviewCard review={review} />)}
+        {reviews?.map((review) => <ReviewCard review={review} key={review.username+review.work_id}/>)}
     </>);
 }
 
