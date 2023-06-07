@@ -7,8 +7,9 @@ import {
 } from "./app/listApiSlice";
 import BookCard from "./BookCard";
 
+
 const BookLists = ({ name, username }) => {
-  const searchField = useSelector((state) => state.searchField.value);
+  const searchField = useSelector((state) => state.searchField.bookSearch);
   const { data: searchBooks, isLoading: searchLoad } = useGetBookSearchQuery(
     searchField,
     { skip: name !== "Search Books" || searchField === "" }

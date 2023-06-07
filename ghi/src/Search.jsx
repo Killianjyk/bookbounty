@@ -1,4 +1,4 @@
-import { search, reset } from "./app/SearchSlice";
+import { reset, searchBooks, searchUsers } from "./app/SearchSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
@@ -7,8 +7,12 @@ const Search = ({ type }) => {
   const [searchCriteria, setSearchCriteria] = useState(""); //initializes as empty string
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(search(searchCriteria));
-    dispatch(reset);
+    if (type === "Books") {
+      dispatch(searchBooks(searchCriteria));
+    }
+    if (type === "User") {
+      dispatch(searchUsers(searchCriteria));
+    }
   };
 
   return (
@@ -32,7 +36,7 @@ const Search = ({ type }) => {
           placeholder={`Search ${type}`}
           value={searchCriteria}
           onChange={(e) => setSearchCriteria(e.target.value)}
-          required
+          required={ type === "User" ? false : true }
         />
       </div>
       <button

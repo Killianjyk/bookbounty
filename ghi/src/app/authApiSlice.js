@@ -78,6 +78,7 @@ export const authAPI = createApi({
                 };
             },
             transformResponse: (response) => response?.users || null,
+            providesTags: ["Users"],
         }),
     })
 });

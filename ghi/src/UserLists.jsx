@@ -3,7 +3,7 @@ import { useGetUserSearchQuery } from "./app/authApiSlice";
 import UserCard from "./UserCard";
 
 const UserLists = ({ name }) => {
-  const searchField = useSelector((state) => state.searchField.value);
+  const searchField = useSelector((state) => state.searchField.userSearch);
   const { data: searchUsers, isLoading: searchLoad } = useGetUserSearchQuery(
     searchField,
     { skip: name !== "User Search" }
@@ -32,11 +32,13 @@ const UserLists = ({ name }) => {
     );
   }
 
+
+
   return (
     <>
       <h1 className="txt">{name}</h1>
       <div className="flex justify-center">
-        <div className="grid grid-cols-3 gap-4 justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 justify-center">
           {name === "User Search" &&
             searchUsers.map((user) => (
               <div key={user.username}>
