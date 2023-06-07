@@ -21,7 +21,7 @@ export default function Carousel() {
 
   return (
     <>
-    <div>Favorite Books</div>
+      <div>Favorite Books</div>
       <div className="w-80 mx-auto mb-8">
         <Slider {...settings}>
           {topFavoriteBooks?.map((book) => (
@@ -37,33 +37,33 @@ export default function Carousel() {
 
       {topFavoriteBooks?.map((book, index) => (
         <div key={book.work_id}>
-          {currentSlide === index ?
-          <Link
-            to={book.work_id}
-            className="w-80 border container mx-auto block p-1 bg-orange-300 rounded-lg shadow hover:bg-orange-300 dark:bg-slate-600 dark:border-gray-700 dark:hover:bg-slate-600"
-          >
-            <p className="text-left">
-              {index + 1}
-              <span className="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white">
-                {" "}
-                {book.title}
-              </span>
-            </p>
-          </Link>
-          :
-          <Link
-            to={book.work_id}
-            className="w-80 border container mx-auto block p-1 bg-orange-200 rounded-lg shadow hover:bg-orange-300 dark:bg-slate-800 dark:border-gray-700 dark:hover:bg-slate-600"
-          >
-            <p className="text-left">
-              {index + 1}
-              <span className="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white">
-                {" "}
-                {book.title}
-              </span>
-            </p>
-          </Link>
-          }
+          {currentSlide === index ? (
+            <Link
+              to={book.work_id}
+              className="w-80 border container mx-auto block p-1 bg-orange-300 rounded-lg shadow hover:bg-orange-300 dark:bg-slate-600 dark:border-gray-700 dark:hover:bg-slate-600"
+            >
+              <p className="text-left">
+                {index + 1}
+                <span className="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white">
+                  {" "}
+                  {book.title}
+                </span>
+              </p>
+            </Link>
+          ) : (
+            <Link
+              to={book.work_id}
+              className="w-80 border container mx-auto block p-1 bg-orange-200 rounded-lg shadow hover:bg-orange-300 dark:bg-slate-800 dark:border-gray-700 dark:hover:bg-slate-600"
+            >
+              <p className="text-left">
+                {index + 1}
+                <span className="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white">
+                  {" "}
+                  {book.title}
+                </span>
+              </p>
+            </Link>
+          )}
         </div>
       ))}
     </>

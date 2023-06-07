@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useGetBookQuery } from "./app/booksApiSlice";
 import DetailCard from "./DetailCard";
 
-
 const BookDetails = () => {
   const { workId } = useParams();
   const { data: book, error, isLoading } = useGetBookQuery(workId);
@@ -18,15 +17,12 @@ const BookDetails = () => {
           <div className="book__pg book__pg--5"></div>
         </div>
       </div>
-    )
-  };
+    );
+  }
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  return (
-    <DetailCard book={book} />
-  );
+  return <DetailCard book={book} />;
 };
-
 
 export default BookDetails;
