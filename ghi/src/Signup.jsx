@@ -16,10 +16,8 @@ const Signup = () => {
     event.preventDefault();
     const result = await signup(newUser);
     if (result.error) {
-      // Handle login error
       alert("Username already taken");
     } else {
-      // Login successful
       navigate("/");
     }
   };
