@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useGetUserQuery, useLogoutMutation } from "./app/authApiSlice";
 import { useEffect, useState } from "react";
+import DiscoverChunkDropdownNav from "./DiscoverChunkDropdownNav";
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -78,32 +79,7 @@ const Nav = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-orange-200 dark:bg-slate-800 rounded-box w-52"
             >
-              <li>
-                <NavLink
-                  className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                  to={"/discover/"}
-                >
-                  Discover Books
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                  to={"/users/search/"}
-                >
-                  Discover Users
-                </NavLink>
-              </li>
-              <div className="border-b border-gray-500">
-                <li>
-                  <NavLink
-                    className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                    to={"/random/"}
-                  >
-                    Random Book
-                  </NavLink>
-                </li>
-              </div>
+              <DiscoverChunkDropdownNav />
               {!user && (
                 <>
                   <li>
@@ -210,7 +186,7 @@ const Nav = () => {
           <ul className="menu menu-horizontal px-1">
             <li>
               <NavLink
-                className="dark:hover:text-gray-300 dark:hover:bg-slate-600"
+                className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
                 to={"/discover/"}
               >
                 Discover Books
@@ -218,7 +194,7 @@ const Nav = () => {
             </li>
             <li>
               <NavLink
-                className="dark:hover:text-gray-300 dark:hover:bg-slate-600"
+                className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
                 to={"/users/search/"}
               >
                 Discover Users
@@ -226,7 +202,7 @@ const Nav = () => {
             </li>
             <li>
               <NavLink
-                className="dark:hover:text-gray-300 dark:hover:bg-slate-600"
+                className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
                 to={"/random/"}
               >
                 Random Book
