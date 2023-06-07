@@ -159,10 +159,10 @@ Discover books- Move random button
 
 # 6/8- Whole team
 Goals:
--Review previous issues in Gitlab and approve as needed, review approvals together 
+-Review previous issues in Gitlab and approve as needed, review approvals together
 -Create issues for small items we need to complete today (Rew)
     Style "no book yet" page- Rew
-    Styling on Discover Users
+    Styling on Discover Users- Rew
     Redo rating bars- Nick M
     Discover books- Move random button
 
