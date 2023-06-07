@@ -3,11 +3,11 @@ import { useGetUserQuery } from "./app/authApiSlice";
 import ReviewCard from "./ReviewCard";
 import ReviewForm from "./ReviewForm";
 
-
 const ReviewList = ({ workId }) => {
-    const { data: user } = useGetUserQuery();
-    const { data: reviews, isLoading } = useGetBooksReviewsQuery(workId);
-    if (isLoading) {return (
+  const { data: user } = useGetUserQuery();
+  const { data: reviews, isLoading } = useGetBooksReviewsQuery(workId);
+  if (isLoading) {
+    return (
       <div className="mt-4 flex justify-center items-center">
         <div className="book">
           <div className="book__pg-shadow"></div>
@@ -18,15 +18,20 @@ const ReviewList = ({ workId }) => {
           <div className="book__pg book__pg--5"></div>
         </div>
       </div>
-    )};
-    return (<>
-        {user && user.username===reviews[0]?.username ?
-            <ReviewForm workId={workId}  reviewData={reviews[0]} editStatus={true} />
-                :
-            user && <ReviewForm workId={workId} editStatus={false} />
-        }
-        {reviews?.map((review) => <ReviewCard review={review} key={review.username+review.work_id}/>)}
-    </>);
-}
+    );
+  }
+  return (
+    <>
+      {user && user.username === reviews[0]?.username ? (
+        <ReviewForm workId={workId} reviewData={reviews[0]} editStatus={true} />
+      ) : (
+        user && <ReviewForm workId={workId} editStatus={false} />
+      )}
+      {reviews?.map((review) => (
+        <ReviewCard review={review} key={review.username + review.work_id} />
+      ))}
+    </>
+  );
+};
 
 export default ReviewList;

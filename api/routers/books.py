@@ -6,7 +6,6 @@ from models.books import (
     BookDetailsList,
     BookDetailOut,
     BookInData,
-    Search,
 )
 from queries.books import BooksQueries
 from queries.api import OpenLibraryQueries, RandomWordQuery
@@ -33,10 +32,7 @@ def track_book(
 
 
 @router.get("/api/books/", response_model=BookDataList)
-def get_top_favorited_books(
-    books: BooksQueries = Depends(),
-    open_library: OpenLibraryQueries = Depends(),
-):
+def get_top_favorited_books(books: BooksQueries = Depends()):
     favorite_books = books.get_books()
     return {"books": favorite_books}
 

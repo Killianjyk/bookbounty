@@ -15,7 +15,8 @@ export const listAPI = createApi({
                     body: {"work_id": work_id},
                     credentials: "include",
                 }
-            }
+            },
+            invalidatesTags: ["Favorites"],
         }),
         getFavoriteBooks: builder.query({
             query: (username) => {
@@ -24,6 +25,7 @@ export const listAPI = createApi({
                 };
             },
             transformResponse: (response) => response?.favorites || null,
+            providesTags: ["Favorites"],
         }),
         getFavoriteStatus: builder.query({
             query: ({ username, work_id }) => {
@@ -31,7 +33,7 @@ export const listAPI = createApi({
                     url: `/api/favorites/${username}/${work_id}/`,
                     credentials: "include",
                 };
-            },
+            }
         }),
         removeFavoriteStatus: builder.mutation({
             query: ({ username, work_id }) => {
@@ -41,6 +43,7 @@ export const listAPI = createApi({
                     credentials: "include",
                 };
             },
+            invalidatesTags: ["Favorites"],
         }),
         addNextStatus: builder.mutation({
             query: (work_id) => {
@@ -50,7 +53,8 @@ export const listAPI = createApi({
                     body: {"work_id": work_id},
                     credentials: "include",
                 }
-            }
+            },
+            invalidatesTags: ["Next"],
         }),
         getNextBooks: builder.query({
             query: (username) => {
@@ -59,6 +63,7 @@ export const listAPI = createApi({
                 };
             },
             transformResponse: (response) => response?.next || null,
+            providesTags: ["Next"],
         }),
         getNextStatus: builder.query({
             query: ({ username, work_id }) => {
@@ -76,6 +81,7 @@ export const listAPI = createApi({
                     credentials: "include",
                 };
             },
+            invalidatesTags: ["Next"],
         }),
         addPreviousStatus: builder.mutation({
             query: (work_id) => {
@@ -85,7 +91,8 @@ export const listAPI = createApi({
                     body: {"work_id": work_id},
                     credentials: "include",
                 }
-            }
+            },
+            invalidatesTags: ["Previous"],
         }),
         getPreviousBooks: builder.query({
             query: (username) => {
@@ -94,6 +101,7 @@ export const listAPI = createApi({
                 };
             },
             transformResponse: (response) => response?.previous || null,
+            providesTags: ["Previous"],
         }),
         getPreviousStatus: builder.query({
             query: ({ username, work_id }) => {
@@ -111,6 +119,7 @@ export const listAPI = createApi({
                     credentials: "include",
                 };
             },
+            invalidatesTags: ["Previous"],
         }),
     })
 });

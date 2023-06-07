@@ -6,7 +6,7 @@ const UserLists = ({ name }) => {
   const searchField = useSelector((state) => state.searchField.value);
   const { data: searchUsers, isLoading: searchLoad } = useGetUserSearchQuery(
     searchField,
-    { skip: name !== "User Search" },
+    { skip: name !== "User Search" }
   );
 
   if (searchLoad) {
@@ -32,22 +32,21 @@ const UserLists = ({ name }) => {
     );
   }
 
-   return (
-     <>
-       <h1 className="txt">{name}</h1>
-       <div className="flex justify-center">
-         <div className="grid grid-cols-3 gap-4 justify-center">
-           {name === "User Search" &&
-             searchUsers.map((user) => (
-               <div key={user.username}>
-                 <UserCard user={user} />
-               </div>
-             ))}
-         </div>
-       </div>
-     </>
-   );
-
+  return (
+    <>
+      <h1 className="txt">{name}</h1>
+      <div className="flex justify-center">
+        <div className="grid grid-cols-3 gap-4 justify-center">
+          {name === "User Search" &&
+            searchUsers.map((user) => (
+              <div key={user.username}>
+                <UserCard user={user} />
+              </div>
+            ))}
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default UserLists;

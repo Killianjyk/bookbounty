@@ -91,7 +91,7 @@ class FakeBooksQueries:
 class FakeOpenLibraryQueries:
     def get_book_image(self, work_id: str):
         return "image working"
-    
+
     def get_book_details(self, work_id: str):
         return {
             "work_id": work_id,

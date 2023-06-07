@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useGetRandomQuery } from './app/booksApiSlice';
-import DetailCard from './DetailCard';
+import { useState } from "react";
+import { useGetRandomQuery } from "./app/booksApiSlice";
+import DetailCard from "./DetailCard";
 
 const Random = () => {
   const { data: book, isLoading, refetch } = useGetRandomQuery();
@@ -17,7 +17,12 @@ const Random = () => {
     <div className="h-full mb-4">
       <h1 className="text-center text-3xl txt my-4">Random</h1>
       <div className="txt text-center">
-        <button type='button' className='btn btn-secondary' onClick={handleButtonClick} disabled={isLoading || loading}>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={handleButtonClick}
+          disabled={isLoading || loading}
+        >
           Random!
         </button>
         {(isLoading || loading) && (
@@ -32,7 +37,7 @@ const Random = () => {
             </div>
           </div>
         )}
-        {book && !isLoading && !loading && <DetailCard book={book}/> }
+        {book && !isLoading && !loading && <DetailCard book={book} />}
       </div>
     </div>
   );
