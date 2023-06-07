@@ -1,58 +1,14 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useGetUserQuery, useLogoutMutation } from "./app/authApiSlice";
-import { useEffect, useState } from "react";
 import DiscoverChunkDropdownNav from "./DiscoverChunkDropdownNav";
+import DiscoverChunkNav from "./DiscoverChunkNav";
+import LoginSignUpNav from "./LoginSignUpNav";
+import UserDropdownDropdown from "./UserDropdownDropdown";
+import UserDropdown from "./UserDropdown";
+import ThemeSwitchButton from "./ThemeSwitchButton";
 
 const Nav = () => {
-  const navigate = useNavigate();
   const { data: user } = useGetUserQuery();
-  const [logout] = useLogoutMutation();
-
-  const [theme, setTheme] = useState("light");
-
-  // if local storage is empty save theme as light
-  useEffect(() => {
-    if (localStorage.getItem("theme") === null) {
-      localStorage.setItem("theme", "light");
-    }
-    handleThemeSwitch()
-  }, []);
-
-  useEffect(() => {
-    // select html elem
-    const html = document.querySelector("html");
-    //add or remove class dark in html elem according to theme in localstorage.
-    if (localStorage.getItem("theme") === "dark") {
-      html.classList.add("dark");
-      setTheme("dark");
-    } else {
-      html.classList.remove("dark");
-      setTheme("light");
-    }
-  }, [theme]);
-
-  // handle switch theme
-  const handleThemeSwitch = () => {
-    if (localStorage.getItem("theme") === "light") {
-      setTheme("dark");
-      localStorage.setItem("theme", "dark");
-
-      let image = document.getElementById("theme-toggle-icon");
-      // Remove the src attribute
-      image.removeAttribute("src");
-      // Add a new src attribute
-      image.setAttribute("src", "/light-mode-icon-orange.png");
-    } else {
-      setTheme("light");
-      localStorage.setItem("theme", "light");
-
-      let image = document.getElementById("theme-toggle-icon");
-      // Remove the src attribute
-      image.removeAttribute("src");
-      // Add a new src attribute
-      image.setAttribute("src", "/dark-mode-icon-blue.png");
-    }
-  };
 
   return (
     <>
@@ -81,92 +37,10 @@ const Nav = () => {
             >
               <DiscoverChunkDropdownNav />
               {!user && (
-                <>
-                  <li>
-                    <NavLink
-                      className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                      to={"/login/"}
-                    >
-                      Login
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                      to={"/signup/"}
-                    >
-                      Sign Up
-                    </NavLink>
-                  </li>
-                </>
+                <LoginSignUpNav />
               )}
               {user && (
-                <>
-                  <li tabIndex={0}>
-                    <div className="dark:hover:text-gray-300 hover:text-gray-700 justify-between dark:hover:bg-[#D3D3D325]">
-                      {user.full_name}
-                      <svg
-                        className="fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                      </svg>
-                    </div>
-
-                    <ul className="p-2 z-10 bg-orange-50 dark:bg-slate-900">
-                      <div className="border-b border-gray-500">
-                        <li>
-                          <NavLink
-                            className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                            to={"/users/"}
-                          >
-                            User Home
-                          </NavLink>
-                        </li>
-                      </div>
-                      <li>
-                        <NavLink
-                          className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                          to={"/books/favorites/" + user.username}
-                        >
-                          Favorites
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                          to={"/books/previous/" + user.username}
-                        >
-                          Previously Read
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                          to={"/books/next/" + user.username}
-                        >
-                          Read Next
-                        </NavLink>
-                      </li>
-                      <div className="border-t border-gray-500">
-                        <li>
-                          <NavLink
-                            onClick={async () => {
-                              await logout();
-                              navigate("/");
-                            }}
-                            className="bg-orange-50 dark:bg-slate-900 hover:bg-red-400 dark:hover:bg-[#dc262690] txt"
-                          >
-                            Logout
-                          </NavLink>
-                        </li>
-                      </div>
-                    </ul>
-                  </li>
-                </>
+                <UserDropdown />
               )}
             </ul>
           </div>
@@ -184,137 +58,21 @@ const Nav = () => {
         </div>
         <div className="hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li>
-              <NavLink
-                className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                to={"/discover/"}
-              >
-                Discover Books
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                to={"/users/search/"}
-              >
-                Discover Users
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                to={"/random/"}
-              >
-                Random Book
-              </NavLink>
-            </li>
+            <DiscoverChunkNav />
           </ul>
         </div>
         <div className="navbar-end">
           <div className="hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
               {!user && (
-                <>
-                  <li>
-                    <NavLink
-                      className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                      to={"/login/"}
-                    >
-                      Login
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                      to={"/signup/"}
-                    >
-                      Sign Up
-                    </NavLink>
-                  </li>
-                </>
+                <LoginSignUpNav />
               )}
               {user && (
-                <>
-                  <li className="" tabIndex={0}>
-                    <div className="dark:hover:text-gray-300 hover:text-gray-700 dark:hover:bg-[#D3D3D325]">
-                      {user.full_name}
-                      <svg
-                        className="fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-                      </svg>
-                    </div>
-                    <ul className="p-2 bg-orange-50 dark:bg-slate-900 z-10">
-                      <div className="border-b border-gray-500">
-                        <li>
-                          <NavLink
-                            className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                            to={"/users/"}
-                          >
-                            User Home
-                          </NavLink>
-                        </li>
-                      </div>
-                      <li>
-                        <NavLink
-                          className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                          to={"/books/favorites/" + user.username}
-                        >
-                          Favorites
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                          to={"/books/previous/" + user.username}
-                        >
-                          Previously Read
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                          to={"/books/next/" + user.username}
-                        >
-                          Read Next
-                        </NavLink>
-                      </li>
-                      <div className="border-t border-gray-500">
-                        <li>
-                          <NavLink
-                            onClick={async () => {
-                              await logout();
-                              navigate("/");
-                            }}
-                            className="bg-orange-50 dark:bg-slate-900 hover:bg-red-400 dark:hover:bg-[#dc262690] txt"
-                          >
-                            Logout
-                          </NavLink>
-                        </li>
-                      </div>
-                    </ul>
-                  </li>
-                </>
+                <UserDropdownDropdown />
               )}
             </ul>
           </div>
-          <button
-            onClick={handleThemeSwitch}
-            id="theme-toggle"
-            type="button"
-            className="mr-2"
-          >
-            <img
-              className="h-10"
-              id="theme-toggle-icon"
-              src="/dark-mode-icon-blue.png"
-              alt="Theme Icon"
-            ></img>
-          </button>
+          <ThemeSwitchButton />
         </div>
       </div>
     </>
