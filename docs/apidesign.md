@@ -1,8 +1,9 @@
 # Back End Design
 
 ## Books
-    -Methods: `GET`, `POST`
-    -Paths: `/api/books/`, `/api/books/<str:word_id>/`, `/api/books/discover/<str:search_bar>/`
+
+  - **Method**: `GET`, `POST`
+  - **Paths**: `/api/books/`, `/api/books/<str:work_id>/`, `/api/books/discover/<str:search_bar>/`
 Input: 
 ```
 {
@@ -36,8 +37,8 @@ Output:
 }
 ```
 ## Favorites/Previous/Next
-    -Methods: `GET`, `POST`, `DELETE`
-    -Paths: `/api/<str:type>/`, `/api/<str:type>/<str:username>/`, `/api/<str:type>/<str:username>/<str:work_id>/`
+  - **Method**: `GET`, `POST`, `DELETE`
+  - **Paths**: `/api/<str:type>/`, `/api/<str:type>/<str:username>/`, `/api/<str:type>/<str:username>/<str:work_id>/`
 Input: 
 ```
 {
@@ -75,8 +76,8 @@ Output:
 }
 ```
 ## Users
-    -Methods: `GET`, `POST`, `PUT`, `DELETE`
-    -Paths: `/api/users/`, `/api/reviews/<str:searched_username>/`, `/token`
+  - **Method**: `GET`, `POST`, `PUT`, `DELETE`
+  - **Paths**: `/api/users/`, `/api/reviews/<str:searched_username>/`, `/token`
 Input: 
 ```
 {
