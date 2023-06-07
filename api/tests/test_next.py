@@ -54,12 +54,14 @@ def test_get_user_next():
                 "work_id": "/books/12345",
                 "title": "title working",
                 "author": "author working",
+                "image": "image working",
             },
             {
                 "id": "12345",
                 "work_id": "/books/12346",
                 "title": "title working",
                 "author": "author working",
+                "image": "image working",
             },
         ]
     }

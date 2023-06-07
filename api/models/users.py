@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from .books import Search
 from typing import List
 
 

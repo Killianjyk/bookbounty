@@ -54,7 +54,7 @@ def get_all_users(users: UserQueries = Depends()):
     return {"users": users.get_all()}
 
 
-@router.get("/api/users/{searched_username}", response_model=UserList)
+@router.get("/api/users/{searched_username}/", response_model=UserList)
 def get_searched_users(searched_username: str, users: UserQueries = Depends()):
     return {"users": users.get_searched(searched_username)}
 

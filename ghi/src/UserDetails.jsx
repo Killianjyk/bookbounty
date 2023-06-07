@@ -39,7 +39,7 @@ const UserDetails = () => {
 
 
     return (
-      <section className="py-40 bg-orange-100 dark:bg-slate-700 bg-opacity-50 h-screen">
+      <section className="py-40 bg-orange-100 dark:bg-slate-700 bg-opacity-50 h-full">
         <div className="mx-auto container max-w-2xl md:w-3/4 shadow-md">
           {user && (
             <>

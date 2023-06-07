@@ -1,12 +1,17 @@
 # 6/6
     Goals:
-     - Improve navbar spacing
-     - Fix light mode / dark mode glitch
-     - Store top favorite books data?
-     - Have top favorites row light up when carousel is showing that book
-     - Make book card have picture, left to right in groups of 3s
-     - Make a 404 page?
-     - change search button color
+        - Improve navbar spacing
+        - Fix light mode / dark mode glitch
+        - Store top favorite books data?
+        - Have top favorites row light up when carousel is showing that book
+        - Make book card have picture, left to right in groups of 3s
+        - Make a 404 page?
+        - change search button color
+
+    Notes:
+        - Search bar searches both books and users
+        - Rating doesn't work on mobile
+        -
 
 # 6/5
     - Over weekend I:

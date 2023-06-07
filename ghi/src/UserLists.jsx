@@ -32,15 +32,22 @@ const UserLists = ({ name }) => {
     );
   }
 
-  return (
-    <>
-      <h1 className="txt">{name}</h1>
-      <div className="grid grid-cols-3 gap-4">
-        {name === "User Search" &&
-          searchUsers.map((user) => (<UserCard user={user} key={user.username} />))}
-      </div>
-    </>
-  );
+   return (
+     <>
+       <h1 className="txt">{name}</h1>
+       <div className="flex justify-center">
+         <div className="grid grid-cols-3 gap-4 justify-center">
+           {name === "User Search" &&
+             searchUsers.map((user) => (
+               <div key={user.username}>
+                 <UserCard user={user} />
+               </div>
+             ))}
+         </div>
+       </div>
+     </>
+   );
+
 };
 
 export default UserLists;

@@ -14,6 +14,7 @@ client = TestClient(app)
 def test_track_book():
     # arrange
     app.dependency_overrides[BooksQueries] = FakeBooksQueries
+    app.dependency_overrides[OpenLibraryQueries] = FakeOpenLibraryQueries
     book_in = {
         "work_id": "/books/12345",
         "title": "title working",
@@ -28,6 +29,7 @@ def test_track_book():
         "work_id": "/books/12345",
         "title": "title working",
         "author": "author working",
+        "image": "image working",
     }
     # cleanup
     app.dependency_overrides = {}

@@ -63,19 +63,20 @@ const Nav = () => {
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
       </label>
       <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-orange-200 dark:bg-slate-800 rounded-box w-52">
-        {!user &&  <><li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/login/"} >Login</NavLink></li>
-        <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/signup/"} >Sign Up</NavLink></li></>}
-
           <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/discover/"} >Discover Books</NavLink></li>
           <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/users/search/"} >Discover Users</NavLink></li>
-          <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/random/"} >Random Book</NavLink></li>
-
+          <div className="border-b border-gray-500">
+            <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/random/"} >Random Book</NavLink></li>
+          </div>
+        {!user &&  <><li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/login/"} >Login</NavLink></li>
+        <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/signup/"} >Sign Up</NavLink></li></>}
         {user && <>
         <li tabIndex={0}>
           <a className="dark:hover:text-gray-300 hover:text-gray-700 justify-between dark:hover:bg-[#D3D3D325]">
             {user.full_name}
             <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
           </a>
+
           <ul className="p-2 z-10 bg-orange-50 dark:bg-slate-900">
             <div className="border-b border-gray-500">
               <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/users/"} >User Home</NavLink></li>
@@ -88,8 +89,6 @@ const Nav = () => {
             </div>
           </ul>
         </li></>}
-
-
       </ul>
     </div>
     <NavLink to={"/"} className="mr-8 btn btn-ghost normal-case text-xl dark:hover:bg-slate-700">
@@ -98,27 +97,17 @@ const Nav = () => {
     </NavLink>
   </div>
   <div className="hidden lg:flex">
-
     <ul className="menu menu-horizontal px-1">
-
-
-
         <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-600" to={"/discover/"} >Discover Books</NavLink></li>
         <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-600" to={"/users/search/"} >Discover Users</NavLink></li>
         <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-600" to={"/random/"} >Random Book</NavLink></li>
-
     </ul>
   </div>
-
-
   <div className="navbar-end">
-
 <div className="hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-
       {!user &&  <><li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/login/"} >Login</NavLink></li>
       <li><NavLink className="dark:hover:text-gray-300 dark:hover:bg-slate-700" to={"/signup/"} >Sign Up</NavLink></li></>}
-
       {user && <><li className="" tabIndex={0}>
         <a className="dark:hover:text-gray-300 hover:text-gray-700 dark:hover:bg-[#D3D3D325]">
           {user.full_name}
@@ -136,11 +125,8 @@ const Nav = () => {
           </div>
         </ul>
       </li></>}
-
-
     </ul>
   </div>
-
     <button onClick={handleThemeSwitch} id="theme-toggle" type="button" className="mr-2">
       <img className="h-10" id="theme-toggle-icon" src="/dark-mode-icon-blue.png"></img>
     </button>
