@@ -18,7 +18,9 @@
         - Fav, prev, next not reloading when switching
             - add a "no books yet" if no books
         - Search bar searches both books and users
-        - Rating doesn't work on mobile
+        - Rating doesn't work on mobile (daisyui)
+        - titles
+
 
     Notes:
         -
