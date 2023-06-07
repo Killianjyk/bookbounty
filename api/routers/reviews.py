@@ -8,17 +8,6 @@ from queries.users import UserQueries
 router = APIRouter()
 
 
-@router.get("/api/reviews/all/", response_model=ReviewList)
-def get_all_reviews(
-    reviews: ReviewsQueries = Depends(),
-    users: UserQueries = Depends(),
-):
-    books_reviews = reviews.get_reviews()
-    for book_review in books_reviews:
-        book_review["username"] = users.get_by_id(book_review["user_id"])
-    return {"reviews": books_reviews}
-
-
 @router.get("/api/reviews/{work_id}/", response_model=ReviewList)
 def get_book_reviews(
     work_id: str,

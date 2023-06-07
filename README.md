@@ -1,5 +1,7 @@
 # Module3 Project Gamma
 
+[API DESIGN](docs/apidesign.md)
+
 ## Getting started
 
 You have a project repository, now what? The next section
