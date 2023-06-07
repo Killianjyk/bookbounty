@@ -4,6 +4,7 @@
 
   - **Method**: `GET`, `POST`
   - **Paths**: `/api/books/`, `/api/books/<str:work_id>/`, `/api/books/discover/<str:search_bar>/`
+
 Input: 
 ```
 {
@@ -12,6 +13,7 @@ Input:
     "title": string,
 }
 ```
+
 Output: 
 ```
 {
@@ -22,6 +24,7 @@ Output:
     "image": string,
 }
 ```
+
 **or**
 ```
 {
@@ -39,24 +42,27 @@ Output:
 ## Favorites/Previous/Next
   - **Method**: `GET`, `POST`, `DELETE`
   - **Paths**: `/api/<str:type>/`, `/api/<str:type>/<str:username>/`, `/api/<str:type>/<str:username>/<str:work_id>/`
+
 Input: 
 ```
 {
     "work_id": string,
 }
 ```
+
 Output: 
 ```
 {
-    "id": string,
-    "user_id": string,
-    "book_id": string,
-    "work_id": string,
+  "id": string,
+  "user_id": string,
+  "book_id": string,
+  "work_id": string,
 }
 ```
 ## Reviews
-    -Methods: `GET`, `POST`, `PUT`, `DELETE`
-    -Paths: `/api/reviews/`, `/api/reviews/<str:work_id>/`
+  - **Method**: `GET`, `POST`, `PUT`, `DELETE`
+  - **Paths**: `/api/reviews/`, `/api/reviews/<str:work_id>/`
+
 Input: 
 ```
 {
@@ -65,6 +71,7 @@ Input:
   "work_id": "string",
 }
 ```
+
 Output: 
 ```
 {
@@ -78,6 +85,7 @@ Output:
 ## Users
   - **Method**: `GET`, `POST`, `PUT`, `DELETE`
   - **Paths**: `/api/users/`, `/api/reviews/<str:searched_username>/`, `/token`
+
 Input: 
 ```
 {
@@ -87,6 +95,7 @@ Input:
   "full_name": "string"
 }
 ```
+
 Output: 
 ```
 {
@@ -100,6 +109,7 @@ Output:
   }
 }
 ```
+
 **or**
 ```
 {
@@ -113,6 +123,7 @@ Output:
   ]
 }
 ```
+
 **or**
 ```
 {
