@@ -14,14 +14,18 @@ class OpenLibraryQueries:
         return response["name"]
 
     def search_api(self, string: str):
-        string = string.replace(" ", "+")
-        response = requests.get(
-            self.api_url + self.search + string + "&limit=10"
-        ).json()
-        keys = []
-        for i in range(0, len(response["docs"])):
-            keys.append(response["docs"][i]["key"])
-        return keys
+        try:
+            string = string.replace(" ", "+")
+            response = requests.get(
+                self.api_url + self.search + string + "&limit=10"
+            )
+            response.raise_for_status()  # Raises an exception if the response status code is an error
+            data = response.json()
+            keys = [doc["key"] for doc in data.get("docs", [])]
+            return keys
+        except requests.exceptions.RequestException as e:
+            print("Error occurred while making the request:", e)
+            return None
 
     def get_book_details(self, work_id: str):
         work_id = work_id.replace("works", "books")
@@ -79,5 +83,11 @@ class RandomWordQuery:
     url = "https://random-word-api.vercel.app/api?words=100"
 
     def get_random_word(self):
-        response = requests.get(self.url).json()
-        return response
+        try:
+            response = requests.get(self.url)
+            response.raise_for_status()  # Raises an exception if the response status code is an error
+            data = response.json()
+            return data
+        except requests.exceptions.RequestException as e:
+            print("Error occurred while making the request:", e)
+            return None

@@ -14,7 +14,13 @@
 
 # 6/7
     Goals:
-        -
+        - fix prev, next not working
+        - Fav, prev, next not reloading when switching
+            - add a "no books yet" if no books
+        - Search bar searches both books and users
+        - Rating doesn't work on mobile (daisyui)
+        - titles
+
 
     Notes:
         -
@@ -121,7 +127,7 @@ Delete for fav, prev and next
 
 # 5/18
 
-Books endpoins working
+Books endpoints working
 
 # 5/17
 

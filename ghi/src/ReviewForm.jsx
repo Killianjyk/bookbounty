@@ -48,17 +48,16 @@ const ReviewForm = ({ workId, reviewData, editStatus }) => {
           <div className="md:flex mb-4">
             <div className="w-1/4">
               <label className="underline txt p-4">Rating:</label>
-              <div>
+              <div className="rating">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <span
+                  <input
                     key={star}
-                    className={`p-2 star ${
-                      formData.stars >= star ? "active" : ""
-                    }`}
-                    onClick={() => handleStarClick(star)}
-                  >
-                    &#9733;
-                  </span>
+                    type="radio"
+                    name="rating"
+                    className="mask mask-star-2 bg-orange-400 visually-hidden"
+                    checked={formData.stars === star}
+                    onChange={() => handleStarClick(star)}
+                  />
                 ))}
               </div>
             </div>

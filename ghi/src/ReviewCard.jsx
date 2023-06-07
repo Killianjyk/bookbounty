@@ -6,16 +6,18 @@ const ReviewCard = ({ review }) => {
           <span className="p-4 underline">Review by:</span>{" "}
           <span className="p-4">{review?.username}</span>
         </div>
-        <div className="w-fill p-4">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <span
-              key={star}
-              className={`star ${review?.stars >= star ? "active" : ""}`}
-            >
-              &#9733;
-            </span>
-          ))}
-        </div>
+        <div className="rating">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <input
+                    key={star}
+                    type="radio"
+                    name="rating"
+                    className="mask mask-star-2 bg-orange-400 visually-hidden"
+                    checked={review.stars === star}
+                    readOnly
+                  />
+                ))}
+              </div>
       </div>
       <div className="flex mb-4 border rounded-lg">
         <div className="w-full txt p-4">{review.text}</div>

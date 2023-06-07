@@ -6,6 +6,7 @@ const Footer = () => {
         <a
           href="https://openlibrary.org"
           target="_blank"
+          rel="noreferrer"
           className="text-neutral-600 dark:text-neutral-400"
         >
           {" "}
