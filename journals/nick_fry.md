@@ -1,5 +1,18 @@
 ## 06/06/2023
     Goals:
+        - Confirm grading requirements are met
+        - Finish all started functionality
+        - Complete issues
+    Notes:
+        - Issues on gitlab need to be understood more clearly
+    Worked on:
+        - Resolving Issues
+        - Clarifying documentation
+        - Setting up CI/CD pipeline
+        - Reviews styling
+
+## 06/06/2023
+    Goals:
         - Add styling to review list and cards
             - set up styling for phones and smaller screens as well
         - Edit tags for redux to be smarter for reloading purposes
@@ -16,6 +29,7 @@
         - Tags in redux are extremely useful for knowing when to refetch data
         - Tags can be used with more specific parameters such as ID
     Worked on:
+        - Reviews can be edited on detail page
         - Reloading pages at the correct time
         - Review user interface
 
@@ -52,6 +66,7 @@
     Worked on:
         - Tests
         - Slice management and readability 
+        - Function user list buttons
 
 ## 05/31/2023
     Goals:
@@ -60,7 +75,8 @@
         - slices need to be registered with the store
         - each slice needs its own middleware and exported data
     Worked on:
-        - Slice management and readability 
+        - Slice management and readability
+            - Reorganization of function calls
         
 ## 05/26/2023
     Goals:
@@ -69,6 +85,28 @@
         - FormData does not work for sign up
     Worked on:
         - Sign up front end form
+        - User lists components 
+        - User card component
+
+## 05/24/2023
+    Worked on:
+        - Book Search pages
+        - Styling updates
+
+## 05/23/2023
+    Worked on:
+        - Addition of an untracked book to a user's list
+        - Variable standardization
+
+## 05/22/2023
+    Worked on:
+        - User detail authentication lock
+        - Deletion for user lists
+
+## 05/18/2023
+    Worked on:
+        - Searching open library from the books endpoint
+        - Authentication tokens
 
 ## 05/17/2023
     Goals:
@@ -76,7 +114,10 @@
     Notes for myself:
         - A path can have dependencies on more than one query
     Worked on:
-        - Paths for books in books router
+        - Added a users table to the database
+        - Added a favorite books table
+        - Added a read next books table
+        - Added a previously read books table
         
 ## 05/16/2023
     Goals:
@@ -85,7 +126,7 @@
     Notes for myself:
         - Routers can pass to multiple queries
     Worked on:
-        - Paths for books in books router
+        - Edited and updated models
 
 ## 05/15/2023
     Goals:
