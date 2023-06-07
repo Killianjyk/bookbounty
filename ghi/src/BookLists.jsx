@@ -28,7 +28,7 @@ const BookLists = ({ name, username }) => {
   );
   if (searchLoad || favoritesLoad || previousLoad || nextLoad)
     return (
-      <div className="mt-4 flex justify-center place-items-center">
+      <div className="mt-8 flex justify-center place-items-center">
         <div className="book">
           <div className="book__pg-shadow"></div>
           <div className="book__pg"></div>
@@ -50,22 +50,22 @@ const BookLists = ({ name, username }) => {
     (!searchBooks || searchBooks.length === 0)
   ) {
       return (
-        <div className="bg-components h-full text-center">
-          <center className="mt-24 m-auto">
+        <div className="bg-components h-fit text-center">
+          <center className="">
             <img
               className="dog-404"
               src="https://i.imgur.com/Tt02lJ7.png"
               alt="Picture1"
             />
-            <div className="tracking-widest mt-4 w-full">
+            {name !== "Search Books" && <div className="tracking-widest mt-4 w-full">
               <span className="text-gray-500 text-6xl block">
-                <span>Opps...</span>
+                <span>Oops...</span>
               </span>
               <span className="text-gray-500 text-xl">
                 Sorry, no books have been added to {username}'s {name} list
                 yet!
               </span>
-            </div>
+            </div>}
           </center>
         </div>
       );
@@ -73,7 +73,7 @@ const BookLists = ({ name, username }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="txt text-3xl text-center mt-4">{listTitle}</h1>
+      <h1 className="txt text-3xl text-center my-4">{listTitle}</h1>
       <div className="flex justify-center">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {name === "Search Books" &&
