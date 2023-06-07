@@ -21,6 +21,7 @@ export default function Carousel() {
 
   return (
     <>
+    <div>Favorite Books</div>
       <div className="w-80 mx-auto mb-8">
         <Slider {...settings}>
           {topFavoriteBooks?.map((book) => (

@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { useGetUserQuery, useUpdateUserInfoMutation } from "./app/authApiSlice";
-import { useNavigate } from "react-router-dom";
-
 
 const UserDetails = () => {
-    const navigate = useNavigate();
     const { data: user, refetch } = useGetUserQuery();
     const [updateUser] = useUpdateUserInfoMutation();
 
@@ -22,19 +19,14 @@ const UserDetails = () => {
     };
 
     const onSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await updateUser(
-                formData
-            );
-            refetch();
-            window.alert(
-              "Notification: Account information has been updated! Please note that the modifications will take effect upon your next login. We kindly request you to log out and log back in to observe the changes."
-            );
-            console.log(formData);
-        } catch (error) {
-            console.log(error);
-        }
+      e.preventDefault();
+      await updateUser(
+          formData
+      );
+      refetch();
+      window.alert(
+        "Notification: Account information has been updated! Please note that the modifications will take effect upon your next login. We kindly request you to log out and log back in to observe the changes."
+      );
     };
 
 

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import BookLists from "./BookLists";
 import Carousel from "./Carousel";
 
 const HomePage = () => {
@@ -19,9 +18,6 @@ const HomePage = () => {
     </div>
     <div>
       <Carousel />
-    </div>
-    <div>
-      <BookLists name="Most Liked"/>
     </div>
     </div>
   );

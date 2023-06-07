@@ -21,7 +21,6 @@ const BookDetails = () => {
     )
   };
   if (error) {
-    console.log(error);
     return <div>Error: {error.message}</div>;
   }
   return (

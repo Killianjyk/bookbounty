@@ -11,7 +11,11 @@ class BooksQueries(MongoQueries):
 
     def new_book(self, book_data: BookInData):
         book_data = book_data.dict()
-        search_for = self.collection.find_one({"work_id": book_data["work_id"]})
+        search_for = self.collection.find_one(
+            {
+                "work_id": book_data["work_id"],
+            }
+        )
         if search_for:
             search_for["id"] = str(search_for["_id"])
             return BookOut(**search_for)
