@@ -1,3 +1,24 @@
+# 6/9
+    Goals:
+        -
+
+    Notes:
+        -
+
+# 6/8
+    Goals:
+        -
+
+    Notes:
+        -
+
+# 6/7
+    Goals:
+        -
+
+    Notes:
+        -
+
 # 6/6
     Goals:
         - Improve navbar spacing
@@ -11,6 +32,11 @@
     Notes:
         - Search bar searches both books and users
         - Rating doesn't work on mobile
+        - Fav, prev, next not reloading when switching
+            - add a "no books yet" if no books
+        - Notification for automatic log out?
+        - Drop down spacing
+        - Icons maybe
         -
 
 # 6/5
