@@ -40,7 +40,21 @@ const BookLists = ({ name, username }) => {
     );
   let listTitle = name;
   if (username) {
-    listTitle = `${username}- ${name}`;
+    listTitle = `${username} - ${name}`;
+  }
+  if (
+    (!favoriteBooks || favoriteBooks.length === 0) &&
+    (!previousBooks || previousBooks.length === 0) &&
+    (!nextBooks || nextBooks.length === 0) &&
+    (!searchBooks || searchBooks.length === 0)) {
+    return (
+    <div className="flex flex-col items-center">
+      <h1 className="txt text-3xl text-center mt-4">{listTitle}</h1>
+      <div className="flex justify-center">
+          No Books Yet
+      </div>
+    </div>
+    );
   }
 
   return (
@@ -48,20 +62,10 @@ const BookLists = ({ name, username }) => {
       <h1 className="txt text-3xl text-center mt-4">{listTitle}</h1>
       <div className="flex justify-center">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {name === "Search Books" &&
-            searchBooks?.map((book) => (
-              <div key={book.work_id}>
-                <BookCard book={book} />
-              </div>
-            ))}
-          {(name === "Favorites" ||
-            name === "Previously Read" ||
-            name === "Read Next") &&
-            favoriteBooks?.map((book) => (
-              <div key={book.work_id}>
-                <BookCard book={book} />
-              </div>
-            ))}
+          {name === "Search Books" && searchBooks?.map((book) => (<div key={book.work_id}><BookCard book={book} /></div>))}
+          {(name === "Favorites") && favoriteBooks?.map((book) => (<div key={book.work_id}><BookCard book={book} /></div>))}
+          {(name === "Read Next") && nextBooks?.map((book) => (<div key={book.work_id}><BookCard book={book} /></div>))}
+          {(name === "Previously Read") && previousBooks?.map((book) => (<div key={book.work_id}><BookCard book={book} /></div>))}
         </div>
       </div>
     </div>

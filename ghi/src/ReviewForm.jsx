@@ -47,7 +47,7 @@ const ReviewForm = ({ workId, reviewData, editStatus }) => {
                         <label className="underline txt p-4">Rating:</label>
                         <div>
                             {[1, 2, 3, 4, 5].map((star) => (
-                                <span key={star} className={`star ${formData.stars >= star ? 'active' : ''}`} onClick={() => handleStarClick(star)}>&#9733;</span>
+                                <span key={star} className={`p-2 star ${formData.stars >= star ? 'active' : ''}`} onClick={() => handleStarClick(star)}>&#9733;</span>
                             ))}
                         </div>
                     </div>
