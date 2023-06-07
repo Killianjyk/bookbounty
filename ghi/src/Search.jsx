@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const Search = ({ type }) => {
   const dispatch = useDispatch();
-  const [searchCriteria, setSearchCriteria] = useState(""); //initializes as empty string
+  const [searchCriteria, setSearchCriteria] = useState(""); 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (type === "Books") {
@@ -68,9 +68,3 @@ const Search = ({ type }) => {
   );
 };
 export default Search;
-
-//We want this search component to make it to the list.jsx that holds the list of all the books
-//useDispatch: function you need if you are triggering changes (actions from SearchSlice)
-//useSelector: to use state component
-//When to use redux and when to use useState: When you are not passing into multiple componenets use useState. Otherwise.
-//Once you submit form other components need to care about that thats why we use both redux and react here
