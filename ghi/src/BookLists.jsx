@@ -49,12 +49,26 @@ const BookLists = ({ name, username }) => {
     (!nextBooks || nextBooks.length === 0) &&
     (!searchBooks || searchBooks.length === 0)
   ) {
-    return (
-      <div className="flex flex-col items-center">
-        <h1 className="txt text-3xl text-center mt-4">{listTitle}</h1>
-        <div className="flex justify-center">No Books Yet</div>
-      </div>
-    );
+      return (
+        <div className="bg-components h-full text-center">
+          <center className="mt-24 m-auto">
+            <img
+              className="dog-404"
+              src="https://i.imgur.com/Tt02lJ7.png"
+              alt="Picture1"
+            />
+            <div className="tracking-widest mt-4 w-full">
+              <span className="text-gray-500 text-6xl block">
+                <span>Opps...</span>
+              </span>
+              <span className="text-gray-500 text-xl">
+                Sorry, no books have been added to {username}'s {name} list
+                yet!
+              </span>
+            </div>
+          </center>
+        </div>
+      );
   }
 
   return (

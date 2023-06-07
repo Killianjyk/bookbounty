@@ -111,7 +111,7 @@ Goals:
 -Finish making all tests (15 total)
 
 - Notes:
-We split up all tests and each made at least 3. Finished making tests.
+We split up all tests and each made at least 3 each. Finished making tests.
 
 # 6/2- Sick
 
@@ -122,7 +122,7 @@ Goals:
 -User home page styling (Rew)- done
 -Add logged in user to Nav bar
 -Get books in (favs, next, previous) going horizontal in group of 3 like on wireframing
--Make book reviews look nice (styling)
+-Make book reviews look nice (styling- Nick F)
 
 - Notes:
 
@@ -134,22 +134,37 @@ Goals:
 -Add logged in user to Nav bar, like on SIS
 -Get books in (favs, next, previous) going horizontal in group of 3 like on wireframing (Nick M)
 -Light mode/dark mode glitch (Nick M)
--Make a 404 page
+-Make a 404 page (killian)
 
 - Notes:
-Craeted and placed favicon from default react icon
-Changed search button coloring (dark/light)
-Discover Users styling- made cards and styling them
+Craeted and placed favicon from default react icon (rew)
+Changed search button coloring (dark/light) (rew)
+Discover Users styling- made cards and styling them (rew)
 
 # 6/7- Whole team
 Goals:
-
-
+-Go over outstanding list:
+    -fix prev, next not working (fixed)
+    -Fav, prev, next not reloading when switching (fixed)
+    -add a "no books yet" if no books (fixed)
+    -Search bar searches both books and users (fixed)
+    -Rating doesn't work on mobile - changed to a different rating system from daisy UI
 
 - Notes:
+Created more issues in Gitlab (Rew, Nick F, Nick M)
+Style "no book yet" page- Rew
+Styling on Discover Users- Rew
+Redo rating bars- Nick M
+Discover books- Move random button
 
 # 6/8- Whole team
 Goals:
+-Review previous issues in Gitlab and approve as needed, review approvals together
+-Create issues for small items we need to complete today (Rew)
+    Style "no book yet" page- Rew
+    Styling on Discover Users- Rew
+    Redo rating bars- Nick M
+    Discover books- Move random button
 
 
 
