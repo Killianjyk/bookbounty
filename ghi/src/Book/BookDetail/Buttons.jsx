@@ -8,8 +8,8 @@ import {
   useGetPreviousStatusQuery,
   useRemovePreviousStatusMutation,
   useAddPreviousStatusMutation,
-} from "./app/listApiSlice";
-import { useGetUserQuery } from "./app/authApiSlice";
+} from "../../app/listApiSlice";
+import { useGetUserQuery } from "../../app/authApiSlice";
 
 const Buttons = ({ work_id }) => {
   const { data: user } = useGetUserQuery();

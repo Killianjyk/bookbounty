@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Carousel from "./Carousel";
+import Carousel from "./Book/Carousel";
 
 const HomePage = () => {
   return (

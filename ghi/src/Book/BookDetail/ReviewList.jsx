@@ -1,5 +1,5 @@
-import { useGetBooksReviewsQuery } from "./app/reviewApiSlice";
-import { useGetUserQuery } from "./app/authApiSlice";
+import { useGetBooksReviewsQuery } from "../../app/reviewApiSlice";
+import { useGetUserQuery } from "../../app/authApiSlice";
 import ReviewCard from "./ReviewCard";
 import ReviewForm from "./ReviewForm";
 

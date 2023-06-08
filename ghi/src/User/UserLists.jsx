@@ -1,7 +1,7 @@
 // UserLists.jsx
 
 import { useSelector } from "react-redux";
-import { useGetUserSearchQuery } from "./app/authApiSlice";
+import { useGetUserSearchQuery } from "../app/authApiSlice";
 import UserCard from "./UserCard";
 
 const UserLists = ({ name }) => {

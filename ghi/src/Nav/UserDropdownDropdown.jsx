@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useGetUserQuery, useLogoutMutation } from "./app/authApiSlice";
+import { useGetUserQuery, useLogoutMutation } from "../app/authApiSlice";
 
 const UserDropdownDropdown = () => {
   const navigate = useNavigate();
@@ -8,21 +8,20 @@ const UserDropdownDropdown = () => {
 
   return (
     <>
-      <li tabIndex={0}>
-        <div className="dark:hover:text-gray-300 hover:text-gray-700 justify-between dark:hover:bg-[#D3D3D325]">
+      <li className="" tabIndex={0}>
+        <div className="dark:hover:text-gray-300 hover:text-gray-700 dark:hover:bg-[#D3D3D325]">
           {user.full_name}
           <svg
             className="fill-current"
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
           >
-            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
           </svg>
         </div>
-
-        <ul className="p-2 z-10 bg-orange-50 dark:bg-slate-900">
+        <ul className="p-2 bg-orange-50 dark:bg-slate-900 z-10">
           <div className="border-b border-gray-500">
             <li>
               <NavLink
