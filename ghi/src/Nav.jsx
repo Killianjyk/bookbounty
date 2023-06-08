@@ -36,12 +36,8 @@ const Nav = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-orange-200 dark:bg-slate-800 rounded-box w-52"
             >
               <DiscoverChunkDropdownNav />
-              {!user && (
-                <LoginSignUpNav />
-              )}
-              {user && (
-                <UserDropdown />
-              )}
+              {!user && <LoginSignUpNav />}
+              {user && <UserDropdown />}
             </ul>
           </div>
           <NavLink
@@ -64,12 +60,8 @@ const Nav = () => {
         <div className="navbar-end">
           <div className="hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
-              {!user && (
-                <LoginSignUpNav />
-              )}
-              {user && (
-                <UserDropdownDropdown />
-              )}
+              {!user && <LoginSignUpNav />}
+              {user && <UserDropdownDropdown />}
             </ul>
           </div>
           <ThemeSwitchButton />

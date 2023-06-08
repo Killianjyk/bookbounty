@@ -1,3 +1,28 @@
+## 06/08/2023
+    Goals:
+        - Understand deployment
+        - Set up for deployment on 6/9
+    Notes:
+        - Issues on gitlab need to be understood more clearly
+        - CI/CD is Continuous integration continuous deployment
+    Worked on:
+        - Resolving Issues
+        - Clarifying documentation
+        - Setting up CI/CD pipeline
+
+## 06/07/2023
+    Goals:
+        - Confirm grading requirements are met
+        - Finish all started functionality
+        - Complete issues
+    Notes:
+        - Issues on gitlab need to be understood more clearly
+    Worked on:
+        - Resolving Issues
+        - Clarifying documentation
+        - Setting up CI/CD pipeline
+        - Reviews styling
+
 ## 06/06/2023
     Goals:
         - Confirm grading requirements are met

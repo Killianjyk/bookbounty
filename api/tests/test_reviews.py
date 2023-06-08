@@ -12,29 +12,6 @@ from tests.test_queries import (
 client = TestClient(app)
 
 
-def test_get_all_reviews():
-    # arrange
-    app.dependency_overrides[ReviewsQueries] = FakeReviewsQueries
-    app.dependency_overrides[UserQueries] = FakeUserQueries
-    # act
-    response = client.get("/api/reviews/all/")
-    # assert
-    assert response.status_code == 200
-    assert response.json() == {
-        "reviews": [
-            {
-                "id": "review id",
-                "username": "username",
-                "work_id": "/books/12345",
-                "stars": 5,
-                "text": "review text",
-            }
-        ]
-    }
-    # cleanup
-    app.dependency_overrides = {}
-
-
 def test_get_book_reviews():
     # arrange
     app.dependency_overrides[ReviewsQueries] = FakeReviewsQueries

@@ -7,7 +7,6 @@ import {
 } from "./app/listApiSlice";
 import BookCard from "./BookCard";
 
-
 const BookLists = ({ name, username }) => {
   const searchField = useSelector((state) => state.searchField.bookSearch);
   const { data: searchBooks, isLoading: searchLoad } = useGetBookSearchQuery(
@@ -49,26 +48,27 @@ const BookLists = ({ name, username }) => {
     (!nextBooks || nextBooks.length === 0) &&
     (!searchBooks || searchBooks.length === 0)
   ) {
-      return (
-        <div className="bg-components h-fit text-center">
-          <center className="">
-            <img
-              className="dog-404"
-              src="https://i.imgur.com/Tt02lJ7.png"
-              alt="Picture1"
-            />
-            {name !== "Search Books" && <div className="tracking-widest mt-4 w-full">
+    return (
+      <div className="bg-components h-fit text-center">
+        <center className="">
+          <img
+            className="dog-404"
+            src="https://i.imgur.com/Tt02lJ7.png"
+            alt="Picture1"
+          />
+          {name !== "Search Books" && (
+            <div className="tracking-widest mt-4 w-full">
               <span className="text-gray-500 text-6xl block">
                 <span>Oops...</span>
               </span>
               <span className="text-gray-500 text-xl">
-                Sorry, no books have been added to {username}'s {name} list
-                yet!
+                Sorry, no books have been added to {username}'s {name} list yet!
               </span>
-            </div>}
-          </center>
-        </div>
-      );
+            </div>
+          )}
+        </center>
+      </div>
+    );
   }
 
   return (

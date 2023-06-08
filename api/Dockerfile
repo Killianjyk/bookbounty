@@ -8,6 +8,7 @@ COPY main.py main.py
 COPY models models
 COPY queries queries
 COPY routers routers
+COPY tests tests
 
 RUN python -m pip install -r requirements.txt
 

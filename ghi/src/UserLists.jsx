@@ -34,18 +34,16 @@ const UserLists = ({ name }) => {
     );
   }
 
-
-
   return (
     <>
       {name === "User Search" && searchField && <h1 className="txt">{name}</h1>}
       <div className="flex justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 justify-center">
           {searchUsers.map((user) => (
-              <div key={user.username}>
-                <UserCard user={user} />
-              </div>
-            ))}
+            <div key={user.username}>
+              <UserCard user={user} />
+            </div>
+          ))}
         </div>
       </div>
     </>
