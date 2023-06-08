@@ -57,7 +57,7 @@ build-front-end-job:
     - lint-test-job
     - api-unit-tests-job
   variables:
-    PUBLIC_URL: https://penguins.gitlab.io/bookbounty
+    PUBLIC_URL: https://mod-3-group.gitlab.io/bookbounty
     REACT_APP_API_HOST: https://feb-23-ct-6-bookbounty-api.mod3projects.com
   script:
     - cd ghi
