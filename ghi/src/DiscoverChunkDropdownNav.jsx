@@ -1,37 +1,35 @@
 import { NavLink } from "react-router-dom";
 
-
 const DiscoverChunkDropdownNav = () => {
-
-    return (
-        <>
-        <li>
+  return (
+    <>
+      <li>
         <NavLink
-            className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-            to={"/discover/"}
+          className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
+          to={"/discover/"}
         >
-            Discover Books
+          Discover Books
         </NavLink>
-        </li>
-        <li>
+      </li>
+      <li>
         <NavLink
-            className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-            to={"/users/search/"}
+          className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
+          to={"/users/search/"}
         >
-            Discover Users
+          Discover Users
         </NavLink>
+      </li>
+      <div className="border-b border-gray-500">
+        <li>
+          <NavLink
+            className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
+            to={"/random/"}
+          >
+            Random Book
+          </NavLink>
         </li>
-        <div className="border-b border-gray-500">
-            <li>
-                <NavLink
-                className="dark:hover:text-gray-300 dark:hover:bg-slate-700"
-                to={"/random/"}
-                >
-                Random Book
-                </NavLink>
-            </li>
-        </div>
-        </>
-    );
+      </div>
+    </>
+  );
 };
 export default DiscoverChunkDropdownNav;

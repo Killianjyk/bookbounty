@@ -1,10 +1,10 @@
-import { reset, searchBooks, searchUsers } from "./app/SearchSlice";
+import { searchBooks, searchUsers } from "./app/SearchSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 const Search = ({ type }) => {
   const dispatch = useDispatch();
-  const [searchCriteria, setSearchCriteria] = useState(""); 
+  const [searchCriteria, setSearchCriteria] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     if (type === "Books") {
@@ -36,7 +36,7 @@ const Search = ({ type }) => {
           placeholder={`Search ${type}`}
           value={searchCriteria}
           onChange={(e) => setSearchCriteria(e.target.value)}
-          required={ type === "User" ? false : true }
+          required={type === "User" ? false : true}
         />
       </div>
       <button
@@ -53,16 +53,6 @@ const Search = ({ type }) => {
           <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
         <span className="sr-only">Search</span>
-      </button>
-      <button
-        className="btn btn-link"
-        type="button"
-        onClick={() => {
-          dispatch(reset);
-          setSearchCriteria("");
-        }}
-      >
-        Reset
       </button>
     </form>
   );

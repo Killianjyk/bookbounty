@@ -4,7 +4,7 @@ from typing import List
 
 
 class UsersBooksIn(BaseModel):
-    work_id: str  
+    work_id: str
 
 
 class UsersBooksOut(BaseModel):

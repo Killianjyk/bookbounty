@@ -1,2 +1,2 @@
 [flake8]
-exclude = ghi,docs,journals,api/migrations
+exclude = ghi,docs,journals,api/migrations/**

@@ -16,10 +16,9 @@ class OpenLibraryQueries:
     def search_api(self, string: str):
         try:
             string = string.replace(" ", "+")
-            response = requests.get(
-                self.api_url + self.search + string + "&limit=10"
-            )
-            response.raise_for_status()  # Raises an exception if the response status code is an error
+            search_url = self.api_url + self.search + string + "&limit=12"
+            response = requests.get(search_url)
+            response.raise_for_status()
             data = response.json()
             keys = [doc["key"] for doc in data.get("docs", [])]
             return keys
@@ -85,7 +84,7 @@ class RandomWordQuery:
     def get_random_word(self):
         try:
             response = requests.get(self.url)
-            response.raise_for_status()  # Raises an exception if the response status code is an error
+            response.raise_for_status()
             data = response.json()
             return data
         except requests.exceptions.RequestException as e:

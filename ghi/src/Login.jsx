@@ -12,10 +12,8 @@ const Login = () => {
     event.preventDefault();
     const result = await login({ username, password });
     if (result.error) {
-      // Handle login error
       alert("incorrect username or password, try again");
     } else {
-      // Login successful
       navigate("/");
     }
   };

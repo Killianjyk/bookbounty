@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Nav from "./Nav";
@@ -16,9 +15,10 @@ import ErrorPage from "./ErrorPage"
 
 
 function App() {
-
+  const domain = /https:\/\/[^/]+/;
+  const basename = process.env.PUBLIC_URL.replace(domain, "");
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Nav />
       <div className="mx-auto min-w-screen min-h-screen">
         <Routes>
