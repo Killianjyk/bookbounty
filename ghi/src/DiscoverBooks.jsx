@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Search from "./Search";
-import BookLists from "./BookLists";
+import BookLists from "./Book/BookLists";
 
 const DiscoverBooks = () => {
   return (

@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { useGetBookSearchQuery } from "./app/booksApiSlice";
+import { useGetBookSearchQuery } from "../app/booksApiSlice";
 import {
   useGetFavoriteBooksQuery,
   useGetPreviousBooksQuery,
   useGetNextBooksQuery,
-} from "./app/listApiSlice";
+} from "../app/listApiSlice";
 import BookCard from "./BookCard";
 
 const BookLists = ({ name, username }) => {

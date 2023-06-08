@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
-import { useGetTopFavoriteBooksQuery } from "./app/booksApiSlice";
+import { useGetTopFavoriteBooksQuery } from "../app/booksApiSlice";
 import { Link } from "react-router-dom";
 
 export default function Carousel() {

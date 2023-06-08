@@ -1,6 +1,6 @@
 import { useGetUserQuery } from "../app/authApiSlice";
 import { useParams } from "react-router-dom";
-import BookLists from "../BookLists";
+import BookLists from "../Book/BookLists";
 
 const UserBookLists = ({ name }) => {
   var { username } = useParams();

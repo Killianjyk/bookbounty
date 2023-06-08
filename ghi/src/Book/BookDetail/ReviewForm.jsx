@@ -1,8 +1,8 @@
 import {
   useMakeReviewMutation,
   useUpdateReviewMutation,
-} from "../app/reviewApiSlice";
-import { useDeleteBookReviewMutation } from "../app/reviewApiSlice";
+} from "../../app/reviewApiSlice";
+import { useDeleteBookReviewMutation } from "../../app/reviewApiSlice";
 import { useState } from "react";
 import "./reviewstars.css";
 

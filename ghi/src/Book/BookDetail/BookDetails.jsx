@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetBookQuery } from "../app/booksApiSlice";
+import { useGetBookQuery } from "../../app/booksApiSlice";
 import DetailCard from "./DetailCard";
 
 const BookDetails = () => {
