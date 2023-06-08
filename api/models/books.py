@@ -8,11 +8,16 @@ class BookIn(BaseModel):
     author: str
 
 
+class BookInData(BookIn):
+    image: str
+
+
 class BookOut(BaseModel):
     id: str
     work_id: str
     title: str
     author: str
+    image: str
 
 
 class BookOutData(BookOut):
@@ -25,11 +30,15 @@ class BookDetailOut(BaseModel):
     author: str
     description: str
     image: str
+    publish_date: str
 
 
-# for view
 class BookList(BaseModel):
-    books: List[BookOut] = []
+    books: List[BookOut]
+
+
+class BookDataList(BaseModel):
+    books: List[BookOutData]
 
 
 class BookDetailsList(BaseModel):

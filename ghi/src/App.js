@@ -1,36 +1,47 @@
-import { useEffect, useState } from "react";
-import Construct from "./Construct.js";
-import ErrorNotification from "./ErrorNotification";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import Nav from "./Nav/Nav";
+import HomePage from "./HomePage";
+import Login from "./User/Login";
+import DiscoverBooks from "./DiscoverBooks";
+import Random from "./Book/BookDetail/Random";
+import BookDetails from "./Book/BookDetail/BookDetails";
+import UserDetails from "./User/UserDetails";
+import DiscoverUsers from "./DiscoverUsers";
+import UserBookLists from "./User/UserBooksLists";
+import Signup from "./User/Signup";
+import Footer from "./Footer";
+import ErrorPage from "./ErrorPage";
+
 
 function App() {
-  const [launchInfo, setLaunchInfo] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    async function getData() {
-      let url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/launch-details`;
-      console.log("fastapi url: ", url);
-      let response = await fetch(url);
-      console.log("------- hello? -------");
-      let data = await response.json();
-
-      if (response.ok) {
-        console.log("got launch data!");
-        setLaunchInfo(data.launch_details);
-      } else {
-        console.log("drat! something happened");
-        setError(data.message);
-      }
-    }
-    getData();
-  }, []);
-
+  const domain = /https:\/\/[^/]+/;
+  const basename = process.env.PUBLIC_URL.replace(domain, "");
   return (
-    <div>
-      <ErrorNotification error={error} />
-      <Construct info={launchInfo} />
-    </div>
+    <BrowserRouter basename={basename}>
+      <Nav />
+      <div className="mx-auto min-w-screen min-h-screen">
+        <Routes>
+          <Route index element={<HomePage />} />
+          <Route path="login/" element={<Login />} />
+          <Route path="signup/" element={<Signup />} />
+          <Route path="discover/" element={<DiscoverBooks />} />
+          <Route path="random/" element={< Random />} />
+          <Route path="books/">
+            <Route path="favorites/:username" element={<UserBookLists name="Favorites" />} />
+            <Route path="previous/:username" element={<UserBookLists name="Previously Read" />} />
+            <Route path="next/:username" element={<UserBookLists name="Read Next" />} />
+            <Route path=":workId/" element={<BookDetails />} />
+          </Route>
+          <Route path="users/">
+            <Route index element={<UserDetails />} />
+            <Route path="search/" element={<DiscoverUsers />} />
+          </Route>
+          <Route path="*" element={<ErrorPage />}/>
+        </Routes>
+      </div>
+    <Footer/>
+    </BrowserRouter>
   );
 }
 
