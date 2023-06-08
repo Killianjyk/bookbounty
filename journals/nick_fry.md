@@ -25,6 +25,19 @@
 
 ## 06/06/2023
     Goals:
+        - Confirm grading requirements are met
+        - Finish all started functionality
+        - Complete issues
+    Notes:
+        - Issues on gitlab need to be understood more clearly
+    Worked on:
+        - Resolving Issues
+        - Clarifying documentation
+        - Setting up CI/CD pipeline
+        - Reviews styling
+
+## 06/06/2023
+    Goals:
         - Add styling to review list and cards
             - set up styling for phones and smaller screens as well
         - Edit tags for redux to be smarter for reloading purposes
