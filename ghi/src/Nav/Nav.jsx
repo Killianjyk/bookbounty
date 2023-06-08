@@ -1,5 +1,5 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { useGetUserQuery, useLogoutMutation } from "./app/authApiSlice";
+import { NavLink } from "react-router-dom";
+import { useGetUserQuery } from "../app/authApiSlice";
 import DiscoverChunkDropdownNav from "./DiscoverChunkDropdownNav";
 import DiscoverChunkNav from "./DiscoverChunkNav";
 import LoginSignUpNav from "./LoginSignUpNav";
