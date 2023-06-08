@@ -2,7 +2,7 @@
 
 ## Books
 
-  - **Method**: `GET`, `POST`
+  - **Method**: `GET`, `POST`, `GET`
   - **Paths**: `/api/books/`, `/api/books/<str:work_id>/`, `/api/books/discover/<str:search_bar>/`
 
 Input: 
@@ -40,7 +40,7 @@ Output:
 }
 ```
 ## Favorites/Previous/Next
-  - **Method**: `GET`, `POST`, `DELETE`
+  - **Method**: `POST`, `GET`, `GET`, `DELETE`
   - **Paths**: `/api/<str:type>/`, `/api/<str:type>/<str:username>/`, `/api/<str:type>/<str:username>/<str:work_id>/`
 
 Input: 
@@ -60,7 +60,7 @@ Output:
 }
 ```
 ## Reviews
-  - **Method**: `GET`, `POST`, `PUT`, `DELETE`
+  - **Method**: `GET`, `POST`, `PUT`, `GET`, `DELETE`
   - **Paths**: `/api/reviews/`, `/api/reviews/<str:work_id>/`
 
 Input: 
@@ -83,8 +83,8 @@ Output:
 }
 ```
 ## Users
-  - **Method**: `GET`, `POST`, `PUT`, `DELETE`
-  - **Paths**: `/api/users/`, `/api/reviews/<str:searched_username>/`, `/token`
+  - **Method**: `GET`, `POST`, `PUT`, `GET`, `GET`, `POST`, `DELETE`
+  - **Paths**: `/api/users/`, `/api/reviews/<str:work_id>/`, `/token`
 
 Input: 
 ```
