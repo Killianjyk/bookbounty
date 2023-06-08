@@ -1,5 +1,5 @@
 import Buttons from "./Buttons";
-import { useGetUserQuery } from "./app/authApiSlice";
+import { useGetUserQuery } from "../app/authApiSlice";
 import ReviewList from "./ReviewList";
 
 const DetailCard = ({ book }) => {
