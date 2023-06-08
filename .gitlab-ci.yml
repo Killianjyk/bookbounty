@@ -58,8 +58,7 @@ build-front-end-job:
     - api-unit-tests-job
   variables:
     PUBLIC_URL: https://penguins.gitlab.io/bookbounty
-     #TBD
-    REACT_APP_API_HOST: https://sample-service.WEBSERVICE_NAME.mod3projects.com
+    REACT_APP_API_HOST: https://feb-23-ct-6-bookbounty-api.mod3projects.com
   script:
     - cd ghi
     - npm install
