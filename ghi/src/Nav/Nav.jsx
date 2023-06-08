@@ -6,6 +6,8 @@ import LoginSignUpNav from "./LoginSignUpNav";
 import UserDropdownDropdown from "./UserDropdownDropdown";
 import UserDropdown from "./UserDropdown";
 import ThemeSwitchButton from "./ThemeSwitchButton";
+import bookLogo from "../Images/Marcus-Roberto-Google-Play-Google-Play-Books.512.png";
+
 
 const Nav = () => {
   const { data: user } = useGetUserQuery();
@@ -46,7 +48,7 @@ const Nav = () => {
           >
             <img
               className="h-8 mr-2"
-              src="/Marcus-Roberto-Google-Play-Google-Play-Books.512.png"
+              src={bookLogo}
               alt="logo"
             />
             BookBounty

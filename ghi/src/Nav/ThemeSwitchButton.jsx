@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import dark_mode_icon from "../Images/dark-mode-icon-blue.png";
+import light_mode_icon from "../Images/light-mode-icon-orange.png";
 
 const ThemeSwitchButton = () => {
   const [theme, setTheme] = useState("light");
@@ -34,7 +36,7 @@ const ThemeSwitchButton = () => {
       // Remove the src attribute
       image.removeAttribute("src");
       // Add a new src attribute
-      image.setAttribute("src", "/light-mode-icon-orange.png");
+      image.setAttribute("src", light_mode_icon);
     } else {
       setTheme("light");
       localStorage.setItem("theme", "light");
@@ -43,7 +45,7 @@ const ThemeSwitchButton = () => {
       // Remove the src attribute
       image.removeAttribute("src");
       // Add a new src attribute
-      image.setAttribute("src", "/dark-mode-icon-blue.png");
+      image.setAttribute("src", dark_mode_icon);
     }
   };
 
@@ -58,7 +60,7 @@ const ThemeSwitchButton = () => {
         <img
           className="h-10"
           id="theme-toggle-icon"
-          src="/dark-mode-icon-blue.png"
+          src={dark_mode_icon}
           alt="Theme Icon"
         ></img>
       </button>
