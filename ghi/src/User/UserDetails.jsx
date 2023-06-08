@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetUserQuery, useUpdateUserInfoMutation } from "./app/authApiSlice";
+import { useGetUserQuery, useUpdateUserInfoMutation } from "../app/authApiSlice";
 
 const UserDetails = () => {
   const { data: user, refetch } = useGetUserQuery();

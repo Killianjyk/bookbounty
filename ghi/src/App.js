@@ -2,16 +2,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Nav from "./Nav/Nav";
 import HomePage from "./HomePage";
-import Login from "./Login";
+import Login from "./User/Login";
 import DiscoverBooks from "./DiscoverBooks";
 import Random from "./BookDetail/Random";
 import BookDetails from "./BookDetail/BookDetails";
-import UserDetails from "./UserDetails";
+import UserDetails from "./User/UserDetails";
 import DiscoverUsers from "./DiscoverUsers";
-import UserBookLists from "./UserBooksLists";
-import Signup from "./Signup";
+import UserBookLists from "./User/UserBooksLists";
+import Signup from "./User/Signup";
 import Footer from "./Footer";
-import ErrorPage from "./ErrorPage"
+import ErrorPage from "./ErrorPage";
 
 
 function App() {

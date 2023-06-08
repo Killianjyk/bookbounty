@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSignupMutation } from "./app/authApiSlice";
+import { useSignupMutation } from "../app/authApiSlice";
 import { useNavigate, Link } from "react-router-dom";
 
 const Signup = () => {

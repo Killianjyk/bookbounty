@@ -1,5 +1,5 @@
 import Search from "./Search";
-import UserLists from "./UserLists";
+import UserLists from "./User/UserLists";
 
 const DiscoverUsers = () => {
   return (
