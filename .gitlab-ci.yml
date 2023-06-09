@@ -20,6 +20,12 @@ api-unit-tests-job:
   stage: test
   needs:
     - lint-test-job
+  variables:
+    MONGO_USER: "DOESNOTMATTER"
+    MONGO_PASSWORD: "DOESNOTMATTER"
+    MONGO_HOST: "DOESNOTMATTER"
+    MONGO_DB: "DOESNOTMATTER"
+    SIGNING_KEY: "DOESNOTMATTER"
   script:
     - cd api
     - pip install -r requirements.txt
@@ -51,9 +57,8 @@ build-front-end-job:
     - lint-test-job
     - api-unit-tests-job
   variables:
-    PUBLIC_URL: https://penguins.gitlab.io/bookbounty
-     #TBD
-    REACT_APP_API_HOST: https://sample-service.WEBSERVICE_NAME.mod3projects.com
+    PUBLIC_URL: https://mod-3-group.gitlab.io/bookbounty
+    REACT_APP_API_HOST: https://feb-23-ct-6-bookbounty-api.mod3projects.com
   script:
     - cd ghi
     - npm install

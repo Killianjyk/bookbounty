@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSignupMutation } from "../app/authApiSlice";
 import { useNavigate, Link } from "react-router-dom";
+import bookLogo from "../Images/Marcus-Roberto-Google-Play-Google-Play-Books.512.png";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const Signup = () => {
           >
             <img
               className="h-10 mr-2 drop-shadow-[1px_1px_8px_rgba(0,0,0,1)]"
-              src="/Marcus-Roberto-Google-Play-Google-Play-Books.512.png"
+              src={bookLogo}
               alt="logo"
             />
             BookBounty
