@@ -13,7 +13,7 @@ class UserQueries(MongoQueries):
     def signup(self, user_in: UserIn, hashed_password: str):
         user = user_in.dict()
         user["password"] = hashed_password
-        if self.get_user(user["username"]):
+        if self.get_user({"username": user["username"]}):
             raise DuplicateUserError
         response = self.collection.insert_one(user)
         if response.inserted_id:
